@@ -1,0 +1,31 @@
+access (man 2 access): Check real user's permissions for a file or directory.
+chdir (man 2 chdir): Change the current working directory.
+close (man 2 close): Close a file descriptor.
+closedir (man 3 closedir): Close a directory stream.
+execve (man 2 execve): Execute a program.
+exit (man 3 exit): Terminate a process.
+_exit (man 2 _exit): Terminate a process (alternative to exit).
+fflush (man 3 fflush): Flush a stream.
+fork (man 2 fork): Create a new process by duplicating the existing process.
+free (man 3 free): Deallocate memory previously allocated with malloc, calloc, or realloc.
+getcwd (man 3 getcwd): Get the current working directory.
+getline (man 3 getline): Read a line from a file stream (GNU extension).
+getpid (man 2 getpid): Get the process ID of the current process.
+isatty (man 3 isatty): Check if a file descriptor refers to a terminal.
+kill (man 2 kill): Send a signal to a process.
+malloc (man 3 malloc): Allocate memory on the heap.
+open (man 2 open): Open a file or create a new file.
+opendir (man 3 opendir): Open a directory stream.
+perror (man 3 perror): Print an error message.
+read (man 2 read): Read data from a file descriptor.
+readdir (man 3 readdir): Read a directory entry.
+signal (man 2 signal): Set a signal handler for a specific signal.
+stat (__xstat) (man 2 stat): Get file status.
+lstat (__lxstat) (man 2 lstat): Get symbolic link status.
+fstat (__fxstat) (man 2 fstat): Get file status for a file descriptor.
+strtok (man 3 strtok): Tokenize a string.
+wait (man 2 wait): Wait for a child process to terminate.
+waitpid (man 2 waitpid): Wait for a specific child process to terminate.
+wait3 (man 2 wait3): Wait for a child process to terminate (deprecated).
+wait4 (man 2 wait4): Wait for a child process to terminate (deprecated).
+write (man 2 write): Write data to a file descriptor.
