@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <errno.h>
 
 
@@ -28,9 +29,11 @@ typedef struct shelldata
 
 int _putchar(char c);
 void _puts(char *str);
+void _puts_and_flush(char *str);
 char *_getline();
 
 int command(shelldata_ *data);
+int _execute_command(char *command);
 
 
 #endif

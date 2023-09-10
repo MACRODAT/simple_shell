@@ -18,9 +18,17 @@ int command(shelldata_ *data)
 			_putchar(SPECIAL_CHAR);
 
 			cd = _getline();
-			_puts(cd);
-			_putchar('\n');
-			_putchar(SPECIAL_CHAR);
+			
+			if (_execute_command(cd) != 0)	
+			{
+				_puts(cd);
+				_puts(": Command not found");
+				_putchar('\n');
+				_putchar(SPECIAL_CHAR);
+			}
+			else{
+				
+			}
 		}
 	}
 }

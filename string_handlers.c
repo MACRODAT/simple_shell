@@ -17,6 +17,23 @@ void _puts(char *str)
 }
 
 /**
+ *_puts_and_flush - printer
+ *@str: str
+ *
+ * Return: 0
+ */
+void _puts_and_flush(char *str)
+{
+	int i = 0;
+
+	if (!str)
+		return;
+	while (str[i] != '\0')
+		_putchar(str[i++]);
+	_putchar(SPECIAL_CHAR);
+}
+
+/**
  * _putchar - writing c
  * @c: cghr
  *	
