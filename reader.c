@@ -1,47 +1,20 @@
 #include "shell.h"
 
 /**
- * _getline - waits for the user to print a newline
+ * _getline - better
  *
- * Returns: line or null
+ * Returns: line size or -1
 */
-char *_getline()
+size_t _getline(char **lineptr, size_t *n, FILE *stream)
 {
-	char c = -2;
-	char *b = (char *)malloc(sizeof(char) * BUFFER_SIZE_READER);
-	char *tmp;
-	int bf = BUFFER_SIZE_READER;
 	int i = 0;
+	size_t sz = 0;
 
-	if (!b)
-		// TODO HANDLE ERR
-		return (NULL);
-
-	while (c != EOF && c != '\n' && c != '\0')
+	if ((sz = getline(lineptr, n, stream)) == -1)
+		return (-1);
+	else
 	{
-		if (c > 0)
-		{
-			if (i >= bf - 1)
-			{
-				bf *= 2;
-				tmp = (char *)realloc(b, sizeof(char) * bf);
-				if (!tmp)
-				{
-					free(b); //TODO ERR
-					return (NULL);
-				}
-				b = tmp;
-			}
-			b[i++] = c;
-		}
-
-		if (read(STDIN_FILENO, &c, 1) == -1)
-		{
-			// TODO HANDLE ERR
-			free(b);
-			return (NULL);
-		}
+		(*lineptr)[sz - 1] = 0;
+		return (sz);
 	}
-
-	return (b);
 }

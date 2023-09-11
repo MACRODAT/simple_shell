@@ -8,6 +8,8 @@
 int command(shelldata_ *data)
 {
 	char *cd = NULL;
+	size_t len = BUFFER_SIZE_READER;
+	int res;
 
 
 	while (1)
@@ -17,7 +19,9 @@ int command(shelldata_ *data)
 			_puts("#$# ");
 			_putchar(SPECIAL_CHAR);
 
-			cd = _getline();
+			res = _getline(&cd, &len, stdin);
+			if (!cd || res < 0)
+				break;
 			
 			if (_execute_command(cd) != 0)	
 			{
@@ -30,7 +34,8 @@ int command(shelldata_ *data)
 				_putchar(SPECIAL_CHAR);
 			}
 			else{
-
+				// TODO error
+				break;
 			}
 		}
 		else

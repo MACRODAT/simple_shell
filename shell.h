@@ -31,7 +31,7 @@ typedef struct shelldata
 int _putchar(char c);
 void _puts(char *str);
 void _puts_and_flush(char *str);
-char *_getline();
+size_t _getline(char **lineptr, size_t *n, FILE *stream);
 void _getFileName(char *path, char **file);
 
 void initData(shelldata_ *data, int na, char **a);
