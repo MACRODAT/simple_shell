@@ -53,3 +53,24 @@ int _putchar(char c)
 		buffer[i++] = c;
 	return (1);
 }
+
+/**
+ * _getFileName - get file name
+ * @path: path
+ * @file: filename
+ */
+void _getFileName(char *path, char **file)
+{
+	int i = 0, j = 0, j_ = 0;
+
+	while (path[i])
+	{
+		if (path[i] == '\\' || path[i] == '/')
+			j = i;
+		i++;
+	}
+	*file = malloc(sizeof(char) * (i - j + 2));
+	for (j_ = j + 1; j_ < i; j_++)
+		(*file)[j_ - j - 1] = path[j_];
+	(*file)[j_] = 0;
+}

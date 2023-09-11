@@ -24,6 +24,7 @@ typedef struct shelldata
 {
 	int na;
 	char **a;
+	char *filename;
 	int interactive;
 } shelldata_;
 
@@ -31,7 +32,9 @@ int _putchar(char c);
 void _puts(char *str);
 void _puts_and_flush(char *str);
 char *_getline();
+void _getFileName(char *path, char **file);
 
+void initData(shelldata_ *data, int na, char **a);
 int command(shelldata_ *data);
 int _execute_command(char *command);
 

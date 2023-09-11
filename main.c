@@ -10,9 +10,11 @@
 int main(int na, char **a)
 {
 	shelldata_ data;
-	data.na = na;
-	data.a = a;
-	data.interactive = 1;
+
+	if (na < 1)
+		return (-1);
+	initData(&data, na, a);
+	_getFileName(data.a[0], &data.filename);
 
 	command(&data);
 
