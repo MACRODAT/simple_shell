@@ -11,7 +11,7 @@
 */
 char **_splitString(const char *input, char *delimiter, int *tokenCount)
 {
-	char **s = NULL, _s_tmp = NULL;
+	char **s = NULL, **_s_tmp = NULL;
 	int i = 0, j = 0, last_ind = 0, tmp = -1;
 	int tok_count = 0;
 	int buf_size = ARGUMENTS_SIZE;

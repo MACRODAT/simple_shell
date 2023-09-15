@@ -10,7 +10,7 @@ size_t __getline(char **lineptr, size_t *n, FILE *stream)
 	char c = -2;
 	char *b = (char *)malloc(sizeof(char) * *n);
 	char *tmp;
-	size_t bf = n;
+	size_t bf = *n;
 	int i = 0;
 
 	if (!b)
@@ -42,6 +42,7 @@ size_t __getline(char **lineptr, size_t *n, FILE *stream)
 			return (-1);
 		}
 	}
+	b[i] = '\0';
 	*lineptr = b;
 	return (i);
 }

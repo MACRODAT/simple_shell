@@ -17,6 +17,7 @@ int main(int na, char **a)
 	_getFileName(data.a[0], &data.filename);
 
 	command(&data);
+	free_info(&data, 1);
 
 	return (1);
 }
