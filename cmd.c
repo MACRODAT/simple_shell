@@ -77,8 +77,7 @@ int _process_lines(shelldata_ *data, char *cd_all)
 			_putchar_e('.');
 			_putchar_e('/');
 			_puts_e(data->filename);
-			_puts_e(": No such file or directory.");
-			_putchar_e('\n');
+			_puts_and_flush_e(": No such file or directory.\n");
 		}
 
 		_putchar(SPECIAL_CHAR);

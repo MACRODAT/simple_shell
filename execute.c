@@ -13,21 +13,21 @@ int _execute_command(char *command, shelldata_ *data)
 	int access_perm = -1;
 
 	tokens = _splitString(command, delimiters, &token_size);
-	p = fork();
-	if (p == -1)
-		return (-1);
-	else if (p == 0)
+	if (!tokens)
 	{
-		if (!tokens)
-		{
-			//TODO ERR
-			// perror("Failed to execute");
-			_puts_and_flush_e("Exec error.\n");
-			exit(1);
-		}
-		new_path = tokens[0];
-		if ((access_perm = access(new_path, F_OK)) >= 0)
-				goto success;
+		//TODO ERR
+		// perror("Failed to execute");
+		_puts_and_flush_e("Could not parse command.\n");
+		return (-1);
+	}
+	new_path = tokens[0];
+
+	if ((access_perm = access(new_path, F_OK)) >= 0)
+	{
+
+	}
+	else
+	{
 		new_path = malloc(sizeof(char) * STANDART_BUFFER);
 		while (data->paths && data->paths[ind])
 		{
@@ -40,13 +40,17 @@ int _execute_command(char *command, shelldata_ *data)
 			}
 		}
 		free(new_path);
-		
-		// perror("Failed to execute");
-		_puts_and_flush_e("Exec error.\n");
-		exit(1);
+		return (-1);
+	}
 success:
-		execvp(tokens[0], tokens);
+	if (new_path)
 		free(new_path);
+	p = fork();
+	if (p == -1)
+		return (-1);
+	else if (p == 0)
+	{
+		execvp(tokens[0], tokens);
 		// perror("Failed to execute");
 		_puts_and_flush_e("Exec error.\n");
 		exit(1);
