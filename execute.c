@@ -28,7 +28,7 @@ int _execute_command(char *command, shelldata_ *data)
 		new_path = tokens[0];
 		if ((access_perm = access(new_path, F_OK)) >= 0)
 				goto success;
-		new_path = malloc(sizeof(char) * 4096);
+		new_path = malloc(sizeof(char) * STANDART_BUFFER);
 		while (data->paths && data->paths[ind])
 		{
 			_strcpy(new_path, data->paths[ind++]);

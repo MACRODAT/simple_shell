@@ -141,7 +141,7 @@ char *_trim(char **sp)
 	int len = 0, i = 0, j = 0;
 	int last_space = -1;
 
-	if (!s || !*s)
+	if (!s)
 		return (NULL);
 	while(s[len])
 		len++;

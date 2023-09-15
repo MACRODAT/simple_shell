@@ -45,7 +45,7 @@ int _process_lines(shelldata_ *data, char *cd_all)
 	int commandResult;
 
 	cd_lines = _splitString(cd_all, delimiters2, &cd_lines_len);
-	cd = malloc(sizeof(char) * 4096);
+	cd = malloc(sizeof(char) * STANDART_BUFFER);
 	if (!cd)
 	{
 		_puts_and_flush_e("Error in Memory.");
@@ -54,11 +54,16 @@ int _process_lines(shelldata_ *data, char *cd_all)
 	}
 	while(cd_lines && *cd_lines && (_strcpy(cd, *cd_lines)))
 	{
+
 		if (!_trim(&cd))
 		{
 			_puts_and_flush_e("Error Parsing.");
 			free_info(data, 0);
 			return (-1);
+		}
+		if (_strlen(cd) == 0){
+			cd_lines++;
+			continue;
 		}
 		data->cd = _strdup(cd);
 		data->command_tokens = _splitString(cd, delimiters, &data->tokensize);

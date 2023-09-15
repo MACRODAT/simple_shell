@@ -15,7 +15,7 @@ void initData(shelldata_ *data, int na, char **a)
 	data->interactive = 0;
 	data->curdir = getcwd(b, 1024);
 	data->olddir = NULL;
-	data->cd = malloc(sizeof(char) * 4096);
+	data->cd = malloc(sizeof(char) * STANDART_BUFFER);
 	if ((isatty(STDIN_FILENO) == 1) && (isatty(STDOUT_FILENO) == 1))
 		data->interactive = 1;
 	_ll_init(&(data->env), 1000, "TEST ENV", "TEST VAL");
@@ -47,7 +47,8 @@ void __free_str_str(char **s)
 void free_info(shelldata_ *data, int flag)
 {
 	__free_str_str(data->command_tokens);
-	free(data->cd);
+	if (data->cd)
+		free(data->cd);
 	if (flag)
 	{
 		__free_str_str(data->paths);

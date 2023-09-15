@@ -8,12 +8,15 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <errno.h>
+#include <fcntl.h>
 
 
 #define BUFFER_SIZE 1024
-#define BUFFER_SIZE_READER 1024
+#define BUFFER_SIZE_READER 200
 #define SPECIAL_CHAR -2
 #define ARGUMENTS_SIZE 100
+#define FILE_BUFFER_SIZE 4096
+#define STANDART_BUFFER 4096
 
 extern char **environ;
 
@@ -89,6 +92,7 @@ void _ll_free(_ll *s);
 /* prg strings */
 int _putchar(char c);
 void _puts(char *str);
+void _puts_e(char *str);
 void _puts_and_flush(char *str);
 int _putchar_e(char c);
 void _puts_and_flush_e(char *str);
@@ -122,5 +126,13 @@ void _set_env(shelldata_ *data, char *var, char *val);
 void _unset_env(shelldata_ *data, char *var);
 void _handle_node_env(shelldata_ *data, _ll *node);
 void _handle_node_env_del(shelldata_ *data, char *var);
+
+/* fileio */
+int _exec_file(shelldata_ *data, char *file);
+int _file_exists(char *file);
+
+/* memory */
+void __free_str_str(char **s);
+
 
 #endif
