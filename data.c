@@ -7,7 +7,6 @@
 */
 void initData(shelldata_ *data, int na, char **a)
 {
-	int i = 0;
 	char b[2048];
 
 	data->na = na;

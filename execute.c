@@ -5,7 +5,7 @@ int _execute_command(char *command, shelldata_ *data)
 {
 	pid_t p;
 	int stat;
-	char *a[] = {command, NULL};
+	/* char *a[] = {command, NULL}; */
 	char **tokens = NULL;
 	char *delimiters = "\n\t\r\a ";
 	int token_size = 0, ind = 0;
@@ -15,8 +15,6 @@ int _execute_command(char *command, shelldata_ *data)
 	tokens = _splitString(command, delimiters, &token_size);
 	if (!tokens)
 	{
-		//TODO ERR
-		// perror("Failed to execute");
 		_puts_and_flush_e("Could not parse command.\n");
 		return (-1);
 	}
@@ -51,7 +49,6 @@ success:
 	else if (p == 0)
 	{
 		execvp(tokens[0], tokens);
-		// perror("Failed to execute");
 		_puts_and_flush_e("Exec error.\n");
 		exit(1);
 	}

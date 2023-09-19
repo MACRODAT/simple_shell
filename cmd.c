@@ -11,7 +11,6 @@ int command(shelldata_ *data)
 	
 	size_t len = BUFFER_SIZE_READER;
 	int res;
-	int token_size = 0;
 
 	do
 	{
@@ -29,6 +28,7 @@ int command(shelldata_ *data)
 		}
 	}
 	while (data->interactive);
+	return (0);
 }
 
 /**
@@ -73,7 +73,6 @@ int _process_lines(shelldata_ *data, char *cd_all)
 		}
 		else if ((commandResult = _execute_command(cd, data)) != 0)	
 		{
-			// _puts(cd);
 			_putchar_e('.');
 			_putchar_e('/');
 			_puts_e(data->filename);

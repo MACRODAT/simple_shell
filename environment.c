@@ -40,7 +40,6 @@ int _separate_key_val(char *s, char **key, char **val)
 void _populate_env(shelldata_ *data)
 {
 	int i = 0, res = 0;
-	char *s;
 	_ll *node;
 	char *key = NULL, *val = NULL;
 
@@ -123,8 +122,6 @@ void _print_env(shelldata_ *data)
 */
 void _set_env(shelldata_ *data, char *var, char *val)
 {
-	int ind = 0;
-	char *s;
 	_ll *curnode;
 	int flag = 0;
 
@@ -168,8 +165,6 @@ void _set_env(shelldata_ *data, char *var, char *val)
 */
 void _unset_env(shelldata_ *data, char *var)
 {
-	int ind = 0;
-	char *s;
 	_ll *curnode, *tmp;
 	int flag = 0;
 

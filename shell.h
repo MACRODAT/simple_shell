@@ -18,6 +18,8 @@
 #define FILE_BUFFER_SIZE 4096
 #define STANDART_BUFFER 4096
 
+#define UNUSED(x) (void)(x)
+
 extern char **environ;
 
 /**

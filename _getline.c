@@ -11,12 +11,14 @@ size_t __getline(char **lineptr, size_t *n, FILE *stream)
 	char *b = (char *)malloc(sizeof(char) * *n);
 	char *tmp;
 	size_t bf = *n;
-	int i = 0;
+	size_t i = 0;
 
+	UNUSED(stream);
 	if (!b)
-		// TODO HANDLE ERR
+	{
+		_puts_and_flush_e("error");		
 		return (-1);
-
+	}
 	while (c != EOF && c != '\n' && c != '\0')
 	{
 		if (c > 0)
@@ -27,7 +29,8 @@ size_t __getline(char **lineptr, size_t *n, FILE *stream)
 				tmp = (char *)realloc(b, sizeof(char) * bf);
 				if (!tmp)
 				{
-					free(b); //TODO ERR
+					free(b);
+					_puts_and_flush_e("error");
 					return (-1);
 				}
 				b = tmp;
@@ -37,7 +40,7 @@ size_t __getline(char **lineptr, size_t *n, FILE *stream)
 
 		if (read(STDIN_FILENO, &c, 1) == -1)
 		{
-			// TODO HANDLE ERR
+			_puts_and_flush_e("error");
 			free(b);
 			return (-1);
 		}

@@ -12,7 +12,7 @@
 char **_splitString(const char *input, char *delimiter, int *tokenCount)
 {
 	char **s = NULL, **_s_tmp = NULL;
-	int i = 0, j = 0, last_ind = 0, tmp = -1;
+	int i = 0, j = 0, last_ind = 0;
 	int tok_count = 0;
 	int buf_size = ARGUMENTS_SIZE;
 	int delimited = 0;
@@ -20,13 +20,13 @@ char **_splitString(const char *input, char *delimiter, int *tokenCount)
 	s = (char **)malloc(sizeof(char *) * buf_size);
 	if (!s)
 	{
-		//TODO ERR
+		_puts_and_flush_e("error");
 		return (NULL);
 	}
 	s[0] = (char *)malloc(sizeof(char) * BUFFER_SIZE_READER);
 	if (!s[0])
 	{
-		//TODO ERR
+		_puts_and_flush_e("error");
 		return (NULL);
 	}
 	while (input[i++])
@@ -44,7 +44,7 @@ char **_splitString(const char *input, char *delimiter, int *tokenCount)
 				s[tok_count] = malloc(sizeof(char) * BUFFER_SIZE_READER);
 				if (!s[tok_count])
 				{
-					//TODO ERR
+					_puts_and_flush_e("error");
 					return (NULL);
 				}
 				if (tok_count >= buf_size - 1)
@@ -53,7 +53,7 @@ char **_splitString(const char *input, char *delimiter, int *tokenCount)
 					_s_tmp = (char **)realloc(s, sizeof(char *) * buf_size);
 					if (!_s_tmp)
 					{
-						//TODO ERR
+						_puts_and_flush_e("error");
 						free(s);
 						return (NULL);
 					}

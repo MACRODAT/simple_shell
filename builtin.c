@@ -8,6 +8,7 @@
 int _builtin_print_env(shelldata_ *data)
 {
 	_print_env(data);
+	return (0);
 }
 
 /**
@@ -19,6 +20,7 @@ int _builtin_exit(shelldata_ *data)
 {
 	free_info(data, 1);
 	exit(1);
+	return (0);
 }
 
 /**
@@ -28,8 +30,10 @@ int _builtin_exit(shelldata_ *data)
 */
 int _builtin_help(shelldata_ *data)
 {
+	UNUSED(data);
 	_puts("HELP FOR COMMAND LINE\nBASIC COMMAND LINE \
 		FOR UNIX SYSTEMS\nHELP NOT YET IMPLEMENTED\n");
+	return (0);
 }
 
 /**
@@ -45,6 +49,7 @@ int _builtin_set(shelldata_ *data)
 	{
 		_puts_and_flush_e("Unsufficient number of parameters\n");
 	}
+	return (0);
 }
 
 /**
@@ -60,6 +65,7 @@ int _builtin_unset(shelldata_ *data)
 	{
 		_puts_and_flush_e("Unsufficient number of parameters\n");
 	}
+	return (0);
 }
 
 /**
@@ -69,10 +75,10 @@ int _builtin_unset(shelldata_ *data)
 */
 int _builtin_cd(shelldata_ *data)
 {
-	int ind = 0;
-	char *s, *dir, b[2048];
+	char *s, b[2048];
 
 	s = getcwd(b, 2048);
+	UNUSED(s);
 	if (data->tokensize > 1)
 	{
 		if (_strcmp(data->command_tokens[1], "-") == 0)
@@ -103,6 +109,7 @@ int _builtin_cd(shelldata_ *data)
 		_strcpy(data->curdir, b);
 		puts(b);
 	}
+	return (0);
 }
 
 /**

@@ -57,7 +57,6 @@ _ll *_ll_add_end(_ll **list, int n, char *s, char *s2)
 */
 _ll *_ll_add_beg(_ll **list, int n, char *s, char *s2)
 {
-	_ll *lst;
 	_ll *node;
 
 	if (!list || !*list)
@@ -138,12 +137,14 @@ _ll *_ll_init(_ll **list, int n, char *s, char *s2)
 size_t _ll_print(const _ll *lst, const char *sep)
 {
 	size_t i = 0;
+	char *dup;
 
+	dup = _strdup(sep);
 	while (lst)
 	{
 		_puts(lst->s ? lst->s : "(nil)");
 		if (lst->s2){
-			_puts(sep);
+			_puts(dup);
 			_puts(lst->s2);
 		}
 		_puts("\n");
@@ -180,7 +181,7 @@ void _ll_free(_ll *s)
  */
 _ll *_ll_delete(_ll *s)
 {
-	_ll *lst = s, *tmp = NULL;
+	_ll *tmp = NULL;
 
 	if (!s)
 		return (NULL);
