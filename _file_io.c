@@ -22,13 +22,10 @@ int _file_exists(char *file)
 */
 int _exec_file(shelldata_ *data, char *file)
 {
-	int res = 0;
-	int ptr = 0, _len = FILE_BUFFER_SIZE;
+	int res = 0, ptr = 0, _len = FILE_BUFFER_SIZE, i = 0;
 	char *b;
-	char c = 0;
+	char c = 0, del = '\n';
 	char **lines;
-	char del = '\n';
-	int i = 0;
 
 	ptr = open(file, O_RDONLY);
 	if (ptr < 0)
@@ -36,8 +33,7 @@ int _exec_file(shelldata_ *data, char *file)
 	b = malloc(sizeof(char) * _len);
 	if (!b)
 		return (-1);
-
-	while( (res = read(ptr, &c, 1)) > 0)
+	while ((res = read(ptr, &c, 1)) > 0)
 	{
 		b[i++] = c;
 		if (i >= _len)
@@ -53,7 +49,6 @@ int _exec_file(shelldata_ *data, char *file)
 		free(b);
 		return (-1);
 	}
-	/* #TODO HANDLE LARGER FILES */
 	lines = _splitString(b, &del, &res);
 	if (!lines)
 	{
@@ -62,12 +57,8 @@ int _exec_file(shelldata_ *data, char *file)
 	}
 	i = 0;
 	while (i < res)
-	{
-		_process_lines(data, lines[i]);
-		i++;
-	}
+		_process_lines(data, lines[i++]);
 	close(ptr);
-	free(b);
-	__free_str_str(lines);
+	free(b), __free_str_str(lines);
 	return (i);
 }

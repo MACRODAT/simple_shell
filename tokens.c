@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _splitString - Function to split a string into 
+ * _splitString - Function to split a string into
  * multiple tokens based on a delimiter
  * @input: in
  * @delimiter: del
@@ -35,7 +35,7 @@ char **_splitString(const char *input, char *delimiter, int *tokenCount)
 		delimited = 0;
 		while (delimiter[j++])
 		{
-			if (input[i-1] == delimiter[j-1])
+			if (input[i - 1] == delimiter[j - 1])
 			{
 				delimited = 1;
 				s[tok_count][last_ind] = 0;
@@ -62,7 +62,7 @@ char **_splitString(const char *input, char *delimiter, int *tokenCount)
 			}
 		}
 		if (delimited == 0)
-			s[tok_count][last_ind++] = input[i-1];
+			s[tok_count][last_ind++] = input[i - 1];
 	}
 	s[tok_count][last_ind] = 0;
 	*tokenCount = tok_count + 1;

@@ -16,7 +16,7 @@ int command(shelldata_ *data)
 	{
 		if (data->interactive == 1)
 		{
-			_puts("#$# ");
+			_puts("$ ");
 			_putchar(SPECIAL_CHAR);
 		}
 		res = _getline(&cd_all, &len, stdin);
