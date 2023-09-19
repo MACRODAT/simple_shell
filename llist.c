@@ -142,12 +142,15 @@ size_t _ll_print(const _ll *lst, const char *sep)
 	dup = _strdup(sep);
 	while (lst)
 	{
-		_puts(lst->s ? lst->s : "(nil)");
-		if (lst->s2){
-			_puts(dup);
-			_puts(lst->s2);
+		if (lst->s && _strcmp(lst->s, "OLDPWD") != 0)
+		{
+			_puts(lst->s);
+			if (lst->s2){
+				_puts(dup);
+				_puts(lst->s2);
+			}
+			_puts("\n");
 		}
-		_puts("\n");
 		lst = lst->n;
 		i++;
 	}
