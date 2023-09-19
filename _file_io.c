@@ -1,10 +1,10 @@
 #include "shell.h"
 
-/** 
+/**
  * _file_exists - iof
  * @file: file handle
  *
- * Return: 1 if exist 
+ * Return: 1 if exist
  */
 int _file_exists(char *file)
 {
@@ -37,7 +37,7 @@ int _exec_file(shelldata_ *data, char *file)
 	if (!b)
 		return (-1);
 
-	while((res = read(ptr, &c, 1)) > 0)
+	while( (res = read(ptr, &c, 1)) > 0)
 	{
 		b[i++] = c;
 		if (i >= _len)
