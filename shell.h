@@ -96,11 +96,10 @@ void _ll_free(_ll *s);
 /* prg strings */
 int _putchar(char c);
 void _puts(char *str);
-void _puts_e(char *str);
+void _puts_e(const char *str);
 void _puts_and_flush(char *str);
-int _putchar_e(char c);
-void _puts_and_flush_e(char *str);
-void _puts_and_flush_e(char *str);
+int _putchar_e(const char c);
+void _puts_and_flush_e(const char *str);
 size_t _getline(char **lineptr, size_t *n, FILE *stream);
 size_t __getline(char **lineptr, size_t *n, FILE *stream);
 void _getFileName(char *path, char **file);
@@ -115,6 +114,7 @@ int _execute_command(char *command, shelldata_ *data);
 int _exec_builtin(char *cd, shelldata_ *data);
 void free_info(shelldata_ *data, int flag);
 int _process_lines(shelldata_ *data, char *cd_all);
+int _print_error(const char *c, shelldata_ *data);
 
 /* builtins */
 int _builtin_print_env(shelldata_ *data);

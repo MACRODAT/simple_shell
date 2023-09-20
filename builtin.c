@@ -91,14 +91,19 @@ int _builtin_cd(shelldata_ *data)
 		}
 		else
 		{
-			chdir(data->command_tokens[1]);
+			if (chdir(data->command_tokens[1]) != 0)
+			{
+				char err[1000] = ": can't cd to ";
+				_strcat(err, data->command_tokens[1]);
+				_strcat(err, "\n");
+				_print_error(err, data);
+				return (-1);
+			}
 			s = getcwd(b, 2048);
 			if (data->curdir && (!data->olddir || _strcmp(data->curdir, b) != 0))
 				data->olddir = _strdup(data->curdir);
 			_strcpy(data->curdir, b);
 		}
-		
-		puts(b);
 	}
 	else
 	{
@@ -107,7 +112,6 @@ int _builtin_cd(shelldata_ *data)
 		if (data->curdir && (!data->olddir || _strcmp(data->curdir, b) != 0))
 			data->olddir = _strdup(data->curdir);
 		_strcpy(data->curdir, b);
-		puts(b);
 	}
 	return (0);
 }
