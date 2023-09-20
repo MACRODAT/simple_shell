@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/a.out",
-			"args": [],
+			"args": ["/bin/ls"],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
 			"preLaunchTask": "build all file",

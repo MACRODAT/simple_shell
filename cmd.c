@@ -58,6 +58,8 @@ int _process_lines(shelldata_ *data, char *cd_all)
 		data->commandNumber++;
 		if (!_trim(&cd))
 		{
+			if (!data->interactive)
+				return (-20);
 			_puts_and_flush_e("Error Parsing.");
 			free_info(data, 0);
 			return (-1);
@@ -74,6 +76,8 @@ int _process_lines(shelldata_ *data, char *cd_all)
 		}
 		else if ((commandResult = _execute_command(cd, data)) != 0)	
 		{
+			if (!data->interactive)
+				return (-20);
 			_putchar_e('.');
 			_putchar_e('/');
 			_puts_e(data->filename);

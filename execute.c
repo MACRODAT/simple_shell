@@ -41,20 +41,24 @@ int _execute_command(char *command, shelldata_ *data)
 		return (-1);
 	}
 success:
-	if (new_path)
-		free(new_path);
+	
 	p = fork();
 	if (p == -1)
+	{
+		__free_str_str(tokens);
 		return (-1);
+	}
 	else if (p == 0)
 	{
 		execvp(tokens[0], tokens);
-		_puts_and_flush_e("Exec error.\n");
+		/* _puts_and_flush_e("Exec error.\n"); */
+		__free_str_str(tokens);
 		exit(1);
 	}
 	else
 	{
 		wait(&stat);
 	}
+	__free_str_str(tokens);
 	return (0);
 }
