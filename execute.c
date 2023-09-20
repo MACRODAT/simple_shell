@@ -50,8 +50,9 @@ success:
 	}
 	else if (p == 0)
 	{
-		execvp(tokens[0], tokens);
-		/* _puts_and_flush_e("Exec error.\n"); */
+		/* execvp(tokens[0], tokens); */
+		execve(tokens[0], data->a + 1, environ);
+		_puts_and_flush_e("Exec error.\n");
 		__free_str_str(tokens);
 		exit(1);
 	}

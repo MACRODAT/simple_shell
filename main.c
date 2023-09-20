@@ -13,6 +13,7 @@ int main(int na, char **a)
 
 	if (na < 1)
 		return (-1);
+	signal(2, get_sigint);
 	initData(&data, na, a);
 	_getFileName(data.a[0], &data.filename);
 	if (na > 1)
