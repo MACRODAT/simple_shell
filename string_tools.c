@@ -180,3 +180,25 @@ char *_trim(char **sp)
 	*sp = new_str;
 	return (s);
 }
+
+/**
+ * _strfromint - concat
+ * @n: number
+ *
+ * Return: pointer to destination
+ */
+char *_strfromint(int n)
+{
+	char *sav;
+	int i = 0;
+
+	sav = malloc(sizeof(char) * 1000);
+	while (n)
+	{
+		sav[i] = '0' + (n % 10);
+		n /= 10;
+		i++;
+	}
+	sav[i] = 0;
+	return (sav);
+}

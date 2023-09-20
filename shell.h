@@ -61,6 +61,7 @@ typedef struct shelldata
 	int tokensize;
 	int env_size;
 	char *cd;
+	int commandNumber;
 } shelldata_;
 
 /**
@@ -82,6 +83,7 @@ int _strcmp(char *sone, char *stwo);
 char *_strcat(char *dest, char *src);
 char *_starts_with(const char *big, const char *small);
 char *_trim(char **sp);
+char *_strfromint(int n);
 
 /* linked lists */
 _ll *_ll_init(_ll **list, int n, char *s, char *s2);

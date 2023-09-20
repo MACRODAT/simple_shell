@@ -14,6 +14,7 @@ void initData(shelldata_ *data, int na, char **a)
 	data->interactive = 0;
 	data->curdir = getcwd(b, 1024);
 	data->olddir = NULL;
+	data->commandNumber = 0;
 	data->cd = malloc(sizeof(char) * STANDART_BUFFER);
 	if ((isatty(STDIN_FILENO) == 1) && (isatty(STDOUT_FILENO) == 1))
 		data->interactive = 1;

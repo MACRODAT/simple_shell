@@ -43,6 +43,7 @@ int _process_lines(shelldata_ *data, char *cd_all)
 	char *delimiters = " \t";
 	char *delimiters2 = ";";
 	int commandResult;
+	char *tmp;
 
 	cd_lines = _splitString(cd_all, delimiters2, &cd_lines_len);
 	cd = malloc(sizeof(char) * STANDART_BUFFER);
@@ -54,7 +55,7 @@ int _process_lines(shelldata_ *data, char *cd_all)
 	}
 	while(cd_lines && *cd_lines && (_strcpy(cd, *cd_lines)))
 	{
-
+		data->commandNumber++;
 		if (!_trim(&cd))
 		{
 			_puts_and_flush_e("Error Parsing.");
@@ -76,7 +77,15 @@ int _process_lines(shelldata_ *data, char *cd_all)
 			_putchar_e('.');
 			_putchar_e('/');
 			_puts_e(data->filename);
-			_puts_and_flush_e(": No such file or directory.\n");
+			_putchar_e(':');
+			_putchar_e(' ');
+			tmp = _strfromint(data->commandNumber);
+			_puts_and_flush_e(tmp);
+			_putchar_e(':');
+			_putchar_e(' ');
+			_puts_and_flush_e(cd);
+			_puts_and_flush_e(": not found\n");
+			free(tmp);
 		}
 
 		_putchar(SPECIAL_CHAR);
