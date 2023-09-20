@@ -140,7 +140,7 @@ int _file_exists(char *file);
 void __free_str_str(char **s);
 
 /*
-	BASIC SHELL FUNCTIONS HEADER
+	BASIC SHELL FUNCTIONS HEADER 3
 */
 
 #endif
