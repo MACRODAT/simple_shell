@@ -139,5 +139,8 @@ int _file_exists(char *file);
 /* memory */
 void __free_str_str(char **s);
 
+/*
+	BASIC SHELL FUNCTIONS HEADER
+*/
 
 #endif
