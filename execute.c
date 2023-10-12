@@ -7,7 +7,7 @@ int _execute_command(char *command, shelldata_ *data)
 	int stat;
 	/* char *a[] = {command, NULL}; */
 	char **tokens = NULL;
-	char *delimiters = "\n\t\r\a ";
+	char *delimiters = "\t\r\a ";
 	int token_size = 0, ind = 0;
 	char *new_path;
 	int access_perm = -1;
@@ -41,7 +41,7 @@ int _execute_command(char *command, shelldata_ *data)
 		return (-1);
 	}
 success:
-	
+	tokens[0] = new_path;
 	p = fork();
 	if (p == -1)
 	{
@@ -50,8 +50,8 @@ success:
 	}
 	else if (p == 0)
 	{
-		execvp(tokens[0], tokens);
-		/* execve(tokens[0], data->a + 1, environ); */
+		/* execvp(tokens[0], tokens); */
+		execve(new_path, tokens, environ);
 		_puts_and_flush_e("Exec error.\n");
 		__free_str_str(tokens);
 		exit(1);

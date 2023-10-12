@@ -28,7 +28,7 @@ size_t __getline(char **lineptr, size_t *n, FILE *stream)
 	{
 		if (c > 0)
 		{
-			if (i >= bf - 1)
+			if (i >= bf - 2)
 			{
 				bf *= 2;
 				tmp = (char *)realloc(b, sizeof(char) * bf);
@@ -43,10 +43,10 @@ size_t __getline(char **lineptr, size_t *n, FILE *stream)
 			b[i++] = c;
 		}
 
-		if (read(STDIN_FILENO, &c, 1) <= 0)
+		if (feof(stdin) || read(STDIN_FILENO, &c, 1) <= 0)
 		{
-			free(b);
-			return (-1);
+			b[i++] = c;
+			break;
 		}
 	}
 	b[i] = '\0';
