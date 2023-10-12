@@ -87,6 +87,11 @@ int _process_lines(shelldata_ *data, char *cd_all)
 			_puts_and_flush_e(cd);
 			_puts_and_flush_e(": not found\n");
 			free(tmp);
+			if (data->interactive == 0)
+			{
+				free_info(data, 1);
+				exit(EXIT_FAILURE);
+			}
 		}
 
 		_putchar(SPECIAL_CHAR);

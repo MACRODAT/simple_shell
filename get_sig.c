@@ -7,5 +7,6 @@
 void get_sigint(int sig)
 {
 	(void)sig;
+	_puts_and_flush("\n");
 	exit(1);
 }
