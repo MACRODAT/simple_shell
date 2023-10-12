@@ -48,6 +48,7 @@ typedef struct shelldata
 	int na;
 	char **a;
 	char *filename;
+	char *filename_full;
 	int interactive;
 	_ll *path_node;
 	char *path_content_str;

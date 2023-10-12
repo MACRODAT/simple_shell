@@ -34,7 +34,9 @@ int main(int na, char **a)
 			}
 		}
 		else
+		{
 			return (1);
+		}
 	}
 	command(&data);
 	free_info(&data, 1);

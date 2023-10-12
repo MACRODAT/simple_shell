@@ -19,7 +19,12 @@ size_t __getline(char **lineptr, size_t *n, FILE *stream)
 		_puts_and_flush_e("error");		
 		return (-1);
 	}
-	while (c != EOF && c != '\n' && c != '\0')
+	if (read(STDIN_FILENO, &c, 1) <= 0)
+	{
+		free(b);
+		return (-1);
+	}
+	while (c != '\n' && c != '\0')
 	{
 		if (c > 0)
 		{
@@ -38,9 +43,8 @@ size_t __getline(char **lineptr, size_t *n, FILE *stream)
 			b[i++] = c;
 		}
 
-		if (read(STDIN_FILENO, &c, 1) == -1)
+		if (read(STDIN_FILENO, &c, 1) <= 0)
 		{
-			_puts_and_flush_e("error");
 			free(b);
 			return (-1);
 		}

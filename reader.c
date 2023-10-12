@@ -11,8 +11,8 @@ size_t _getline(char **lineptr, size_t *n, FILE *stream)
 
 	if ((sz = __getline(lineptr, n, stream)) < 0)
 	{
-		free(lineptr);
-		return (-1);
+		_puts_and_flush("\n");
+		exit(EXIT_SUCCESS);
 	}
 	else
 	{
