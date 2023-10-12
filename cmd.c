@@ -76,11 +76,8 @@ int _process_lines(shelldata_ *data, char *cd_all)
 		}
 		else if ((commandResult = _execute_command(cd, data)) != 0)	
 		{
-			if (!data->interactive)
-				return (-20);
-			_putchar_e('.');
-			_putchar_e('/');
-			_puts_e(data->filename);
+			/* REMOVED INTERACTIVE CHECK */
+			_puts_e(data->filename_full);
 			_putchar_e(':');
 			_putchar_e(' ');
 			tmp = _strfromint(data->commandNumber);

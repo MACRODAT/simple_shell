@@ -16,6 +16,8 @@ void initData(shelldata_ *data, int na, char **a)
 	data->olddir = NULL;
 	data->commandNumber = 0;
 	data->cd = malloc(sizeof(char) * STANDART_BUFFER);
+	data->filename_full = _strdup(a[0]);
+	_getFileName(data->a[0], &data->filename);
 	if ((isatty(STDIN_FILENO) == 1) && (isatty(STDOUT_FILENO) == 1))
 		data->interactive = 1;
 	_ll_init(&(data->env), 1000, "TEST ENV", "TEST VAL");
