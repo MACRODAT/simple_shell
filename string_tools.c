@@ -203,3 +203,19 @@ char *_strfromint(int n)
 	sav[i] = 0;
 	return (sav);
 }
+
+/**
+ * _atoi - str to int
+ * @s: string
+ *
+ * Return: int
+*/
+int _atoi(char *s)
+{
+    int res = 0, i = 0;
+
+    for (i = 0; s[i] != '\0'; ++i)
+        res = res * 10 + s[i] - '0';
+ 
+    return res;
+}

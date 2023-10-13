@@ -85,6 +85,7 @@ char *_strcat(char *dest, char *src);
 char *_starts_with(const char *big, const char *small);
 char *_trim(char **sp);
 char *_strfromint(int n);
+int _atoi(char *s);
 
 /* linked lists */
 _ll *_ll_init(_ll **list, int n, char *s, char *s2);

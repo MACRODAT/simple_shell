@@ -18,8 +18,14 @@ int _builtin_print_env(shelldata_ *data)
 */
 int _builtin_exit(shelldata_ *data)
 {
+	int exit_status = 0;
+
+	if (data->tokensize > 1)
+	{
+		exit_status = _atoi(data->command_tokens[1]);
+	}
 	free_info(data, 1);
-	exit(1);
+	exit(exit_status);
 	return (0);
 }
 
