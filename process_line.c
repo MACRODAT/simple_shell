@@ -75,6 +75,7 @@ int _process_lines(shelldata_ *data, char *cd_all)
 				_puts_and_flush_e(cd);
 				_puts_and_flush_e(": not found\n");
 				free(tmp);
+				tmp = 0;
 			}
 			if (data->interactive == 0)
 			{
@@ -83,11 +84,8 @@ int _process_lines(shelldata_ *data, char *cd_all)
 					__free_str_str(cd_lines);
 				if (cd)
 					free(cd);
-				if (tmp)
-					free(tmp);
 				cd_lines = 0;
 				cd = 0;
-				tmp = 0;
 				exit(EXIT_FAILURE);
 			}
 		}
