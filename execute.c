@@ -50,7 +50,7 @@ success:
 	{
 		/* execvp(tokens[0], tokens); */
 		execve(new_path, tokens, environ);
-		_puts_and_flush_e("Exec error.\n");
+		/* _puts_and_flush_e("Exec error.\n"); */
 		exit(1);
 	}
 	else
@@ -64,15 +64,15 @@ success:
 			}
 			else if (WIFEXITED(stat) && WEXITSTATUS(stat))
 			{
-				if (WEXITSTATUS(stat) == 127)
+				/* if (WEXITSTATUS(stat) == 127)
 					_puts_and_flush_e("Execution problem !\n");
 				else
-					_puts_and_flush_e("Return status non-zero.\n");
+					_puts_and_flush_e("Return status non-zero.\n"); */
 				return (-1);
 			}
 			else
 			{
-				_puts_and_flush_e("Program termination abnormal.\n");
+				/* _puts_and_flush_e("Program termination abnormal.\n"); */
 				return (-1);
 			}
 		}
