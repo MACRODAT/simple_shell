@@ -200,8 +200,8 @@ void _unset_env(shelldata_ *data, char *var)
 	}
 	if (!flag)
 	{
-		_puts_and_flush_e("Not found environment variable");
-		_puts_and_flush_e(var);
-		_putchar_e('\n');
+		_puts_e("Not found environment variable ");
+		_puts_e(var);
+		_puts_and_flush_e("\n");
 	}
 }
