@@ -1,9 +1,5 @@
-#!/bin/bash
-echo "hello"
-cd
+echo "listing some files"
 ls
-echo "listing all files"
-ls -l
 
 # This is a comment
 echo "Hello, World!"
@@ -14,6 +10,10 @@ date
 # Display system information
 echo "System Information:"
 uname -a
+
+echo "listing all files"
+ls -l
+
 
 # List files in the current directory
 echo "Files in the current directory:"

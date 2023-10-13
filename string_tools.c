@@ -53,16 +53,17 @@ char *_strcpy(char *dst, char *src)
 char *_strdup(const char *str)
 {
 	int _len = 0, i = 0;
-	char *dst;
+	char *dst = 0;
 
 	if (str == NULL)
-		return (NULL);
+		return (0);
 	_len = _strlen(str);
-	dst = malloc((_len + 1) * sizeof(char) );
+	dst = malloc((_len + 2) * sizeof(char));
 	if (!dst)
 		return (NULL);
 	for (i = 0; i < _len; i++)
 		dst[i] = str[i];
+	dst[_len + 1] = 0;
 	return (dst);
 }
 

@@ -32,13 +32,15 @@ void initData(shelldata_ *data, int na, char **a)
 void __free_str_str(char **s)
 {
 	char **a = s;
+	int i = 0;
 
 	if (!s)
 		return;
 	
-	while (*a)
-		free(*a++);
-	free(s);
+	while (a[i])
+		free(a[i++]);
+	if (s && *s != 0)
+		free(s);
 }
 
 /**
@@ -48,16 +50,23 @@ void __free_str_str(char **s)
  */
 void free_info(shelldata_ *data, int flag)
 {
-	__free_str_str(data->command_tokens);
 	if (data->cd)
 		free(data->cd);
+	data->cd = 0;
+	__free_str_str(data->command_tokens);
+	data->command_tokens = 0;
+	
 	if (flag)
 	{
 		__free_str_str(data->paths);
+		data->paths = 0;
 		free(data->filename);
+		data->filename = 0;
 		if (data->olddir)
 			free(data->olddir);
+		data->olddir = 0;
 		_ll_free(data->env);
+		data->env = 0;
 		_putchar(SPECIAL_CHAR);
 	}
 }

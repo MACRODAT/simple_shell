@@ -7,12 +7,12 @@ int _execute_command(char *command, shelldata_ *data)
 	int stat;
 	/* char *a[] = {command, NULL}; */
 	char **tokens = NULL;
-	char *delimiters = "\t\r\a ";
-	int token_size = 0, ind = 0;
+	int ind = 0;
 	char *new_path;
 	int access_perm = -1;
 
-	tokens = _splitString(command, delimiters, &token_size);
+	UNUSED(command);
+	tokens = data->command_tokens;
 	if (!tokens)
 	{
 		_puts_and_flush_e("Could not parse command.\n");
@@ -37,15 +37,13 @@ int _execute_command(char *command, shelldata_ *data)
 				goto success;
 			}
 		}
-		free(new_path);
-		return (-1);
+		return (-123);
 	}
 success:
 	tokens[0] = new_path;
 	p = fork();
 	if (p == -1)
 	{
-		__free_str_str(tokens);
 		return (-1);
 	}
 	else if (p == 0)
@@ -53,13 +51,35 @@ success:
 		/* execvp(tokens[0], tokens); */
 		execve(new_path, tokens, environ);
 		_puts_and_flush_e("Exec error.\n");
-		__free_str_str(tokens);
 		exit(1);
 	}
 	else
 	{
-		wait(&stat);
+		if (waitpid(p, &stat, 0) > 0)
+		{
+			if (WIFEXITED(stat) && !WEXITSTATUS(stat))
+			{
+				/* all fine */
+				return (0);
+			}
+			else if (WIFEXITED(stat) && WEXITSTATUS(stat))
+			{
+				if (WEXITSTATUS(stat) == 127)
+					_puts_and_flush_e("Execution problem !\n");
+				else
+					_puts_and_flush_e("Return status non-zero.\n");
+				return (-1);
+			}
+			else
+			{
+				_puts_and_flush_e("Program termination abnormal.\n");
+				return (-1);
+			}
+		}
+		else
+		{
+			return (-1);
+		}
 	}
-	__free_str_str(tokens);
 	return (0);
 }

@@ -51,6 +51,10 @@ int _process_lines(shelldata_ *data, char *cd_all)
 	{
 		_puts_and_flush_e("Error in Memory.");
 		free_info(data, 0);
+		if (cd_lines)
+			__free_str_str(cd_lines);
+		if (cd)
+			free(cd);
 		return (-1);
 	}
 	while(cd_lines && *cd_lines && (_strcpy(cd, *cd_lines)))
@@ -62,34 +66,50 @@ int _process_lines(shelldata_ *data, char *cd_all)
 				return (-20);
 			_puts_and_flush_e("Error Parsing.");
 			free_info(data, 0);
+			if (cd_lines)
+				__free_str_str(cd_lines);
+			if (cd)
+				free(cd);
+			if (tmp)
+				free(tmp);
 			return (-1);
 		}
-		if (_strlen(cd) == 0){
+		if (_strlen(cd) == 0)
+		{
 			cd_lines++;
 			continue;
 		}
-		data->cd = _strdup(cd);
 		data->command_tokens = _splitString(cd, delimiters, &data->tokensize);
+		data->cd = _strdup(cd);
 		if (_exec_builtin(data->command_tokens[0], data) != -404)
 		{
 			/* POSTEXECUTE */
 		}
-		else if ((commandResult = _execute_command(cd, data)) != 0)	
+		else if ((commandResult = _execute_command(cd, data)) < 0)	
 		{
-			/* REMOVED INTERACTIVE CHECK */
-			_puts_e(data->filename_full);
-			_putchar_e(':');
-			_putchar_e(' ');
-			tmp = _strfromint(data->commandNumber);
-			_puts_and_flush_e(tmp);
-			_putchar_e(':');
-			_putchar_e(' ');
-			_puts_and_flush_e(cd);
-			_puts_and_flush_e(": not found\n");
-			free(tmp);
+			if (commandResult == -123)
+			{
+				/* REMOVED INTERACTIVE CHECK */
+				_puts_e(data->filename_full);
+				_putchar_e(':');
+				_putchar_e(' ');
+				tmp = _strfromint(data->commandNumber);
+				_puts_and_flush_e(tmp);
+				_putchar_e(':');
+				_putchar_e(' ');
+				_puts_and_flush_e(cd);
+				_puts_and_flush_e(": not found\n");
+				free(tmp);
+			}
 			if (data->interactive == 0)
 			{
 				free_info(data, 1);
+				if (cd_lines)
+					__free_str_str(cd_lines);
+				if (cd)
+					free(cd);
+				if (tmp)
+					free(tmp);
 				exit(EXIT_FAILURE);
 			}
 		}
@@ -98,5 +118,9 @@ int _process_lines(shelldata_ *data, char *cd_all)
 		free_info(data, 0);
 		cd_lines++;
 	}
+	if (cd_lines)
+		__free_str_str(cd_lines);
+	if (cd)
+		free(cd);
 	return (0);
 }
