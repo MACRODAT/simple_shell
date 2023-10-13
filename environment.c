@@ -127,7 +127,7 @@ void _set_env(shelldata_ *data, char *var, char *val)
 
 	if (!var || !val)
 	{
-		_puts_and_flush_e("VARIABLES UNSET.\n");
+		/* _puts_and_flush_e("VARIABLES UNSET.\n"); */
 		return;
 	}
 	curnode = data->env;
@@ -138,9 +138,9 @@ void _set_env(shelldata_ *data, char *var, char *val)
 			/* env exists already */
 			curnode->s2 = _strdup(val);
 			flag = 1;
-			_puts("Updated environment variable ");
+			/* _puts("Updated environment variable ");
 			_puts(var);
-			_putchar('\n');
+			_putchar('\n'); */
 		}
 		/* update env vars */
 		_handle_node_env(data, curnode);
@@ -153,9 +153,9 @@ void _set_env(shelldata_ *data, char *var, char *val)
 		/* set new env */
 		curnode = data->env;
 		_ll_add_end(&(data->env), 1, var, val);
-		_puts("Created new environment variable ");
+		/* _puts("Created new environment variable ");
 		_puts(var);
-		_putchar('\n');
+		_putchar('\n'); */
 	}
 }
 
@@ -170,7 +170,7 @@ void _unset_env(shelldata_ *data, char *var)
 
 	if (!var)
 	{
-		_puts_and_flush_e("VARIABLES UNSET.\n");
+		/* _puts_and_flush_e("VARIABLES UNSET.\n"); */
 		return;
 	}
 	curnode = data->env;
@@ -188,9 +188,9 @@ void _unset_env(shelldata_ *data, char *var)
 			data->env_size--;
 			flag = 1;
 			_handle_node_env_del(data, var);
-			_puts("Deleted environment variable ");
+			/* _puts("Deleted environment variable ");
 			_puts(var);
-			_putchar('\n');
+			_putchar('\n'); */
 		}
 		/* update env vars */
 		_handle_node_env(data, curnode);
