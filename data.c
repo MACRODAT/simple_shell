@@ -2,6 +2,9 @@
 
 /**
  * initData - initialise the data
+ * @na: STUFF
+ * @a: STUFF
+ * @data: STUFF
  *
  * Return: 1 if ok
 */
@@ -22,7 +25,7 @@ void initData(shelldata_ *data, int na, char **a)
 		data->interactive = 1;
 	_ll_init(&(data->env), 1000, "TEST ENV", "TEST VAL");
 	_populate_env(data);
-	
+
 }
 
 /**
@@ -36,7 +39,7 @@ void __free_str_str(char **s)
 
 	if (!s)
 		return;
-	
+
 	while (a[i])
 		free(a[i++]);
 	if (s && *s != 0)
@@ -44,7 +47,7 @@ void __free_str_str(char **s)
 }
 
 /**
- * _free_data - frees data
+ * free_info - frees data
  * @data: data
  * @flag: exiting
  */
@@ -55,7 +58,7 @@ void free_info(shelldata_ *data, int flag)
 	data->cd = 0;
 	__free_str_str(data->command_tokens);
 	data->command_tokens = 0;
-	
+
 	if (flag)
 	{
 		__free_str_str(data->paths);
