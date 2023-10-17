@@ -2,18 +2,17 @@
 
 /**
  * command - displays command prompt and waits for user
- *
+ * @data: diehoo
  * Return: result
 */
 int command(shelldata_ *data)
 {
 	char *cd_all = NULL;
-	
+
 	size_t len = BUFFER_SIZE_READER;
 	int res;
 
-	do
-	{
+	do {
 		if (data->interactive == 1)
 		{
 			_puts("$ ");
@@ -26,7 +25,6 @@ int command(shelldata_ *data)
 		{
 			/* error processing */
 		}
-	}
-	while (data->interactive);
+	} while (data->interactive);
 	return (0);
 }
