@@ -1,22 +1,29 @@
 #include "shell.h"
 
 /**
- * __getline - waits for the user to print a newline
+ * __getline - Read a line from standard input.
  *
- * Returns: line or null
-*/
+ * This function reads a line of text from the standard input stream and stores
+ * it in the provided buffer (*lineptr). If the buffer is too small, it is
+ * dynamically resized to accommodate the input. Memory allocation failures and
+ * read errors are handled, and an error message is printed when necessary.
+ *
+ * @lineptr: A pointer to a character pointer where the line will be stored.
+ * @n: A pointer to the size of the buffer or the desired buffer size.
+ * @stream: The stream to read from (unused in this implementation).
+ *
+ * Return: On success, returns the number of characters read, excluding the
+ *         null terminator; on failure, returns -1.
+ */
 size_t __getline(char **lineptr, size_t *n, FILE *stream)
 {
-	char c = -2;
-	char *b = (char *)malloc(sizeof(char) * *n);
-	char *tmp;
-	size_t bf = *n;
-	size_t i = 0;
+	char c = -2, *b = (char *)malloc(sizeof(char) * *n), *tmp;
+	size_t bf = *n, i = 0;
 
 	UNUSED(stream);
 	if (!b)
 	{
-		_puts_and_flush_e("error");		
+		_puts_and_flush_e("error");
 		return (-1);
 	}
 	if (read(STDIN_FILENO, &c, 1) <= 0)
@@ -34,8 +41,7 @@ size_t __getline(char **lineptr, size_t *n, FILE *stream)
 				tmp = (char *)realloc(b, sizeof(char) * bf);
 				if (!tmp)
 				{
-					free(b);
-					_puts_and_flush_e("error");
+					free(b), _puts_and_flush_e("error");
 					return (-1);
 				}
 				b = tmp;
@@ -49,7 +55,6 @@ size_t __getline(char **lineptr, size_t *n, FILE *stream)
 			break;
 		}
 	}
-	b[i] = '\0';
-	*lineptr = b;
+	b[i] = '\0', *lineptr = b;
 	return (i);
 }
