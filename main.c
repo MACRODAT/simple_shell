@@ -31,7 +31,7 @@ int main(int na, char **a)
 		}
 		if (_process_lines(&data, data.a[1]) < 0)
 		{
-			
+
 		}
 		else
 		{

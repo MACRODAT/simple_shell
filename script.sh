@@ -12,7 +12,7 @@ echo "System Information:"
 uname -a
 
 echo "listing all files"
-ls -l \n
+ls -l
 
 
 # List files in the current directory
