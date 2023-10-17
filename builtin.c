@@ -30,18 +30,6 @@ int _builtin_exit(shelldata_ *data)
 }
 
 /**
- * _builtin_help - fct
- * @data: data
- * Return: result
-*/
-int _builtin_help(shelldata_ *data)
-{
-	UNUSED(data);
-	_puts("HELP FOR COMMAND LINE \nHELP NOT YET IMPLEMENTED\n");
-	return (0);
-}
-
-/**
  * _builtin_set - fct
  * @data: data
  * Return: result
