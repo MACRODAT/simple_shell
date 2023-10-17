@@ -2,14 +2,18 @@
 
 /**
  * _getline - better
+ * @lineptr: redkle
+ * @n: redkle
+ * @stream: redkle
  *
- * Returns: line size or -1
+ * Return: line size or -1
 */
 size_t _getline(char **lineptr, size_t *n, FILE *stream)
 {
 	int sz = 0;
 
-	if ((sz = __getline(lineptr, n, stream)) < 0)
+	sz = __getline(lineptr, n, stream);
+	if (sz < 0)
 	{
 		_puts_and_flush("\n");
 		exit(EXIT_SUCCESS);
