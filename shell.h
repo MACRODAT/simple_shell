@@ -26,6 +26,7 @@ extern char **environ;
  * struct _linkedlist - doubly linked list
  * @i: number
  * @s: string
+ * @s2: string
  * @n: next
  * @p: previous
 */
@@ -39,10 +40,33 @@ typedef struct _linkedlist
 } _ll;
 
 /**
- * struct shelldata - shell data information
- * @na: number arg
- * @a: arguments
-*/
+ * struct shelldata - Structure to hold shell-related data.
+ *
+ * This structure is used to store various data related to a shell, including
+ * command-line arguments, file paths, environment variables, current working
+ * directory, and more.
+ *
+ * @na: The number of arguments passed to the shell.
+ * @a: An array of character pointers representing the shell arguments.
+ * @filename: The name of the shell's executable.
+ * @filename_full: The full path to the shell's executable.
+ * @interactive: Flag indicating whether the shell is running in
+ * interactive mode.
+ * @path_node: A linked list node for storing path-related information.
+ * @path_content_str: A string containing path-related information.
+ * @env: A linked list node for storing environment variables.
+ * @paths: An array of character pointers representing search paths.
+ * @paths_len: The number of elements in the 'paths' array.
+ * @curdir: The current working directory.
+ * @olddir: The previous working directory.
+ * @home: The user's home directory.
+ * @command_tokens: An array of character pointers representing
+ * parsed command tokens.
+ * @tokensize: The number of elements in the 'command_tokens' array.
+ * @env_size: The number of environment variables.
+ * @cd: A character pointer to the 'cd' command string.
+ * @commandNumber: The command number (for history tracking).
+ */
 typedef struct shelldata
 {
 	int na;
@@ -68,7 +92,7 @@ typedef struct shelldata
 /**
  * struct _builtins - fucntions in cmd
  * @name: name of the function
- * @func: fct
+ * @f: fct
  */
 typedef struct _builtins
 {
@@ -120,7 +144,8 @@ int _process_lines(shelldata_ *data, char *cd_all);
 int _print_error(const char *c, shelldata_ *data);
 void get_sigint(int sig);
 int follow_execution(char **tokens, pid_t p, int stat, char *new_path);
-void process_command_(shelldata_ *data, int commandResult, char *tmp, char **cd_lines, char *cd);
+void process_command_(shelldata_ *data, int commandResult,
+						char *tmp, char **cd_lines, char *cd);
 void _free_stuff(char **cd_lines, char *cd, char *tmp);
 int check_stuff(char **s, int buf_size);
 
@@ -145,9 +170,5 @@ int _file_exists(char *file);
 
 /* memory */
 void __free_str_str(char **s);
-
-/*
-	BASIC SHELL FUNCTIONS HEADER 3
-*/
 
 #endif
