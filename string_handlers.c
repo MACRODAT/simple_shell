@@ -36,7 +36,7 @@ void _puts_and_flush(char *str)
 /**
  * _putchar - writing c
  * @c: cghr
- *	
+ *
  * Return: 1 or -1
  */
 int _putchar(char c)

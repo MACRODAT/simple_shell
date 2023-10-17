@@ -93,6 +93,7 @@ _ll *_ll_add_beg(_ll **list, int n, char *s, char *s2);
 _ll *_ll_add_end(_ll **list, int n, char *s, char *s2);
 size_t _ll_print(const _ll *lst, const char *sep);
 _ll *_ll_delete(_ll *s);
+_ll *_ll_delete2(_ll *s);
 void _ll_free(_ll *s);
 
 /* prg strings */
@@ -118,6 +119,7 @@ void free_info(shelldata_ *data, int flag);
 int _process_lines(shelldata_ *data, char *cd_all);
 int _print_error(const char *c, shelldata_ *data);
 void get_sigint(int sig);
+int follow_execution(char **tokens, pid_t p, int stat, char *new_path);
 
 /* builtins */
 int _builtin_print_env(shelldata_ *data);

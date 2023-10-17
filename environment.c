@@ -6,7 +6,7 @@
  * @key: key
  * @val: val
  *
- * Returns: 0
+ * Return: 0
 */
 int _separate_key_val(char *s, char **key, char **val)
 {
@@ -59,9 +59,7 @@ void _populate_env(shelldata_ *data)
 /**
  * _handle_node_env - handles env
  * @data: data
- * @s: env
  * @node: node
- * @i: index
 */
 void _handle_node_env(shelldata_ *data, _ll *node)
 {
@@ -75,7 +73,8 @@ void _handle_node_env(shelldata_ *data, _ll *node)
 		if (data->path_node)
 		{
 			delimiters = ":";
-			data->paths = _splitString(data->path_content_str, delimiters, &(data->paths_len));
+			data->paths = _splitString(data->path_content_str,
+				delimiters, &(data->paths_len));
 		}
 	}
 	else if (_strcmp(node->s, "HOME") == 0)
@@ -114,94 +113,4 @@ void _print_env(shelldata_ *data)
 {
 	if (data && data->env && data->env->n)
 		_ll_print(data->env->n, "=");
-}
-
-/**
- * _set_env - _set_env environment
- * @data: program data
-*/
-void _set_env(shelldata_ *data, char *var, char *val)
-{
-	_ll *curnode;
-	int flag = 0;
-
-	if (!var || !val)
-	{
-		/* _puts_and_flush_e("VARIABLES UNSET.\n"); */
-		return;
-	}
-	curnode = data->env;
-	while (curnode)
-	{
-		if (_strcmp(curnode->s, var) == 0)
-		{
-			/* env exists already */
-			curnode->s2 = _strdup(val);
-			flag = 1;
-			/* _puts("Updated environment variable ");
-			_puts(var);
-			_putchar('\n'); */
-		}
-		/* update env vars */
-		_handle_node_env(data, curnode);
-		if (flag)
-			break;
-		curnode = curnode->n;
-	}
-	if (!flag)
-	{
-		/* set new env */
-		curnode = data->env;
-		_ll_add_end(&(data->env), 1, var, val);
-		/* _puts("Created new environment variable ");
-		_puts(var);
-		_putchar('\n'); */
-	}
-}
-
-/**
- * _unset_env - _unset_env environment
- * @data: program data
-*/
-void _unset_env(shelldata_ *data, char *var)
-{
-	_ll *curnode, *tmp;
-	int flag = 0;
-
-	if (!var)
-	{
-		/* _puts_and_flush_e("VARIABLES UNSET.\n"); */
-		return;
-	}
-	curnode = data->env;
-	while (curnode)
-	{
-		if (_strcmp(curnode->s, var) == 0)
-		{
-			/* env exists already */
-			tmp = _ll_delete(curnode);
-			if (tmp == NULL && data->env_size > 1)
-			{
-				_puts_and_flush_e("COULD NOT DELETE VARIABLE.\n");
-				return;
-			}
-			data->env_size--;
-			flag = 1;
-			_handle_node_env_del(data, var);
-			/* _puts("Deleted environment variable ");
-			_puts(var);
-			_putchar('\n'); */
-		}
-		/* update env vars */
-		_handle_node_env(data, curnode);
-		if (flag)
-			break;
-		curnode = curnode->n;
-	}
-	if (!flag)
-	{
-		_puts_e("Not found environment variable ");
-		_puts_e(var);
-		_puts_and_flush_e("\n");
-	}
 }

@@ -36,7 +36,7 @@ void _puts_and_flush_e(const char *str)
 /**
  * _putchar_e - writing c
  * @c: cghr
- *	
+ *
  * Return: 1 or -1
  */
 int _putchar_e(const char c)
@@ -55,9 +55,10 @@ int _putchar_e(const char c)
 }
 
 /**
- * _putchar_e - writing c
+ * _print_error - writing c
  * @c: cghr
- *	
+ * @data: cghr
+ *
  * Return: 1 or -1
  */
 int _print_error(const char *c, shelldata_ *data)

@@ -5,6 +5,7 @@
  * @list: the list
  * @n: number
  * @s: string
+ * @s2: string
  * Return: size
 */
 _ll *_ll_add_end(_ll **list, int n, char *s, char *s2)
@@ -53,6 +54,7 @@ _ll *_ll_add_end(_ll **list, int n, char *s, char *s2)
  * @list: the list
  * @n: number
  * @s: string
+ * @s2: string
  * Return: ptr
 */
 _ll *_ll_add_beg(_ll **list, int n, char *s, char *s2)
@@ -94,6 +96,8 @@ _ll *_ll_add_beg(_ll **list, int n, char *s, char *s2)
  * _ll_init - creates ll
  * @n: number
  * @s: string
+ * @s2: string
+ * @list: string
  * Return: ptr
 */
 _ll *_ll_init(_ll **list, int n, char *s, char *s2)
@@ -131,6 +135,7 @@ _ll *_ll_init(_ll **list, int n, char *s, char *s2)
 /**
  * _ll_print - prints ll
  * @lst: ll
+ * @sep: ll
  *
  * Return: size of list
  */
@@ -145,7 +150,8 @@ size_t _ll_print(const _ll *lst, const char *sep)
 		if (lst->s && _strcmp(lst->s, "OLDPWD") != 0)
 		{
 			_puts(lst->s);
-			if (lst->s2){
+			if (lst->s2)
+			{
 				_puts(dup);
 				_puts(lst->s2);
 			}
@@ -155,80 +161,4 @@ size_t _ll_print(const _ll *lst, const char *sep)
 		i++;
 	}
 	return (i);
-}
-
-/**
- * _ll_free - frees ll
- * @lst: ll
- */
-void _ll_free(_ll *s)
-{
-	_ll *lst = s, *tmp = NULL;
-
-	while (lst)
-	{
-		tmp = lst;
-		if (lst->s2)
-			free(lst->s2);
-		if (lst->s)
-			free(lst->s);
-		free(lst);
-		lst = tmp->n;
-	}
-}
-
-/**
- * _ll_delete - deletes ll node
- * @lst: ll
- * Return: result
- */
-_ll *_ll_delete(_ll *s)
-{
-	_ll *tmp = NULL;
-
-	if (!s)
-		return (NULL);
-	if (s->n)
-	{
-		if (s->p)
-		{
-			tmp = s->p;
-			s->p->n = s->n;
-			s->n->p = s->p;
-			if (s->s)
-				free(s->s);
-			if (s->s2)
-				free(s->s2);
-			while (tmp->p)
-				tmp = tmp->p;
-			return (tmp);
-		}
-		else
-		{
-			tmp = s->n;
-			s->n->p = NULL;
-			if (s->s)
-				free(s->s);
-			if (s->s2)
-				free(s->s2);
-			return (tmp);
-		}
-	}
-	else
-	{
-		if (s->p)
-		{
-			tmp = s->p;
-			s->p->n = NULL;
-			if (s->s)
-				free(s->s);
-			if (s->s2)
-				free(s->s2);
-			while (tmp->p)
-				tmp = tmp->p;
-			return (tmp);
-		}
-		else
-			return (NULL);
-	}
 }

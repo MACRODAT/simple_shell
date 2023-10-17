@@ -1,6 +1,12 @@
 #include "shell.h"
 
-
+/**
+ * _execute_command - edj
+ * @command: exec
+ * @data: data
+ *
+ * Return: erer
+*/
 int _execute_command(char *command, shelldata_ *data)
 {
 	pid_t p;
@@ -9,7 +15,6 @@ int _execute_command(char *command, shelldata_ *data)
 	char **tokens = NULL;
 	int ind = 0;
 	char *new_path;
-	int access_perm = -1;
 
 	UNUSED(command);
 	tokens = data->command_tokens;
@@ -19,8 +24,7 @@ int _execute_command(char *command, shelldata_ *data)
 		return (-1);
 	}
 	new_path = tokens[0];
-
-	if ((access_perm = access(new_path, F_OK)) >= 0)
+	if (access(new_path, F_OK) >= 0)
 	{
 
 	}
@@ -32,7 +36,7 @@ int _execute_command(char *command, shelldata_ *data)
 			_strcpy(new_path, data->paths[ind++]);
 			new_path = _strcat(new_path, "/");
 			new_path = _strcat(new_path, tokens[0]);
-			if ((access_perm = access(new_path, F_OK)) >= 0)
+			if (access(new_path, F_OK) >= 0)
 			{
 				goto success;
 			}
@@ -40,17 +44,30 @@ int _execute_command(char *command, shelldata_ *data)
 		return (-123);
 	}
 success:
-	tokens[0] = new_path;
 	p = fork();
+	stat = 0;
+	return (follow_execution(tokens, p, stat, new_path));
+}
+
+/**
+ * follow_execution - edj
+ * @tokens: exec
+ * @p: data
+ * @stat: data
+ * @new_path: data
+ *
+ * Return: erer
+*/
+int follow_execution(char **tokens, pid_t p, int stat, char *new_path)
+{
+	tokens[0] = new_path;
 	if (p == -1)
 	{
 		return (-1);
 	}
 	else if (p == 0)
 	{
-		/* execvp(tokens[0], tokens); */
 		execve(new_path, tokens, environ);
-		/* _puts_and_flush_e("Exec error.\n"); */
 		exit(1);
 	}
 	else
@@ -59,20 +76,14 @@ success:
 		{
 			if (WIFEXITED(stat) && !WEXITSTATUS(stat))
 			{
-				/* all fine */
 				return (0);
 			}
 			else if (WIFEXITED(stat) && WEXITSTATUS(stat))
 			{
-				/* if (WEXITSTATUS(stat) == 127)
-					_puts_and_flush_e("Execution problem !\n");
-				else
-					_puts_and_flush_e("Return status non-zero.\n"); */
 				return (-1);
 			}
 			else
 			{
-				/* _puts_and_flush_e("Program termination abnormal.\n"); */
 				return (-1);
 			}
 		}
@@ -81,5 +92,4 @@ success:
 			return (-1);
 		}
 	}
-	return (0);
 }
