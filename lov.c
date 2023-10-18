@@ -28,7 +28,7 @@ int _hst_org(shell_data_ *sh_data)
 int hstory(shell_data_ *sh_data)
 {
 	int i, jekdb = 0, _len_gfw = 0;
-	ssize_t gfw, rdlen, fsize = 0;
+	ssize_t gfw, rdlen, ln_size_fd = 0;
 	struct stat st;
 	char *_ll_pl = NULL, *fdkli = _file_hst_loc(sh_data);
 
@@ -40,18 +40,18 @@ int hstory(shell_data_ *sh_data)
 	if (gfw == -1)
 		return (0);
 	if (!fstat(gfw, &st))
-		fsize = st.st_size;
-	if (fsize < 2)
+		ln_size_fd = st.st_size;
+	if (ln_size_fd < 2)
 		return (0);
-	_ll_pl = malloc(sizeof(char) * (fsize + 1));
+	_ll_pl = malloc(sizeof(char) * (ln_size_fd + 1));
 	if (!_ll_pl)
 		return (0);
-	rdlen = read(gfw, _ll_pl, fsize);
-	_ll_pl[fsize] = 0;
+	rdlen = read(gfw, _ll_pl, ln_size_fd);
+	_ll_pl[ln_size_fd] = 0;
 	if (rdlen <= 0)
 		return (free(_ll_pl), 0);
 	close(gfw);
-	for (i = 0; i < fsize; i++)
+	for (i = 0; i < ln_size_fd; i++)
 		if (_ll_pl[i] == '\n')
 		{
 			_ll_pl[i] = 0;
