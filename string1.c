@@ -1,25 +1,30 @@
 #include "shell.h"
 
 /**
- * _strcpy - copies a string
- * @dest: the destination
- * @src: the source
+ * _strcpy - copier
+ * @dst: dest
+ * @src: src
  *
- * Return: pointer to destination
+ * Return: ptr to dest
  */
-char *_strcpy(char *dest, char *src)
+char *_strcpy(char *dst, char *src)
 {
 	int i = 0;
 
-	if (dest == src || src == 0)
-		return (dest);
+	if (!src)
+		return (NULL);
+	if (src == 0 || dst == src)
+		return (dst);
+	if (!dst)
+		return (NULL);
+	i = 0;
 	while (src[i])
 	{
-		dest[i] = src[i];
+		dst[i] = src[i];
 		i++;
 	}
-	dest[i] = 0;
-	return (dest);
+	dst[i] = '\0';
+	return (dst);
 }
 
 /**

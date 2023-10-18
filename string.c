@@ -1,75 +1,83 @@
 #include "shell.h"
 
 /**
- * _strlen - returns the length of a string
- * @s: the string whose length to check
+ * _strlen - _len
+ * @s: str
  *
- * Return: integer length of string
+ * Return: int
  */
-int _strlen(char *s)
+int _strlen(const char *s)
 {
 	int i = 0;
 
 	if (!s)
 		return (0);
-
-	while (*s++)
+	while (s[i])
 		i++;
 	return (i);
 }
 
-/**
- * _strcmp - performs lexicogarphic comparison of two strangs.
- * @s1: the first strang
- * @s2: the second strang
- *
- * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
- */
-int _strcmp(char *s1, char *s2)
-{
-	while (*s1 && *s2)
-	{
-		if (*s1 != *s2)
-			return (*s1 - *s2);
-		s1++;
-		s2++;
-	}
-	if (*s1 == *s2)
-		return (0);
-	else
-		return (*s1 < *s2 ? -1 : 1);
-}
 
 /**
- * starts_with - checks if needle starts with haystack
- * @haystack: string to search
- * @needle: the substring to find
+ * _strcmp - comparison
+ * @sone: s1
+ * @stwo: s2
  *
- * Return: address of next char of haystack or NULL
+ * Return: 0 or number
  */
-char *starts_with(const char *haystack, const char *needle)
+int _strcmp(char *sone, char *stwo)
 {
-	while (*needle)
-		if (*needle++ != *haystack++)
+	if (!sone || !stwo)
+		return (-1);
+	while (*sone && *stwo)
+	{
+		if (*sone != *stwo)
+			return (*sone - *stwo);
+		sone++;
+		stwo++;
+	}
+	if (*sone == *stwo)
+		return (0);
+	else
+		return (*sone < *stwo ? -1 : 1);
+}
+
+
+/**
+ * starts_with - small in big
+ * @big: search
+ * @small: fnd
+ *
+ * Return: ptr or null
+ */
+char *starts_with(const char *big, const char *small)
+{
+	int i = 0;
+
+	while (small[i])
+	{
+		if (small[i] != big[i])
 			return (NULL);
-	return ((char *)haystack);
+		i++;
+	}
+	return ((char *)(big + i));
 }
 
 /**
  * _strcat - concatenates two strings
- * @dest: the destination buffer
+ * @dsti: the dstiination buffer
  * @src: the source buffer
  *
- * Return: pointer to destination buffer
+ * Return: pointer to dstiination buffer
  */
-char *_strcat(char *dest, char *src)
+char *_strcat(char *dsti, char *src)
 {
-	char *ret = dest;
+	char *fin = dsti;
 
-	while (*dest)
-		dest++;
+	while (*dsti)
+		dsti++;
 	while (*src)
-		*dest++ = *src++;
-	*dest = *src;
-	return (ret);
+		*dsti++ = *src++;
+	*dsti = *src;
+	return (fin);
 }
