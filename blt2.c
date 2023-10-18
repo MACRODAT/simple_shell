@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * _myhistory - displays the history list, one command by line, preceded
+ * _built_hist - displays the history list, one command by line, preceded
  *              with line numbers, starting at 0.
  * @info: Structure containing potential arguments. Used to maintain
  *        constant function prototype.
  *  Return: Always 0
  */
-int _myhistory(shell_data_ *info)
+int _built_hist(shell_data_ *info)
 {
 	print_list(info->history);
 	return (0);
@@ -31,7 +31,7 @@ int unset_alias(shell_data_ *info, char *str)
 	c = *p;
 	*p = 0;
 	ret = delete_node_at_index(&(info->alias),
-		get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
+		get_node_index(info->alias, _stat_with_lst(info->alias, str, -1)));
 	*p = c;
 	return (ret);
 }
@@ -81,12 +81,12 @@ int print_alias(_lst *node)
 }
 
 /**
- * _myalias - mimics the alias builtin (man alias)
+ * _built_alias - mimics the alias builtin (man alias)
  * @info: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  *  Return: Always 0
  */
-int _myalias(shell_data_ *info)
+int _built_alias(shell_data_ *info)
 {
 	int i = 0;
 	char *p = NULL;
@@ -108,7 +108,7 @@ int _myalias(shell_data_ *info)
 		if (p)
 			set_alias(info, info->argv[i]);
 		else
-			print_alias(node_starts_with(info->alias, info->argv[i], '='));
+			print_alias(_stat_with_lst(info->alias, info->argv[i], '='));
 	}
 
 	return (0);

@@ -2,27 +2,27 @@
 #define _SHELL_H_
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
 #include <sys/types.h>
+#include <stdlib.h>
+#include <string.h>
 #include <sys/wait.h>
-#include <sys/stat.h>
 #include <limits.h>
+#include <sys/stat.h>
+#include <unistd.h>
 #include <fcntl.h>
 #include <errno.h>
 
 #define _READER_SZ 1024
 #define _ZER	0
-#define _F_BUF -1
 #define _TWO		2
 #define _ONE		1
 #define _UNS	2
 #define _WR_B 1024
+#define _LIN 0
 #define _THR	3
 #define _LOW	1
-#define _LIN 0
 
+#define _F_BUF -1
 #define FILE_HST	".history"
 #define SZ_HST	4096
 
@@ -63,7 +63,7 @@ typedef struct _lst
  * @environ: An array of environment variables.
  * @env: A linked list for environment variables.
  * @histcount: The command history count.
- * @cmd_buf_type: The command type (CMD_type: ||, &&, ;).
+ * @typ_cd_bf: The command type (CMD_type: ||, &&, ;).
  * @readfd: The read file descriptor.
  * @status: The exit status of the last executed command.
  */
@@ -85,7 +85,7 @@ typedef struct pswo
 	int status;
 
 	char **cmd_buf; /* pointer to cmd ; chain buffer, for memory mangement */
-	int cmd_buf_type; /* CMD_type ||, &&, ; */
+	int typ_cd_bf; /* CMD_type ||, &&, ; */
 	int readfd;
 	int histcount;
 } shell_data_;
@@ -98,9 +98,9 @@ NULL, NULL, \
 	0, 0, 0}
 
 /**
- *struct builtin - contains a builtin string and related function
- *@type: the builtin command flag
- *@func: the function
+ *struct builtin - builtins
+ *@type: cd
+ *@func: fct
  */
 typedef struct builtin
 {
@@ -134,7 +134,9 @@ char *_strdup(const char *);
 void _puts(char *);
 int _putchar(char);
 char *_strncpy(char *, char *, int);
+char *convert_number(long int, int, int);
 char *_strncat(char *, char *, int);
+int _built_help(shell_data_ *);
 char *_strchr(char *, char);
 char **strtow(char *, char *);
 char **strtow2(char *, char);
@@ -147,20 +149,18 @@ int fr_db(void **);
 
 int interactive(shell_data_ *);
 int is_delim(char, char *);
+void _comm_rem(char *);
 int _isalpha(int);
+void print_error(shell_data_ *, char *);
+int _erratoi(char *);
+int _built_hist(shell_data_ *);
+int _exit_shell(shell_data_ *);
+int print_d(int, int);
 int _atoi(char *);
 
-int _erratoi(char *);
-void print_error(shell_data_ *, char *);
-int print_d(int, int);
-char *convert_number(long int, int, int);
-void remove_comments(char *);
 
-int _exit_shell(shell_data_ *);
-int _mycd(shell_data_ *);
-int _myhelp(shell_data_ *);
-int _myhistory(shell_data_ *);
-int _myalias(shell_data_ *);
+int _built_cd(shell_data_ *);
+int _built_alias(shell_data_ *);
 
 ssize_t get_input(shell_data_ *);
 int _getline(shell_data_ *, char **, size_t *);
@@ -191,13 +191,13 @@ void free_list(_lst **);
 size_t list_len(const _lst *);
 char **_lsto_strings(_lst *);
 size_t print_list(const _lst *);
-_lst *node_starts_with(_lst *, char *, char);
+_lst *_stat_with_lst(_lst *, char *, char);
 ssize_t get_node_index(_lst *, _lst *);
 
-int is_chain(shell_data_ *, char *, size_t *);
-void check_chain(shell_data_ *, char *, size_t *, size_t, size_t);
-int replace_alias(shell_data_ *);
-int replace_vars(shell_data_ *);
-int replace_string(char **, char *);
+int chain_fd(shell_data_ *, char *, size_t *);
+void _ll_works(shell_data_ *, char *, size_t *, size_t, size_t);
+int alias_rep(shell_data_ *);
+int _ll_sub(shell_data_ *);
+int _str_abn(char **, char *);
 
 #endif

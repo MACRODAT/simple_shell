@@ -28,13 +28,12 @@ ssize_t input_buf(shell_data_ *info, char **buf, size_t *len)
 		{
 			if ((*buf)[r - 1] == '\n')
 			{
-				(*buf)[r - 1] = '\0'; /* remove trailing newline */
+				(*buf)[r - 1] = '\0';
 				r--;
 			}
 			info->linecount_flag = 1;
-			remove_comments(*buf);
+			_comm_rem(*buf);
 			build_history_list(info, *buf, info->histcount++);
-			/* if (_strchr(*buf, ';')) is this a command chain? */
 			{
 				*len = r;
 				info->cmd_buf = buf;
@@ -66,10 +65,10 @@ ssize_t get_input(shell_data_ *info)
 		j = i; /* init new iterator to current buf position */
 		p = buf + i; /* get pointer for return */
 
-		check_chain(info, buf, &j, i, len);
+		_ll_works(info, buf, &j, i, len);
 		while (j < len) /* iterate to semicolon or end */
 		{
-			if (is_chain(info, buf, &j))
+			if (chain_fd(info, buf, &j))
 				break;
 			j++;
 		}
@@ -78,7 +77,7 @@ ssize_t get_input(shell_data_ *info)
 		if (i >= len) /* reached end of buffer? */
 		{
 			i = len = 0; /* reset position and length */
-			info->cmd_buf_type = _ZER;
+			info->typ_cd_bf = _ZER;
 		}
 
 		*buf_p = p; /* pass back pointer to current command position */

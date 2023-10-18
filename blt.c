@@ -30,12 +30,12 @@ int _exit_shell(shell_data_ *info)
 }
 
 /**
- * _mycd - changes the current directory of the process
+ * _built_cd - changes the current directory of the process
  * @info: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  *  Return: Always 0
  */
-int _mycd(shell_data_ *info)
+int _built_cd(shell_data_ *info)
 {
 	char *s, *dir, buffer[1024];
 	int chdir_ret;
@@ -80,12 +80,12 @@ int _mycd(shell_data_ *info)
 }
 
 /**
- * _myhelp - changes the current directory of the process
+ * _built_help - changes the current directory of the process
  * @info: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  *  Return: Always 0
  */
-int _myhelp(shell_data_ *info)
+int _built_help(shell_data_ *info)
 {
 	char **arg_array;
 
