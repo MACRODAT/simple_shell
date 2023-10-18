@@ -38,8 +38,6 @@ int _env_push(shell_data_ *sh_data)
  */
 int _myunsetenv(shell_data_ *sh_data)
 {
-	int i;
-
 	if (sh_data->argc == 1)
 	{
 		_err_func("Too few arguements.\n");
