@@ -43,26 +43,29 @@ typedef struct _lst
 } _lst;
 
 /**
- *struct passinfo - contains pseudo-arguements to pass into a function,
- *		allowing uniform prototype for function pointer struct
- *@arg: a string generated from getline containing arguements
- *@argv: an array of strings generated from arg
- *@path: a string path for the current command
- *@argc: the argument count
- *@line_count: the error count
- *@err_num: the error code for exit()s
- *@linecount_flag: if on count this line of input
- *@fname: the program filename
- *@env: linked list local copy of environ
- *@environ: custom modified copy of environ from LL env
- *@history: the history node
- *@alias: the alias node
- *@env_changed: on if environ was changed
- *@status: the return status of the last exec'd command
- *@cmd_buf: address of pointer to cmd_buf, on if chaining
- *@cmd_buf_type: CMD_type ||, &&, ;
- *@readfd: the fd from which to read line input
- *@histcount: the history line number count
+ * struct passinfo - Structure to hold shell-related information.
+ *
+ * This structure is used to store various information
+ * and data related to a shell.
+ *
+ * @arg: The current command argument.
+ * @path: The PATH variable.
+ * @argv: An array of command arguments.
+ * @argc: The number of command arguments.
+ * @err_num: The error number.
+ * @fname: The file name.
+ * @line_count: The current line number in the shell input.
+ * @linecount_flag: A flag to indicate whether line counting is enabled.
+ * @history: A linked list for command history.
+ * @alias: A linked list for command aliases.
+ * @env_changed: A flag to indicate changes in the environment.
+ * @cmd_buf: Pointer to the command chain buffer for memory management.
+ * @environ: An array of environment variables.
+ * @env: A linked list for environment variables.
+ * @histcount: The command history count.
+ * @cmd_buf_type: The command type (CMD_type: ||, &&, ;).
+ * @readfd: The read file descriptor.
+ * @status: The exit status of the last executed command.
  */
 typedef struct passinfo
 {
@@ -88,7 +91,10 @@ typedef struct passinfo
 } info_t;
 
 #define INFO_INIT \
-{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
+{NULL, NULL, NULL, \
+0, 0, 0, 0, NULL, NULL, NULL, \
+NULL, NULL, \
+0, 0, NULL, \
 	0, 0, 0}
 
 /**
