@@ -15,7 +15,7 @@ int loop_func(shell_data_ *sh_data, char **av)
 	while (r != -1 && builtin_ret != -2)
 	{
 		clear_sh_data(sh_data);
-		if (interactive(sh_data))
+		if (isnterop(sh_data))
 			_puts("$ ");
 		_err_func_char(_F_BUF);
 		r = get_input(sh_data);
@@ -26,13 +26,13 @@ int loop_func(shell_data_ *sh_data, char **av)
 			if (builtin_ret == -1)
 				find_cmd(sh_data);
 		}
-		else if (interactive(sh_data))
+		else if (isnterop(sh_data))
 			_putchar('\n');
 		free_sh_data(sh_data, 0);
 	}
 	write_hst(sh_data);
 	free_sh_data(sh_data, 1);
-	if (!interactive(sh_data) && sh_data->status)
+	if (!isnterop(sh_data) && sh_data->status)
 		exit(sh_data->status);
 	if (builtin_ret == -2)
 	{
@@ -108,7 +108,7 @@ void find_cmd(shell_data_ *sh_data)
 	}
 	else
 	{
-		if ((interactive(sh_data) || _getenv(sh_data, "PATH=")
+		if ((isnterop(sh_data) || _getenv(sh_data, "PATH=")
 			|| sh_data->argv[0][0] == '/') && executable(sh_data, sh_data->argv[0]))
 			start_execut(sh_data);
 		else if (*(sh_data->arg) != '\n')

@@ -146,7 +146,7 @@ void *_realloc(void *, unsigned int, unsigned int);
 
 int fr_db(void **);
 
-int interactive(shell_data_ *);
+int isnterop(shell_data_ *);
 int is_delim(char, char *);
 void _comm_rem(char *);
 int _isalpha(int);

@@ -1,21 +1,10 @@
 #include "shell.h"
 
 /**
- * interactive - returns true if shell is interactive mode
- * @sh_data: struct address
- *
- * Return: 1 if interactive mode, 0 otherwise
- */
-int interactive(shell_data_ *sh_data)
-{
-	return (isatty(STDIN_FILENO) && sh_data->readgfw <= 2);
-}
-
-/**
- * is_delim - checks if character is a delimeter
- * @c: the char to check
- * @delim: the delimeter string
- * Return: 1 if true, 0 if false
+ * is_delim - wddwe
+ * @c: ert
+ * @delim: ert ter
+ * Return: fwger
  */
 int is_delim(char c, char *delim)
 {
@@ -26,9 +15,20 @@ int is_delim(char c, char *delim)
 }
 
 /**
- *_isalpha - checks for alphabetic character
- *@c: The character to input
- *Return: 1 if c is alphabetic, 0 otherwise
+ * isnterop - ewd
+ * @sh_data: dwe
+ *
+ * Return: dwe
+ */
+int isnterop(shell_data_ *sh_data)
+{
+	return (isatty(STDIN_FILENO) && sh_data->readgfw <= 2);
+}
+
+/**
+ *_isalpha - rfveg
+ *@c: Thger
+ *Return: ger
  */
 
 int _isalpha(int c)
@@ -40,35 +40,35 @@ int _isalpha(int c)
 }
 
 /**
- *_atoi - converts a string to an integer
- *@s: the string to be converted
- *Return: 0 if no numbers in string, converted number otherwise
+ *_atoi - edwf
+ *@s: tfwe
+ *Return: fwefw
  */
 
 int _atoi(char *s)
 {
-	int i, sign = 1, flag = 0, output;
-	unsigned int result = 0;
+	int i, sign = 1, fg = 0, _s_digit;
+	unsigned int _digot_org = 0;
 
-	for (i = 0;  s[i] != '\0' && flag != 2; i++)
+	for (i = 0;  s[i] != '\0' && fg != 2; i++)
 	{
 		if (s[i] == '-')
 			sign *= -1;
 
 		if (s[i] >= '0' && s[i] <= '9')
 		{
-			flag = 1;
-			result *= 10;
-			result += (s[i] - '0');
+			fg = 1;
+			_digot_org *= 10;
+			_digot_org += (s[i] - '0');
 		}
-		else if (flag == 1)
-			flag = 2;
+		else if (fg == 1)
+			fg = 2;
 	}
 
 	if (sign == -1)
-		output = -result;
+		_s_digit = -_digot_org;
 	else
-		output = result;
+		_s_digit = _digot_org;
 
-	return (output);
+	return (_s_digit);
 }
