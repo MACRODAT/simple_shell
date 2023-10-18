@@ -16,24 +16,24 @@ int _built_cd(shell_data_ *sh_data)
 		_puts("error");
 	if (!sh_data->argv[1])
 	{
-		dir = _getenv(sh_data, "HOME=");
+		dir = _env_pull(sh_data, "HOME=");
 		if (!dir)
 			_ch_file =
-				chdir((dir = _getenv(sh_data, "PWD=")) ? dir : "/");
+				chdir((dir = _env_pull(sh_data, "PWD=")) ? dir : "/");
 		else
 			_ch_file = chdir(dir);
 	}
 	else if (_strcmp(sh_data->argv[1], "-") == 0)
 	{
-		if (!_getenv(sh_data, "OLDPWD="))
+		if (!_env_pull(sh_data, "OLDPWD="))
 		{
 			_puts(s);
 			_putchar('\n');
 			return (1);
 		}
-		_puts(_getenv(sh_data, "OLDPWD=")), _putchar('\n');
+		_puts(_env_pull(sh_data, "OLDPWD=")), _putchar('\n');
 		_ch_file =
-			chdir((dir = _getenv(sh_data, "OLDPWD=")) ? dir : "/");
+			chdir((dir = _env_pull(sh_data, "OLDPWD=")) ? dir : "/");
 	}
 	else
 		_ch_file = chdir(sh_data->argv[1]);
@@ -44,7 +44,7 @@ int _built_cd(shell_data_ *sh_data)
 	}
 	else
 	{
-		_setenv(sh_data, "OLDPWD", _getenv(sh_data, "PWD="));
+		_setenv(sh_data, "OLDPWD", _env_pull(sh_data, "PWD="));
 		_setenv(sh_data, "PWD", getcwd(buffer, 1024));
 	}
 	return (0);

@@ -11,7 +11,7 @@ char *_file_hst_loc(shell_data_ *sh_data)
 {
 	char *_ll_pl, *dir;
 
-	dir = _getenv(sh_data, "HOME=");
+	dir = _env_pull(sh_data, "HOME=");
 	if (!dir)
 		return (NULL);
 	_ll_pl = malloc(sizeof(char) * (_strlen(dir) + _strlen(FILE_HST) + 2));

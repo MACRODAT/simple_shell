@@ -1,25 +1,25 @@
 #include "shell.h"
 
 /**
- * _myenv - pdwedwe
+ * _env_en - pdwedwe
  * @sh_data: stuff
  *          stuff
  * Return: Always 0
  */
-int _myenv(shell_data_ *sh_data)
+int _env_en(shell_data_ *sh_data)
 {
 	print_list_str(sh_data->env);
 	return (0);
 }
 
 /**
- * _getenv - gerfgw
+ * _env_pull - gerfgw
  * @sh_data: stuff
  * @name: envfgh
  *
  * Return: wed
  */
-char *_getenv(shell_data_ *sh_data, const char *name)
+char *_env_pull(shell_data_ *sh_data, const char *name)
 {
 	_lst *node = sh_data->env;
 	char *p;
@@ -35,12 +35,12 @@ char *_getenv(shell_data_ *sh_data, const char *name)
 }
 
 /**
- * _mysetenv - wef
+ * _env_push - wef
  * @sh_data: stuff
  *        stuff
  *  Return: Always 0
  */
-int _mysetenv(shell_data_ *sh_data)
+int _env_push(shell_data_ *sh_data)
 {
 	if (sh_data->argc != 3)
 	{

@@ -57,10 +57,10 @@ int find_builtin(shell_data_ *sh_data)
 	int i, built_in_ret = -1;
 	builtin_table builtintbl[] = {
 		{"exit", _exit_shell},
-		{"env", _myenv},
+		{"env", _env_en},
 		{"help", _built_help},
 		{"hst", _built_hist},
-		{"setenv", _mysetenv},
+		{"setenv", _env_push},
 		{"unsetenv", _myunsetenv},
 		{"cd", _built_cd},
 		{"alias", _built_alias},
@@ -100,7 +100,7 @@ void find_cmd(shell_data_ *sh_data)
 	if (!k)
 		return;
 
-	path = where_is(sh_data, _getenv(sh_data, "PATH="), sh_data->argv[0]);
+	path = where_is(sh_data, _env_pull(sh_data, "PATH="), sh_data->argv[0]);
 	if (path)
 	{
 		sh_data->path = path;
@@ -108,7 +108,7 @@ void find_cmd(shell_data_ *sh_data)
 	}
 	else
 	{
-		if ((isnterop(sh_data) || _getenv(sh_data, "PATH=")
+		if ((isnterop(sh_data) || _env_pull(sh_data, "PATH=")
 			|| sh_data->argv[0][0] == '/') && executable(sh_data, sh_data->argv[0]))
 			start_execut(sh_data);
 		else if (*(sh_data->arg) != '\n')
