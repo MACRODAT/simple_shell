@@ -17,8 +17,7 @@ void free_list(_lst **_ll_lst_ptr)
 	while (node)
 	{
 		nx_node = node->nx;
-		free(node->str);
-		free(node);
+		free(node->str), free(node);
 		node = nx_node;
 	}
 	*_ll_lst_ptr = NULL;
