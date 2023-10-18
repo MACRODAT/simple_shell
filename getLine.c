@@ -19,7 +19,7 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 		free(*buf);
 		*buf = NULL;
 		signal(SIGINT, sigintHandler);
-#if USE_GETLINE
+#if _LIN
 		r = getline(buf, &len_p, stdin);
 #else
 		r = _getline(info, buf, &len_p);
@@ -78,7 +78,7 @@ ssize_t get_input(info_t *info)
 		if (i >= len) /* reached end of buffer? */
 		{
 			i = len = 0; /* reset position and length */
-			info->cmd_buf_type = CMD_NORM;
+			info->cmd_buf_type = _ZER;
 		}
 
 		*buf_p = p; /* pass back pointer to current command position */
@@ -103,7 +103,7 @@ ssize_t read_buf(info_t *info, char *buf, size_t *i)
 
 	if (*i)
 		return (0);
-	r = read(info->readfd, buf, READ_BUF_SIZE);
+	r = read(info->readfd, buf, _READER_SZ);
 	if (r >= 0)
 		*i = r;
 	return (r);
@@ -119,7 +119,7 @@ ssize_t read_buf(info_t *info, char *buf, size_t *i)
  */
 int _getline(info_t *info, char **ptr, size_t *length)
 {
-	static char buf[READ_BUF_SIZE];
+	static char buf[_READER_SZ];
 	static size_t i, len;
 	size_t k;
 	ssize_t r = 0, s = 0;
