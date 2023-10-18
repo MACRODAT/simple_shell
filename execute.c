@@ -46,7 +46,7 @@ int _execute_command(char *command, shelldata_ *data)
 success:
 	p = fork();
 	stat = 0;
-	return (follow_execution(tokens, p, stat, new_path));
+	return (follow_execution(tokens, p, stat, new_path, data));
 }
 
 /**
@@ -58,17 +58,24 @@ success:
  *
  * Return: erer
 */
-int follow_execution(char **tokens, pid_t p, int stat, char *new_path)
+int follow_execution(char **tokens, pid_t p, int stat, 
+			char *new_path, shelldata_ *data)
 {
 	tokens[0] = new_path;
 	if (p == -1)
 	{
+		perror("Error:");
 		return (-1);
 	}
 	else if (p == 0)
 	{
-		execve(new_path, tokens, environ);
-		exit(1);
+		if (execve(new_path, tokens, environ) == -1)
+		{
+			free_info(data, 1);
+			if (errno == EACCES)
+				exit(126);
+			exit(1);
+		}
 	}
 	else
 	{
@@ -92,4 +99,5 @@ int follow_execution(char **tokens, pid_t p, int stat, char *new_path)
 			return (-1);
 		}
 	}
+	return (0);
 }

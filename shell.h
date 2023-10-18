@@ -143,7 +143,8 @@ void free_info(shelldata_ *data, int flag);
 int _process_lines(shelldata_ *data, char *cd_all);
 int _print_error(const char *c, shelldata_ *data);
 void get_sigint(int sig);
-int follow_execution(char **tokens, pid_t p, int stat, char *new_path);
+int follow_execution(char **tokens, pid_t p, int stat, 
+			char *new_path, shelldata_ *data);
 void process_command_(shelldata_ *data, int commandResult,
 						char *tmp, char **cd_lines, char *cd);
 void _free_stuff(char **cd_lines, char *cd, char *tmp);
