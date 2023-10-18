@@ -60,8 +60,8 @@ void free_info(shell_data_ *info, int all)
 			free(info->arg);
 		if (info->env)
 			free_list(&(info->env));
-		if (info->history)
-			free_list(&(info->history));
+		if (info->hst)
+			free_list(&(info->hst));
 		if (info->alias)
 			free_list(&(info->alias));
 		my_free_(info->environ);

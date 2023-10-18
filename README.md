@@ -45,7 +45,7 @@ Our shell was built and tested on  Ubuntu 14.04 LTS.
 * Handling `&&` and `||` logical operators
 * Handle variable replacements `$?` and `$$`
 * Handle the comments `#`
-* Support the history feature
+* Support the hst feature
 * Support the file input
 
 ## Builtins

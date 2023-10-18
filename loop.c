@@ -30,7 +30,7 @@ int loop_func(shell_data_ *info, char **av)
 			_putchar('\n');
 		free_info(info, 0);
 	}
-	write_history(info);
+	write_hst(info);
 	free_info(info, 1);
 	if (!interactive(info) && info->status)
 		exit(info->status);
@@ -59,7 +59,7 @@ int find_builtin(shell_data_ *info)
 		{"exit", _exit_shell},
 		{"env", _myenv},
 		{"help", _built_help},
-		{"history", _built_hist},
+		{"hst", _built_hist},
 		{"setenv", _mysetenv},
 		{"unsetenv", _myunsetenv},
 		{"cd", _built_cd},

@@ -23,7 +23,7 @@
 #define _LOW	1
 
 #define _F_BUF -1
-#define FILE_HST	".history"
+#define FILE_HST	".hst"
 #define SZ_HST	4096
 
 extern char **environ;
@@ -56,13 +56,13 @@ typedef struct _lst
  * @fname: The file name.
  * @_ln_cnt: The current line number in the shell input.
  * @_fla_lns: A flag to indicate whether line counting is enabled.
- * @history: A linked list for command history.
+ * @hst: A linked list for command hst.
  * @alias: A linked list for command aliases.
  * @env_changed: A flag to indicate changes in the environment.
  * @cmd_buf: Pointer to the command chain buffer for memory management.
  * @environ: An array of environment variables.
  * @env: A linked list for environment variables.
- * @_ln_len: The command history count.
+ * @_ln_len: The command hst count.
  * @typ_cd_bf: The command type (CMD_type: ||, &&, ;).
  * @readfd: The read file descriptor.
  * @status: The exit status of the last executed command.
@@ -78,7 +78,7 @@ typedef struct pswo
 	int _fla_lns;
 	char *fname;
 	_lst *env;
-	_lst *history;
+	_lst *hst;
 	_lst *alias;
 	char **environ;
 	int env_changed;
@@ -177,7 +177,7 @@ char **get_environ(shell_data_ *);
 int _unsetenv(shell_data_ *, char *);
 int _setenv(shell_data_ *, char *, char *);
 char *_file_hst_loc(shell_data_ *info);
-int write_history(shell_data_ *info);
+int write_hst(shell_data_ *info);
 int hstory(shell_data_ *info);
 int _start_hst_man(shell_data_ *info, char *buf, int linecount);
 int _hst_org(shell_data_ *info);

@@ -25,12 +25,12 @@ char *_file_hst_loc(shell_data_ *info)
 }
 
 /**
- * write_history - ewfwe
+ * write_hst - ewfwe
  * @info: apr
  *
  * Return: 1
  */
-int write_history(shell_data_ *info)
+int write_hst(shell_data_ *info)
 {
 	ssize_t fd;
 	char *filename = _file_hst_loc(info);
@@ -43,7 +43,7 @@ int write_history(shell_data_ *info)
 	free(filename);
 	if (fd == -1)
 		return (-1);
-	for (node = info->history; node; node = node->nx)
+	for (node = info->hst; node; node = node->nx)
 	{
 		_sf_fd_sq(node->str, fd);
 		_putfd('\n', fd);
@@ -54,7 +54,7 @@ int write_history(shell_data_ *info)
 }
 
 /**
- * hstory - reads history from file
+ * hstory - reads hst from file
  * @info: the parameter struct
  *
  * Return: _ln_len on success, 0 otherwise
@@ -97,16 +97,16 @@ int hstory(shell_data_ *info)
 	free(_ll_pl);
 	info->_ln_len = linecount;
 	while (info->_ln_len-- >= SZ_HST)
-		delete_node_at_index(&(info->history), 0);
+		delete_node_at_index(&(info->hst), 0);
 	_hst_org(info);
 	return (info->_ln_len);
 }
 
 /**
- * _start_hst_man - adds entry to a history linked list
+ * _start_hst_man - adds entry to a hst linked list
  * @info: Structure containing potential arguments. Used to maintain
  * @_ll_pl: _ll_plfer
- * @linecount: the history linecount, _ln_len
+ * @linecount: the hst linecount, _ln_len
  *
  * Return: Always 0
  */
@@ -114,24 +114,24 @@ int _start_hst_man(shell_data_ *info, char *_ll_pl, int linecount)
 {
 	_lst *node = NULL;
 
-	if (info->history)
-		node = info->history;
+	if (info->hst)
+		node = info->hst;
 	_ll_end_app(&node, _ll_pl, linecount);
 
-	if (!info->history)
-		info->history = node;
+	if (!info->hst)
+		info->hst = node;
 	return (0);
 }
 
 /**
- * _hst_org - renumbers the history linked list after changes
+ * _hst_org - renumbers the hst linked list after changes
  * @info: Structure containing potential arguments. Used to maintain
  *
  * Return: the new _ln_len
  */
 int _hst_org(shell_data_ *info)
 {
-	_lst *node = info->history;
+	_lst *node = info->hst;
 	int i = 0;
 
 	while (node)

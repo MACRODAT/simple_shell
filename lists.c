@@ -4,7 +4,7 @@
  * add_node - adds a node to the start of the list
  * @_ll_lst: address of pointer to _ll_lst node
  * @str: str field of node
- * @num: node index used by history
+ * @num: node index used by hst
  *
  * Return: size of list
  */
@@ -121,7 +121,7 @@ void free_list(_lst **_ll_lst_ptr)
  * _ll_end_app - adds a node to the end of the list
  * @_ll_lst: address of pointer to _ll_lst node
  * @str: str field of node
- * @num: node index used by history
+ * @num: node index used by hst
  *
  * Return: size of list
  */

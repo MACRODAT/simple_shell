@@ -7,7 +7,7 @@
  */
 int _built_hist(shell_data_ *info)
 {
-	print_list(info->history);
+	print_list(info->hst);
 	return (0);
 }
 
