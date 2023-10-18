@@ -176,7 +176,7 @@ int fill_env(shell_data_ *);
 char **get_environ(shell_data_ *);
 int _unsetenv(shell_data_ *, char *);
 int _setenv(shell_data_ *, char *, char *);
-char *get_history_file(shell_data_ *info);
+char *_file_hst_loc(shell_data_ *info);
 int write_history(shell_data_ *info);
 int hstory(shell_data_ *info);
 int build_history_list(shell_data_ *info, char *buf, int linecount);
