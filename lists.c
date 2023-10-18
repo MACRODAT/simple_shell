@@ -28,7 +28,7 @@ _lst *add_node(_lst **_ll_lst, const char *str, int num)
 			return (NULL);
 		}
 	}
-	new__ll_lst->next = *_ll_lst;
+	new__ll_lst->nx = *_ll_lst;
 	*_ll_lst = new__ll_lst;
 	return (new__ll_lst);
 }
@@ -47,7 +47,7 @@ size_t print_list_str(const _lst *h)
 	{
 		_puts(h->str ? h->str : "(nil)");
 		_puts("\n");
-		h = h->next;
+		h = h->nx;
 		i++;
 	}
 	return (i);
@@ -71,7 +71,7 @@ int delete_node_at_index(_lst **_ll_lst, unsigned int index)
 	if (!index)
 	{
 		node = *_ll_lst;
-		*_ll_lst = (*_ll_lst)->next;
+		*_ll_lst = (*_ll_lst)->nx;
 		free(node->str);
 		free(node);
 		return (1);
@@ -81,14 +81,14 @@ int delete_node_at_index(_lst **_ll_lst, unsigned int index)
 	{
 		if (i == index)
 		{
-			prev_node->next = node->next;
+			prev_node->nx = node->nx;
 			free(node->str);
 			free(node);
 			return (1);
 		}
 		i++;
 		prev_node = node;
-		node = node->next;
+		node = node->nx;
 	}
 	return (0);
 }
@@ -101,7 +101,7 @@ int delete_node_at_index(_lst **_ll_lst, unsigned int index)
  */
 void free_list(_lst **_ll_lst_ptr)
 {
-	_lst *node, *next_node, *_ll_lst;
+	_lst *node, *nx_node, *_ll_lst;
 
 	if (!_ll_lst_ptr || !*_ll_lst_ptr)
 		return;
@@ -109,10 +109,10 @@ void free_list(_lst **_ll_lst_ptr)
 	node = _ll_lst;
 	while (node)
 	{
-		next_node = node->next;
+		nx_node = node->nx;
 		free(node->str);
 		free(node);
-		node = next_node;
+		node = nx_node;
 	}
 	*_ll_lst_ptr = NULL;
 }
@@ -149,9 +149,9 @@ _lst *_ll_end_app(_lst **_ll_lst, const char *str, int num)
 	}
 	if (node)
 	{
-		while (node->next)
-			node = node->next;
-		node->next = new_node;
+		while (node->nx)
+			node = node->nx;
+		node->nx = new_node;
 	}
 	else
 		*_ll_lst = new_node;

@@ -95,7 +95,7 @@ int _built_alias(shell_data_ *info)
 		while (node)
 		{
 			print_alias(node);
-			node = node->next;
+			node = node->nx;
 		}
 		return (0);
 	}

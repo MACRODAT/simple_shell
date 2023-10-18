@@ -43,7 +43,7 @@ int write_history(shell_data_ *info)
 	free(filename);
 	if (fd == -1)
 		return (-1);
-	for (node = info->history; node; node = node->next)
+	for (node = info->history; node; node = node->nx)
 	{
 		_sf_fd_sq(node->str, fd);
 		_putfd('\n', fd);
@@ -137,7 +137,7 @@ int renumber_history(shell_data_ *info)
 	while (node)
 	{
 		node->num = i++;
-		node = node->next;
+		node = node->nx;
 	}
 	return (info->histcount = i);
 }

@@ -33,13 +33,13 @@ extern char **environ;
  * struct _lst - singly linked list
  * @num: the number field
  * @str: a string
- * @next: points to the next node
+ * @nx: points to the nx node
  */
 typedef struct _lst
 {
 	int num;
 	char *str;
-	struct _lst *next;
+	struct _lst *nx;
 } _lst;
 
 /**

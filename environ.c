@@ -29,7 +29,7 @@ char *_getenv(shell_data_ *info, const char *name)
 		p = starts_with(node->str, name);
 		if (p && *p)
 			return (p);
-		node = node->next;
+		node = node->nx;
 	}
 	return (NULL);
 }

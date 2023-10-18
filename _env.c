@@ -43,7 +43,7 @@ int _unsetenv(shell_data_ *info, char *var)
 			node = info->env;
 			continue;
 		}
-		node = node->next;
+		node = node->nx;
 		i++;
 	}
 	return (info->env_changed);
@@ -84,7 +84,7 @@ int _setenv(shell_data_ *info, char *var, char *value)
 			info->env_changed = 1;
 			return (0);
 		}
-		node = node->next;
+		node = node->nx;
 	}
 	_ll_end_app(&(info->env), buf, 0);
 	free(buf);
