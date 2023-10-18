@@ -2,13 +2,13 @@
 
 /**
  * input_buf - buffers chained commands
- * @info: parameter struct
+ * @sh_data: parameter struct
  * @buf: address of buffer
  * @len: address of len var
  *
  * Return: bytes read
  */
-ssize_t input_buf(shell_data_ *info, char **buf, size_t *len)
+ssize_t input_buf(shell_data_ *sh_data, char **buf, size_t *len)
 {
 	ssize_t r = 0;
 	size_t len_p = 0;
@@ -18,7 +18,7 @@ ssize_t input_buf(shell_data_ *info, char **buf, size_t *len)
 		free(*buf);
 		*buf = NULL;
 		signal(SIGINT, sigintHandler);
-		r = _getline(info, buf, &len_p);
+		r = _getline(sh_data, buf, &len_p);
 		if (r > 0)
 		{
 			if ((*buf)[r - 1] == '\n')
@@ -26,12 +26,12 @@ ssize_t input_buf(shell_data_ *info, char **buf, size_t *len)
 				(*buf)[r - 1] = '\0';
 				r--;
 			}
-			info->_fla_lns = 1;
+			sh_data->_fla_lns = 1;
 			_comm_rem(*buf);
-			_start_hst_man(info, *buf, info->_ln_len++);
+			_start_hst_man(sh_data, *buf, sh_data->_ln_len++);
 			{
 				*len = r;
-				info->cmd_buf = buf;
+				sh_data->cmd_buf = buf;
 			}
 		}
 	}
@@ -40,19 +40,19 @@ ssize_t input_buf(shell_data_ *info, char **buf, size_t *len)
 
 /**
  * get_input - gets a line minus the newline
- * @info: parameter struct
+ * @sh_data: parameter struct
  *
  * Return: bytes read
  */
-ssize_t get_input(shell_data_ *info)
+ssize_t get_input(shell_data_ *sh_data)
 {
 	static char *buf;
 	static size_t i, j, len;
 	ssize_t r = 0;
-	char **buf_p = &(info->arg), *p;
+	char **buf_p = &(sh_data->arg), *p;
 
 	_putchar(_F_BUF);
-	r = input_buf(info, &buf, &len);
+	r = input_buf(sh_data, &buf, &len);
 	if (r == -1)
 		return (-1);
 	if (len)
@@ -60,10 +60,10 @@ ssize_t get_input(shell_data_ *info)
 		j = i;
 		p = buf + i;
 
-		_ll_works(info, buf, &j, i, len);
+		_ll_works(sh_data, buf, &j, i, len);
 		while (j < len)
 		{
-			if (chain_fd(info, buf, &j))
+			if (chain_fd(sh_data, buf, &j))
 				break;
 			j++;
 		}
@@ -72,7 +72,7 @@ ssize_t get_input(shell_data_ *info)
 		if (i >= len)
 		{
 			i = len = 0;
-			info->typ_cd_bf = _ZER;
+			sh_data->typ_cd_bf = _ZER;
 		}
 
 		*buf_p = p;
@@ -85,19 +85,19 @@ ssize_t get_input(shell_data_ *info)
 
 /**
  * read_buf - reads a buffer
- * @info: parameter struct
+ * @sh_data: parameter struct
  * @buf: buffer
  * @i: size
  *
  * Return: r
  */
-ssize_t read_buf(shell_data_ *info, char *buf, size_t *i)
+ssize_t read_buf(shell_data_ *sh_data, char *buf, size_t *i)
 {
 	ssize_t r = 0;
 
 	if (*i)
 		return (0);
-	r = read(info->readfd, buf, _READER_SZ);
+	r = read(sh_data->readfd, buf, _READER_SZ);
 	if (r >= 0)
 		*i = r;
 	return (r);
@@ -105,13 +105,13 @@ ssize_t read_buf(shell_data_ *info, char *buf, size_t *i)
 
 /**
  * _getline - gets the nx line of input from STDIN
- * @info: parameter struct
+ * @sh_data: parameter struct
  * @ptr: address of pointer to buffer, preallocated or NULL
  * @length: size of preallocated ptr buffer if not NULL
  *
  * Return: s
  */
-int _getline(shell_data_ *info, char **ptr, size_t *length)
+int _getline(shell_data_ *sh_data, char **ptr, size_t *length)
 {
 	static char buf[_READER_SZ];
 	static size_t i, len;
@@ -125,7 +125,7 @@ int _getline(shell_data_ *info, char **ptr, size_t *length)
 	if (i == len)
 		i = len = 0;
 
-	r = read_buf(info, buf, &len);
+	r = read_buf(sh_data, buf, &len);
 	if (r == -1 || (r == 0 && len == 0))
 		return (-1);
 

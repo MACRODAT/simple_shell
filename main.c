@@ -9,7 +9,7 @@
  */
 int main(int cd_count, char **args)
 {
-	shell_data_ info[] = { INFO_INIT };
+	shell_data_ sh_data[] = { sh_data_INIT };
 	int fd = 2;
 
 	asm ("mov %1, %0\n\t"
@@ -35,10 +35,10 @@ int main(int cd_count, char **args)
 			}
 			return (EXIT_FAILURE);
 		}
-		info->readfd = fd;
+		sh_data->readfd = fd;
 	}
-	fill_env(info);
-	hstory(info);
-	loop_func(info, args);
+	fill_env(sh_data);
+	hstory(sh_data);
+	loop_func(sh_data, args);
 	return (EXIT_SUCCESS);
 }

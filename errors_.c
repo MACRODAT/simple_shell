@@ -30,18 +30,18 @@ int _erratoi(char *s)
 
 /**
  * print_error - prints an error message
- * @info: the parameter & return info struct
+ * @sh_data: the parameter & return sh_data struct
  * @estr: string containing specified error type
  * Return: 0 if no numbers in string, converted number otherwise
  *        -1 on error
  */
-void print_error(shell_data_ *info, char *estr)
+void print_error(shell_data_ *sh_data, char *estr)
 {
-	_err_func(info->fname);
+	_err_func(sh_data->fname);
 	_err_func(": ");
-	print_d(info->_ln_cnt, STDERR_FILENO);
+	print_d(sh_data->_ln_cnt, STDERR_FILENO);
 	_err_func(": ");
-	_err_func(info->argv[0]);
+	_err_func(sh_data->argv[0]);
 	_err_func(": ");
 	_err_func(estr);
 }

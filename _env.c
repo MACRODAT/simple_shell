@@ -2,31 +2,31 @@
 
 /**
  * get_environ - returns the string array copy of our environ
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
+ * @sh_data: stuff
+ *          stuff
  * Return: Always 0
  */
-char **get_environ(shell_data_ *info)
+char **get_environ(shell_data_ *sh_data)
 {
-	if (!info->environ || info->env_changed)
+	if (!sh_data->environ || sh_data->env_changed)
 	{
-		info->environ = _lsto_strings(info->env);
-		info->env_changed = 0;
+		sh_data->environ = _lsto_strings(sh_data->env);
+		sh_data->env_changed = 0;
 	}
 
-	return (info->environ);
+	return (sh_data->environ);
 }
 
 /**
  * _unsetenv - Remove an environment variable
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
+ * @sh_data: stuff
+ *        stuff
  *  Return: 1 on delete, 0 otherwise
  * @var: the string env var property
  */
-int _unsetenv(shell_data_ *info, char *var)
+int _unsetenv(shell_data_ *sh_data, char *var)
 {
-	_lst *node = info->env;
+	_lst *node = sh_data->env;
 	size_t i = 0;
 	char *p;
 
@@ -38,27 +38,27 @@ int _unsetenv(shell_data_ *info, char *var)
 		p = starts_with(node->str, var);
 		if (p && *p == '=')
 		{
-			info->env_changed = delete_node_at_index(&(info->env), i);
+			sh_data->env_changed = delete_node_at_index(&(sh_data->env), i);
 			i = 0;
-			node = info->env;
+			node = sh_data->env;
 			continue;
 		}
 		node = node->nx;
 		i++;
 	}
-	return (info->env_changed);
+	return (sh_data->env_changed);
 }
 
 /**
  * _setenv - Initialize a new environment variable,
  *             or modify an existing one
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
+ * @sh_data: stuff
+ *        stuff
  * @var: the string env var property
  * @value: the string env var value
  *  Return: Always 0
  */
-int _setenv(shell_data_ *info, char *var, char *value)
+int _setenv(shell_data_ *sh_data, char *var, char *value)
 {
 	char *buf = NULL;
 	_lst *node;
@@ -73,7 +73,7 @@ int _setenv(shell_data_ *info, char *var, char *value)
 	_strcpy(buf, var);
 	_strcat(buf, "=");
 	_strcat(buf, value);
-	node = info->env;
+	node = sh_data->env;
 	while (node)
 	{
 		p = starts_with(node->str, var);
@@ -81,13 +81,13 @@ int _setenv(shell_data_ *info, char *var, char *value)
 		{
 			free(node->str);
 			node->str = buf;
-			info->env_changed = 1;
+			sh_data->env_changed = 1;
 			return (0);
 		}
 		node = node->nx;
 	}
-	_ll_end_app(&(info->env), buf, 0);
+	_ll_end_app(&(sh_data->env), buf, 0);
 	free(buf);
-	info->env_changed = 1;
+	sh_data->env_changed = 1;
 	return (0);
 }

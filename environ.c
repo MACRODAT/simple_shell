@@ -2,26 +2,26 @@
 
 /**
  * _myenv - pdwedwe
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
+ * @sh_data: stuff
+ *          stuff
  * Return: Always 0
  */
-int _myenv(shell_data_ *info)
+int _myenv(shell_data_ *sh_data)
 {
-	print_list_str(info->env);
+	print_list_str(sh_data->env);
 	return (0);
 }
 
 /**
- * _getenv - gets the value of an environ variable
- * @info: Structure containing potential arguments. Used to maintain
- * @name: env var name
+ * _getenv - gerfgw
+ * @sh_data: stuff
+ * @name: envfgh
  *
- * Return: the value
+ * Return: wed
  */
-char *_getenv(shell_data_ *info, const char *name)
+char *_getenv(shell_data_ *sh_data, const char *name)
 {
-	_lst *node = info->env;
+	_lst *node = sh_data->env;
 	char *p;
 
 	while (node)
@@ -35,58 +35,57 @@ char *_getenv(shell_data_ *info, const char *name)
 }
 
 /**
- * _mysetenv - Initialize a new environment variable,
- *             or modify an existing one
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
+ * _mysetenv - wef
+ * @sh_data: stuff
+ *        stuff
  *  Return: Always 0
  */
-int _mysetenv(shell_data_ *info)
+int _mysetenv(shell_data_ *sh_data)
 {
-	if (info->argc != 3)
+	if (sh_data->argc != 3)
 	{
 		_err_func("Incorrect number of arguements\n");
 		return (1);
 	}
-	if (_setenv(info, info->argv[1], info->argv[2]))
+	if (_setenv(sh_data, sh_data->argv[1], sh_data->argv[2]))
 		return (0);
 	return (1);
 }
 
 /**
- * _myunsetenv - Remove an environment variable
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
+ * _myunsetenv - wef
+ * @sh_data: stuff
+ *        stuff
  *  Return: Always 0
  */
-int _myunsetenv(shell_data_ *info)
+int _myunsetenv(shell_data_ *sh_data)
 {
 	int i;
 
-	if (info->argc == 1)
+	if (sh_data->argc == 1)
 	{
 		_err_func("Too few arguements.\n");
 		return (1);
 	}
-	for (i = 1; i <= info->argc; i++)
-		_unsetenv(info, info->argv[i]);
+	for (i = 1; i <= sh_data->argc; i++)
+		_unsetenv(sh_data, sh_data->argv[i]);
 
 	return (0);
 }
 
 /**
  * fill_env - populates env linked list
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
+ * @sh_data: stuff
+ *          stuff
  * Return: Always 0
  */
-int fill_env(shell_data_ *info)
+int fill_env(shell_data_ *sh_data)
 {
 	_lst *node = NULL;
 	size_t i;
 
 	for (i = 0; environ[i]; i++)
 		_ll_end_app(&node, environ[i], 0);
-	info->env = node;
+	sh_data->env = node;
 	return (0);
 }

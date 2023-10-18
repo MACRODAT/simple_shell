@@ -43,9 +43,9 @@ typedef struct _lst
 } _lst;
 
 /**
- * struct pswo - Structure to hold shell-related information.
+ * struct pswo - Structure to hold shell-related sh_datarmation.
  *
- * This structure is used to store various information
+ * This structure is used to store various sh_datarmation
  * and data related to a shell.
  *
  * @arg: The current command argument.
@@ -90,7 +90,7 @@ typedef struct pswo
 	int _ln_len;
 } shell_data_;
 
-#define INFO_INIT \
+#define sh_data_INIT \
 {NULL, NULL, NULL, \
 0, 0, 0, 0, NULL, NULL, NULL, \
 NULL, NULL, \
@@ -165,9 +165,9 @@ ssize_t get_input(shell_data_ *);
 int _getline(shell_data_ *, char **, size_t *);
 void sigintHandler(int);
 
-void clear_info(shell_data_ *);
-void set_info(shell_data_ *, char **);
-void free_info(shell_data_ *, int);
+void clear_sh_data(shell_data_ *);
+void set_sh_data(shell_data_ *, char **);
+void free_sh_data(shell_data_ *, int);
 char *_getenv(shell_data_ *, const char *);
 int _myenv(shell_data_ *);
 int _mysetenv(shell_data_ *);
@@ -176,11 +176,11 @@ int fill_env(shell_data_ *);
 char **get_environ(shell_data_ *);
 int _unsetenv(shell_data_ *, char *);
 int _setenv(shell_data_ *, char *, char *);
-char *_file_hst_loc(shell_data_ *info);
-int write_hst(shell_data_ *info);
-int hstory(shell_data_ *info);
-int _start_hst_man(shell_data_ *info, char *buf, int linecount);
-int _hst_org(shell_data_ *info);
+char *_file_hst_loc(shell_data_ *sh_data);
+int write_hst(shell_data_ *sh_data);
+int hstory(shell_data_ *sh_data);
+int _start_hst_man(shell_data_ *sh_data, char *buf, int linecount);
+int _hst_org(shell_data_ *sh_data);
 _lst *add_node(_lst **, const char *, int);
 _lst *_ll_end_app(_lst **, const char *, int);
 size_t print_list_str(const _lst *);

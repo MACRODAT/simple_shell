@@ -2,23 +2,23 @@
 
 /**
  * _built_hist - ger gerg
- * @info: gregSgingre
+ * @sh_data: gregSgingre
  *  Return: ger
  */
-int _built_hist(shell_data_ *info)
+int _built_hist(shell_data_ *sh_data)
 {
-	print_list(info->hst);
+	print_list(sh_data->hst);
 	return (0);
 }
 
 /**
  * unset_alias - erg
- * @info: pergrg
+ * @sh_data: pergrg
  * @str: thger
  *
  * Return: Alrgewaerg
  */
-int unset_alias(shell_data_ *info, char *str)
+int unset_alias(shell_data_ *sh_data, char *str)
 {
 	char *p, c;
 	int ret;
@@ -28,20 +28,20 @@ int unset_alias(shell_data_ *info, char *str)
 		return (1);
 	c = *p;
 	*p = 0;
-	ret = delete_node_at_index(&(info->alias),
-		get_node_index(info->alias, _stat_with_lst(info->alias, str, -1)));
+	ret = delete_node_at_index(&(sh_data->alias),
+		get_node_index(sh_data->alias, _stat_with_lst(sh_data->alias, str, -1)));
 	*p = c;
 	return (ret);
 }
 
 /**
  * set_alias - dfg
- * @info: pdfg
+ * @sh_data: pdfg
  * @str: ger
  *
  * Return: Always 0 on success, 1 on error
  */
-int set_alias(shell_data_ *info, char *str)
+int set_alias(shell_data_ *sh_data, char *str)
 {
 	char *p;
 
@@ -49,10 +49,10 @@ int set_alias(shell_data_ *info, char *str)
 	if (!p)
 		return (1);
 	if (!*++p)
-		return (unset_alias(info, str));
+		return (unset_alias(sh_data, str));
 
-	unset_alias(info, str);
-	return (_ll_end_app(&(info->alias), str, 0) == NULL);
+	unset_alias(sh_data, str);
+	return (_ll_end_app(&(sh_data->alias), str, 0) == NULL);
 }
 
 /**
@@ -80,18 +80,18 @@ int print_alias(_lst *node)
 
 /**
  * _built_alias - mdwe
- * @info: dwed
+ * @sh_data: dwed
  *  Return: Always 0
  */
-int _built_alias(shell_data_ *info)
+int _built_alias(shell_data_ *sh_data)
 {
 	int i = 0;
 	char *p = NULL;
 	_lst *node = NULL;
 
-	if (info->argc == 1)
+	if (sh_data->argc == 1)
 	{
-		node = info->alias;
+		node = sh_data->alias;
 		while (node)
 		{
 			print_alias(node);
@@ -99,13 +99,13 @@ int _built_alias(shell_data_ *info)
 		}
 		return (0);
 	}
-	for (i = 1; info->argv[i]; i++)
+	for (i = 1; sh_data->argv[i]; i++)
 	{
-		p = _strchr(info->argv[i], '=');
+		p = _strchr(sh_data->argv[i], '=');
 		if (p)
-			set_alias(info, info->argv[i]);
+			set_alias(sh_data, sh_data->argv[i]);
 		else
-			print_alias(_stat_with_lst(info->alias, info->argv[i], '='));
+			print_alias(_stat_with_lst(sh_data->alias, sh_data->argv[i], '='));
 	}
 
 	return (0);

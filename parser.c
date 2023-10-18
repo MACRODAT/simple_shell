@@ -2,16 +2,16 @@
 
 /**
  * executable - determines if a file is an executable command
- * @info: the info struct
+ * @sh_data: the sh_data struct
  * @path: path to the file
  *
  * Return: 1 if true, 0 otherwise
  */
-int executable(shell_data_ *info, char *path)
+int executable(shell_data_ *sh_data, char *path)
 {
 	struct stat st;
 
-	(void)info;
+	(void)sh_data;
 	if (!path || stat(path, &st))
 		return (0);
 
@@ -44,13 +44,13 @@ char *dup_chars(char *pathstr, int start, int stop)
 
 /**
  * where_is - Find a command in the PATH string.
- * @info: The info struct.
+ * @sh_data: The sh_data struct.
  * @pathstr: The PATH string.
  * @cmd: The command to find.
  *
  * Return: The full path of the command if found, or NULL if not found.
  */
-char *where_is(shell_data_ *info, char *pathstr, char *cmd)
+char *where_is(shell_data_ *sh_data, char *pathstr, char *cmd)
 {
 	int i = 0, cur_pso = 0;
 	char *loc;
@@ -59,7 +59,7 @@ char *where_is(shell_data_ *info, char *pathstr, char *cmd)
 		return (NULL);
 	if ((_strlen(cmd) > 2) && starts_with(cmd, "./"))
 	{
-		if (executable(info, cmd))
+		if (executable(sh_data, cmd))
 			return (cmd);
 	}
 	while (1)
@@ -74,7 +74,7 @@ char *where_is(shell_data_ *info, char *pathstr, char *cmd)
 				_strcat(loc, "/");
 				_strcat(loc, cmd);
 			}
-			if (executable(info, loc))
+			if (executable(sh_data, loc))
 				return (loc);
 			if (!pathstr[i])
 				break;
