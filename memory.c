@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * bfree - Free memory allocated for a pointer and set it to NULL.
+ * fr_db - Free memory allocated for a pointer and set it to NULL.
  *
  * This function checks if the provided pointer 'ptr' is not NULL and if
  * '*ptr' points to allocated memory. If these conditions are met, it frees the
@@ -13,7 +13,7 @@
  *
  * Return: 1 if memory is freed and set to NULL, 0 otherwise.
  */
-int bfree(void **ptr)
+int fr_db(void **ptr)
 {
 	if (ptr && *ptr)
 	{
