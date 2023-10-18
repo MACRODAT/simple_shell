@@ -41,30 +41,6 @@ int delete_node_at_index(_lst **_ll_lst, unsigned int index)
 }
 
 /**
- * free_list - fredwe
- * @_ll_lst_ptr: adew
- *
- * Return: void
- */
-void free_list(_lst **_ll_lst_ptr)
-{
-	_lst *node, *nx_node, *_ll_lst;
-
-	if (!_ll_lst_ptr || !*_ll_lst_ptr)
-		return;
-	_ll_lst = *_ll_lst_ptr;
-	node = _ll_lst;
-	while (node)
-	{
-		nx_node = node->nx;
-		free(node->str);
-		free(node);
-		node = nx_node;
-	}
-	*_ll_lst_ptr = NULL;
-}
-
-/**
  * _ll_end_app - addew
  * @_ll_lst: adfwe
  * @str: stfew
