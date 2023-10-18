@@ -1,26 +1,6 @@
 #include "shell.h"
 
 /**
- * print_list_str - prindw
- * @h: pointdwe
- *
- * Return: siwed
- */
-size_t print_list_str(const _lst *h)
-{
-	size_t i = 0;
-
-	while (h)
-	{
-		_puts(h->str ? h->str : "(nil)");
-		_puts("\n");
-		h = h->nx;
-		i++;
-	}
-	return (i);
-}
-
-/**
  * delete_node_at_index - deldwe
  * @_ll_lst: addresdwe
  * @index: inddwe
