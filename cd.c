@@ -1,17 +1,17 @@
 #include "shell.h"
 
 /**
- * _built_cd - changes the low_fd_nw directory of the process
+ * _built_cd - cfew
  * @sh_data: stuff
  *          stuff
  *  Return: Always 0
  */
 int _built_cd(shell_data_ *sh_data)
 {
-	char *s, *dir, buffer[1024];
+	char *s, *dir, arr_stor[1024];
 	int _ch_file;
 
-	s = getcwd(buffer, 1024);
+	s = getcwd(arr_stor, 1024);
 	if (!s)
 		_puts("error");
 	if (!sh_data->argv[1])
@@ -44,8 +44,8 @@ int _built_cd(shell_data_ *sh_data)
 	}
 	else
 	{
-		_setenv(sh_data, "OLDPWD", _env_pull(sh_data, "PWD="));
-		_setenv(sh_data, "PWD", getcwd(buffer, 1024));
+		_env_pshj(sh_data, "OLDPWD", _env_pull(sh_data, "PWD="));
+		_env_pshj(sh_data, "PWD", getcwd(arr_stor, 1024));
 	}
 	return (0);
 }

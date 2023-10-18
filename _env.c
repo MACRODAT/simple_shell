@@ -50,7 +50,7 @@ int _unsetenv(shell_data_ *sh_data, char *var)
 }
 
 /**
- * _setenv - Initialize a new environment variable,
+ * _env_pshj - Initialize a new environment variable,
  *             or modify an existing one
  * @sh_data: stuff
  *        stuff
@@ -58,7 +58,7 @@ int _unsetenv(shell_data_ *sh_data, char *var)
  * @value: the string env var value
  *  Return: Always 0
  */
-int _setenv(shell_data_ *sh_data, char *var, char *value)
+int _env_pshj(shell_data_ *sh_data, char *var, char *value)
 {
 	char *buf = NULL;
 	_lst *node;

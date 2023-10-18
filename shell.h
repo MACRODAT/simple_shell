@@ -59,7 +59,7 @@ typedef struct _lst
  * @hst: A linked list for command hst.
  * @alias: A linked list for command aliases.
  * @env_changed: A flag to indicate changes in the environment.
- * @cmd_buf: Pointer to the command chain buffer for memory management.
+ * @cmd_buf: Pointer to the command chain arr_stor for memory management.
  * @environ: An array of environment variables.
  * @env: A linked list for environment variables.
  * @_ln_len: The command hst count.
@@ -84,7 +84,7 @@ typedef struct pswo
 	int env_changed;
 	int status;
 
-	char **cmd_buf; /* pointer to cmd ; chain buffer, for memory mangement */
+	char **cmd_buf; /* pointer to cmd ; chain arr_stor, for memory mangement */
 	int typ_cd_bf; /* CMD_type ||, &&, ; */
 	int readgfw;
 	int _ln_len;
@@ -175,7 +175,7 @@ int _myunsetenv(shell_data_ *);
 int fill_env(shell_data_ *);
 char **get_environ(shell_data_ *);
 int _unsetenv(shell_data_ *, char *);
-int _setenv(shell_data_ *, char *, char *);
+int _env_pshj(shell_data_ *, char *, char *);
 char *_file_hst_loc(shell_data_ *sh_data);
 int write_hst(shell_data_ *sh_data);
 int hstory(shell_data_ *sh_data);

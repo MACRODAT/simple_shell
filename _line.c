@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * input_buf - buffers chained commands
+ * input_buf - arr_stors chained commands
  * @sh_data: parameter struct
- * @buf: address of buffer
+ * @buf: address of arr_stor
  * @len: address of len var
  *
  * Return: bytes read
@@ -84,9 +84,9 @@ ssize_t get_input(shell_data_ *sh_data)
 }
 
 /**
- * read_buf - reads a buffer
+ * read_buf - reads a arr_stor
  * @sh_data: parameter struct
- * @buf: buffer
+ * @buf: arr_stor
  * @i: size
  *
  * Return: r
@@ -106,8 +106,8 @@ ssize_t read_buf(shell_data_ *sh_data, char *buf, size_t *i)
 /**
  * _getline - gets the nx line of input from STDIN
  * @sh_data: parameter struct
- * @ptr: address of pointer to buffer, preallocated or NULL
- * @length: size of preallocated ptr buffer if not NULL
+ * @ptr: address of pointer to arr_stor, preallocated or NULL
+ * @length: size of preallocated ptr arr_stor if not NULL
  *
  * Return: s
  */

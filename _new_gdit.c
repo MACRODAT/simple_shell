@@ -50,7 +50,7 @@ int print_d(int input, int gfw)
 char *convert_number(long int num, int base, int flags)
 {
 	static char *array;
-	static char buffer[50];
+	static char arr_stor[50];
 	char sign = 0;
 	char *ptr;
 	unsigned long n = num;
@@ -62,7 +62,7 @@ char *convert_number(long int num, int base, int flags)
 
 	}
 	array = flags & _LOW ? "0123456789abcdef" : "0123456789ABCDEF";
-	ptr = &buffer[49];
+	ptr = &arr_stor[49];
 	*ptr = '\0';
 
 	do	{

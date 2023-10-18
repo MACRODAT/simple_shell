@@ -65,10 +65,10 @@ char *starts_with(const char *big, const char *small)
 
 /**
  * _strcat - concatenates two strings
- * @dsti: the dstiination buffer
- * @src: the source buffer
+ * @dsti: the dstiination arr_stor
+ * @src: the source arr_stor
  *
- * Return: pointer to dstiination buffer
+ * Return: pointer to dstiination arr_stor
  */
 char *_strcat(char *dsti, char *src)
 {

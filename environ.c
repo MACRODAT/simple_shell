@@ -47,7 +47,7 @@ int _env_push(shell_data_ *sh_data)
 		_err_func("Incorrect number of arguements\n");
 		return (1);
 	}
-	if (_setenv(sh_data, sh_data->argv[1], sh_data->argv[2]))
+	if (_env_pshj(sh_data, sh_data->argv[1], sh_data->argv[2]))
 		return (0);
 	return (1);
 }
