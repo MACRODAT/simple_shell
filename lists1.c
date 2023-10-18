@@ -1,37 +1,19 @@
 #include "shell.h"
 
 /**
- * list_len - determines length of linked list
- * @h: pointer to first node
- *
- * Return: size of list
- */
-size_t list_len(const _lst *h)
-{
-	size_t i = 0;
-
-	while (h)
-	{
-		h = h->nx;
-		i++;
-	}
-	return (i);
-}
-
-/**
  * _lsto_strings - returns an array of strings of the list->str
- * @head: pointer to first node
+ * @_ll_lst: pointer to first node
  *
  * Return: array of strings
  */
-char **_lsto_strings(_lst *head)
+char **_lsto_strings(_lst *_ll_lst)
 {
-	_lst *node = head;
-	size_t i = list_len(head), j;
+	_lst *node = _ll_lst;
+	size_t i = list_len(_ll_lst), j;
 	char **strs;
 	char *str;
 
-	if (!head || !i)
+	if (!_ll_lst || !i)
 		return (NULL);
 	strs = malloc(sizeof(char *) * (i + 1));
 	if (!strs)
@@ -79,8 +61,26 @@ size_t print_list(const _lst *h)
 }
 
 /**
+ * list_len - determines length of linked list
+ * @h: pointer to first node
+ *
+ * Return: size of list
+ */
+size_t list_len(const _lst *h)
+{
+	size_t i = 0;
+
+	while (h)
+	{
+		h = h->nx;
+		i++;
+	}
+	return (i);
+}
+
+/**
  * _stat_with_lst - returns node whose string starts with prefix
- * @node: pointer to list head
+ * @node: pointer to list _ll_lst
  * @prefix: string to match
  * @c: the nx character after prefix to match
  *
@@ -102,20 +102,20 @@ _lst *_stat_with_lst(_lst *node, char *prefix, char c)
 
 /**
  * get_node_index - gets the index of a node
- * @head: pointer to list head
+ * @_ll_lst: pointer to list _ll_lst
  * @node: pointer to the node
  *
  * Return: index of node or -1
  */
-ssize_t get_node_index(_lst *head, _lst *node)
+ssize_t get_node_index(_lst *_ll_lst, _lst *node)
 {
 	size_t i = 0;
 
-	while (head)
+	while (_ll_lst)
 	{
-		if (head == node)
+		if (_ll_lst == node)
 			return (i);
-		head = head->nx;
+		_ll_lst = _ll_lst->nx;
 		i++;
 	}
 	return (-1);
