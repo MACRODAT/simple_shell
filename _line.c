@@ -28,7 +28,7 @@ ssize_t input_buf(shell_data_ *info, char **buf, size_t *len)
 			}
 			info->_fla_lns = 1;
 			_comm_rem(*buf);
-			build_history_list(info, *buf, info->histcount++);
+			_start_hst_man(info, *buf, info->_ln_len++);
 			{
 				*len = r;
 				info->cmd_buf = buf;

@@ -62,7 +62,7 @@ typedef struct _lst
  * @cmd_buf: Pointer to the command chain buffer for memory management.
  * @environ: An array of environment variables.
  * @env: A linked list for environment variables.
- * @histcount: The command history count.
+ * @_ln_len: The command history count.
  * @typ_cd_bf: The command type (CMD_type: ||, &&, ;).
  * @readfd: The read file descriptor.
  * @status: The exit status of the last executed command.
@@ -87,7 +87,7 @@ typedef struct pswo
 	char **cmd_buf; /* pointer to cmd ; chain buffer, for memory mangement */
 	int typ_cd_bf; /* CMD_type ||, &&, ; */
 	int readfd;
-	int histcount;
+	int _ln_len;
 } shell_data_;
 
 #define INFO_INIT \
@@ -179,8 +179,8 @@ int _setenv(shell_data_ *, char *, char *);
 char *_file_hst_loc(shell_data_ *info);
 int write_history(shell_data_ *info);
 int hstory(shell_data_ *info);
-int build_history_list(shell_data_ *info, char *buf, int linecount);
-int renumber_history(shell_data_ *info);
+int _start_hst_man(shell_data_ *info, char *buf, int linecount);
+int _hst_org(shell_data_ *info);
 _lst *add_node(_lst **, const char *, int);
 _lst *_ll_end_app(_lst **, const char *, int);
 size_t print_list_str(const _lst *);

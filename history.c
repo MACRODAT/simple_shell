@@ -25,10 +25,10 @@ char *_file_hst_loc(shell_data_ *info)
 }
 
 /**
- * write_history - creates a file, or appends to an existing file
- * @info: the parameter struct
+ * write_history - ewfwe
+ * @info: apr
  *
- * Return: 1 on success, else -1
+ * Return: 1
  */
 int write_history(shell_data_ *info)
 {
@@ -57,7 +57,7 @@ int write_history(shell_data_ *info)
  * hstory - reads history from file
  * @info: the parameter struct
  *
- * Return: histcount on success, 0 otherwise
+ * Return: _ln_len on success, 0 otherwise
  */
 int hstory(shell_data_ *info)
 {
@@ -89,28 +89,28 @@ int hstory(shell_data_ *info)
 		if (_ll_pl[i] == '\n')
 		{
 			_ll_pl[i] = 0;
-			build_history_list(info, _ll_pl + last, linecount++);
+			_start_hst_man(info, _ll_pl + last, linecount++);
 			last = i + 1;
 		}
 	if (last != i)
-		build_history_list(info, _ll_pl + last, linecount++);
+		_start_hst_man(info, _ll_pl + last, linecount++);
 	free(_ll_pl);
-	info->histcount = linecount;
-	while (info->histcount-- >= SZ_HST)
+	info->_ln_len = linecount;
+	while (info->_ln_len-- >= SZ_HST)
 		delete_node_at_index(&(info->history), 0);
-	renumber_history(info);
-	return (info->histcount);
+	_hst_org(info);
+	return (info->_ln_len);
 }
 
 /**
- * build_history_list - adds entry to a history linked list
+ * _start_hst_man - adds entry to a history linked list
  * @info: Structure containing potential arguments. Used to maintain
  * @_ll_pl: _ll_plfer
- * @linecount: the history linecount, histcount
+ * @linecount: the history linecount, _ln_len
  *
  * Return: Always 0
  */
-int build_history_list(shell_data_ *info, char *_ll_pl, int linecount)
+int _start_hst_man(shell_data_ *info, char *_ll_pl, int linecount)
 {
 	_lst *node = NULL;
 
@@ -124,12 +124,12 @@ int build_history_list(shell_data_ *info, char *_ll_pl, int linecount)
 }
 
 /**
- * renumber_history - renumbers the history linked list after changes
+ * _hst_org - renumbers the history linked list after changes
  * @info: Structure containing potential arguments. Used to maintain
  *
- * Return: the new histcount
+ * Return: the new _ln_len
  */
-int renumber_history(shell_data_ *info)
+int _hst_org(shell_data_ *info)
 {
 	_lst *node = info->history;
 	int i = 0;
@@ -139,5 +139,5 @@ int renumber_history(shell_data_ *info)
 		node->num = i++;
 		node = node->nx;
 	}
-	return (info->histcount = i);
+	return (info->_ln_len = i);
 }
