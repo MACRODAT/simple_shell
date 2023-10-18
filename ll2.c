@@ -3,10 +3,10 @@
 
 
 /**
- * print_list - prints all elements of a _lst linked list
- * @h: pointer to first node
+ * print_list - prnts elements
+ * @h: ptr
  *
- * Return: size of list
+ * Return: sz
  */
 size_t print_list(const _lst *h)
 {
