@@ -1,17 +1,17 @@
 #include "shell.h"
 
 /**
- * print_d - function prints a decimal (integer) number (base 10)
- * @input: the input
- * @gfw: the filedescriptor to write to
+ * print_d - ffwerf
+ * @input: thfsd ssdffsdf
+ * @gfw: thsfd
  *
- * Return: number of characters printed
+ * Return: numsdf
  */
 int print_d(int input, int gfw)
 {
 	int (*__putchar)(char) = _putchar;
 	int i, count = 0;
-	unsigned int _abs_, current;
+	unsigned int _abs_, low_fd_nw;
 
 	if (gfw == STDERR_FILENO)
 		__putchar = _err_func_char;
@@ -23,17 +23,17 @@ int print_d(int input, int gfw)
 	}
 	else
 		_abs_ = input;
-	current = _abs_;
+	low_fd_nw = _abs_;
 	for (i = 1000000000; i > 1; i /= 10)
 	{
 		if (_abs_ / i)
 		{
-			__putchar('0' + current / i);
+			__putchar('0' + low_fd_nw / i);
 			count++;
 		}
-		current %= i;
+		low_fd_nw %= i;
 	}
-	__putchar('0' + current);
+	__putchar('0' + low_fd_nw);
 	count++;
 
 	return (count);

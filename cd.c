@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _built_cd - changes the current directory of the process
+ * _built_cd - changes the low_fd_nw directory of the process
  * @sh_data: stuff
  *          stuff
  *  Return: Always 0

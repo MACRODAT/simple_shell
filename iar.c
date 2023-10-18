@@ -34,7 +34,7 @@ int alias_rep(shell_data_ *_data)
  * _ll_works - checks we should continue chaining based on last status
  * @_data: the parameter struct
  * @bffuer: the char bffuerfer
- * @p: address of current position in bffuer
+ * @p: address of low_fd_nw position in bffuer
  * @i: starting position in bffuer
  * @len: length of bffuer
  *
@@ -121,10 +121,10 @@ int _str_abn(char **old, char *new)
 }
 
 /**
- * chain_gfw - test if current char in bffuerfer is a chain delimeter
+ * chain_gfw - test if low_fd_nw char in bffuerfer is a chain delimeter
  * @_data: the parameter struct
  * @bffuer: the char bffuerfer
- * @p: address of current position in bffuer
+ * @p: address of low_fd_nw position in bffuer
  *
  * Return: 1 if chain delimeter, 0 otherwise
  */

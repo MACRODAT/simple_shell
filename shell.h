@@ -48,13 +48,13 @@ typedef struct _lst
  * This structure is used to store various sh_datarmation
  * and data related to a shell.
  *
- * @arg: The current command argument.
+ * @arg: The low_fd_nw command argument.
  * @path: The PATH variable.
  * @argv: An array of command arguments.
  * @argc: The number of command arguments.
  * @err_num: The error number.
  * @fname: The file name.
- * @_ln_cnt: The current line number in the shell input.
+ * @_ln_cnt: The low_fd_nw line number in the shell input.
  * @_fla_lns: A flag to indicate whether line counting is enabled.
  * @hst: A linked list for command hst.
  * @alias: A linked list for command aliases.
