@@ -148,6 +148,7 @@ void process_command_(shelldata_ *data, int commandResult,
 						char *tmp, char **cd_lines, char *cd);
 void _free_stuff(char **cd_lines, char *cd, char *tmp);
 int check_stuff(char ***s, int buf_size);
+int _open_file(shelldata_ *data, int *ptr, char *file);
 
 /* builtins */
 int _builtin_print_env(shelldata_ *data);

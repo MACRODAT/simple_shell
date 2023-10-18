@@ -15,7 +15,7 @@ int main(int na, char **a)
 		return (-1);
 	signal(2, get_sigint);
 	initData(&data, na, a);
-	if (na > 1)
+	if (na == 2)
 	{
 		/* check for script file */
 		if (_file_exists(data.a[1]))
