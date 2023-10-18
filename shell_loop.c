@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * hsh - main shell loop
+ * loop_func - main shell loop
  * @info: the parameter & return info struct
  * @av: the argument vector from main()
  *
  * Return: 0 on success, 1 on error, or error code
  */
-int hsh(info_t *info, char **av)
+int loop_func(info_t *info, char **av)
 {
 	ssize_t r = 0;
 	int builtin_ret = 0;
@@ -17,7 +17,7 @@ int hsh(info_t *info, char **av)
 		clear_info(info);
 		if (interactive(info))
 			_puts("$ ");
-		_eputchar(BUF_FLUSH);
+		_err_func_char(BUF_FLUSH);
 		r = get_input(info);
 		if (r != -1)
 		{

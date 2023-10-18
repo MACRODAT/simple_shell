@@ -112,7 +112,7 @@ typedef struct builtin
 
 
 /* toem_shloop.c */
-int hsh(info_t *, char **);
+int loop_func(info_t *, char **);
 int find_builtin(info_t *);
 void find_cmd(info_t *);
 void fork_cmd(info_t *);
@@ -122,12 +122,12 @@ int is_cmd(info_t *, char *);
 char *dup_chars(char *, int, int);
 char *find_path(info_t *, char *, char *);
 
-/* loophsh.c */
-int loophsh(char **);
+/* looploop_func.c */
+int looploop_func(char **);
 
 /* toem_errors.c */
-void _eputs(char *);
-int _eputchar(char);
+void _err_func(char *);
+int _err_func_char(char);
 int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
 
@@ -197,7 +197,7 @@ char *_getenv(info_t *, const char *);
 int _myenv(info_t *);
 int _mysetenv(info_t *);
 int _myunsetenv(info_t *);
-int populate_env_list(info_t *);
+int fill_env(info_t *);
 
 /* toem_getenv.c */
 char **get_environ(info_t *);
@@ -207,7 +207,7 @@ int _setenv(info_t *, char *, char *);
 /* toem_history.c */
 char *get_history_file(info_t *info);
 int write_history(info_t *info);
-int read_history(info_t *info);
+int hstory(info_t *info);
 int build_history_list(info_t *info, char *buf, int linecount);
 int renumber_history(info_t *info);
 

@@ -62,7 +62,7 @@ Our shell has support for the following built-in commands:
 | help [built-in]     | Read documentation for a built-in.                                                        |
 
 
- ## Installation : Getting HSH
+ ## Installation : Getting loop_func
  
 Clone the below repository and compile the files into an executable using the GCC compiler.
 ```
@@ -73,9 +73,9 @@ https://github.com/StellahMbao/simple_shell.git
 - First, Fork this Repository [Learn how to fork repo](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo).
 - Then Clone [Learn how to clone ](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository).
 - Create an executable by running the following command:
-- `gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`
+- `gcc -Wall -Werror -Wextra -pedantic *.c -o loop_func`
 - From there, type in the following command and press your enter button.
-- `./hsh`
+- `./loop_func`
 - Final step: ENJOY!
 
 
