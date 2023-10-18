@@ -54,6 +54,25 @@ int write_hst(shell_data_ *info)
 }
 
 /**
+ * _hst_org - wef
+ * @info: fwe
+ *
+ * Return: fwe
+ */
+int _hst_org(shell_data_ *info)
+{
+	_lst *node = info->hst;
+	int i = 0;
+
+	while (node)
+	{
+		node->num = i++;
+		node = node->nx;
+	}
+	return (info->_ln_len = i);
+}
+
+/**
  * hstory - reads hst from file
  * @info: the parameter struct
  *
@@ -121,23 +140,4 @@ int _start_hst_man(shell_data_ *info, char *_ll_pl, int linecount)
 	if (!info->hst)
 		info->hst = node;
 	return (0);
-}
-
-/**
- * _hst_org - renumbers the hst linked list after changes
- * @info: Structure containing potential arguments. Used to maintain
- *
- * Return: the new _ln_len
- */
-int _hst_org(shell_data_ *info)
-{
-	_lst *node = info->hst;
-	int i = 0;
-
-	while (node)
-	{
-		node->num = i++;
-		node = node->nx;
-	}
-	return (info->_ln_len = i);
 }

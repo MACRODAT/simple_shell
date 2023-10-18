@@ -61,7 +61,7 @@ size_t print_list(const _lst *h)
 }
 
 /**
- * list_len - determines length of linked list
+ * list_len - few
  * @h: pointer to first node
  *
  * Return: size of list
@@ -79,12 +79,12 @@ size_t list_len(const _lst *h)
 }
 
 /**
- * _stat_with_lst - returns node whose string starts with prefix
- * @node: pointer to list _ll_lst
- * @prefix: string to match
- * @c: the nx character after prefix to match
+ * _stat_with_lst - rete
+ * @node: efw
+ * @prefix: fwe
+ * @c: fwe
  *
- * Return: match node or null
+ * Return: few
  */
 _lst *_stat_with_lst(_lst *node, char *prefix, char c)
 {
@@ -101,11 +101,11 @@ _lst *_stat_with_lst(_lst *node, char *prefix, char c)
 }
 
 /**
- * get_node_index - gets the index of a node
- * @_ll_lst: pointer to list _ll_lst
- * @node: pointer to the node
+ * get_node_index - weff
+ * @_ll_lst: ptr
+ * @node: ptr
  *
- * Return: index of node or -1
+ * Return: inwd
  */
 ssize_t get_node_index(_lst *_ll_lst, _lst *node)
 {
