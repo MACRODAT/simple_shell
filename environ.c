@@ -45,8 +45,6 @@ int _myunsetenv(shell_data_ *sh_data)
 		_err_func("Too few arguements.\n");
 		return (1);
 	}
-	for (i = 1; i <= sh_data->argc; i++)
-		_unsetenv(sh_data, sh_data->poss[i]);
 
 	return (0);
 }
