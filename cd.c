@@ -14,7 +14,7 @@ int _built_cd(shell_data_ *sh_data)
 	s = getcwd(arr_stor, 1024);
 	if (!s)
 		_puts("error");
-	if (!sh_data->argv[1])
+	if (!sh_data->poss[1])
 	{
 		dir = _env_pull(sh_data, "HOME=");
 		if (!dir)
@@ -23,7 +23,7 @@ int _built_cd(shell_data_ *sh_data)
 		else
 			_ch_file = chdir(dir);
 	}
-	else if (_strcmp(sh_data->argv[1], "-") == 0)
+	else if (_strcmp(sh_data->poss[1], "-") == 0)
 	{
 		if (!_env_pull(sh_data, "OLDPWD="))
 		{
@@ -36,11 +36,11 @@ int _built_cd(shell_data_ *sh_data)
 			chdir((dir = _env_pull(sh_data, "OLDPWD=")) ? dir : "/");
 	}
 	else
-		_ch_file = chdir(sh_data->argv[1]);
+		_ch_file = chdir(sh_data->poss[1]);
 	if (_ch_file == -1)
 	{
 		print_error(sh_data, "can't cd to ");
-		_err_func(sh_data->argv[1]), _err_func_char('\n');
+		_err_func(sh_data->poss[1]), _err_func_char('\n');
 	}
 	else
 	{

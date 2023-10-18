@@ -68,7 +68,7 @@ int find_builtin(shell_data_ *sh_data)
 	};
 
 	for (i = 0; builtintbl[i].type; i++)
-		if (_strcmp(sh_data->argv[0], builtintbl[i].type) == 0)
+		if (_strcmp(sh_data->poss[0], builtintbl[i].type) == 0)
 		{
 			sh_data->_ln_cnt++;
 			built_in_ret = builtintbl[i].func(sh_data);
@@ -88,7 +88,7 @@ void find_cmd(shell_data_ *sh_data)
 	char *path = NULL;
 	int i, k;
 
-	sh_data->path = sh_data->argv[0];
+	sh_data->path = sh_data->poss[0];
 	if (sh_data->_fla_lns == 1)
 	{
 		sh_data->_fla_lns = 0;
@@ -100,7 +100,7 @@ void find_cmd(shell_data_ *sh_data)
 	if (!k)
 		return;
 
-	path = where_is(sh_data, _env_pull(sh_data, "PATH="), sh_data->argv[0]);
+	path = where_is(sh_data, _env_pull(sh_data, "PATH="), sh_data->poss[0]);
 	if (path)
 	{
 		sh_data->path = path;
@@ -109,7 +109,7 @@ void find_cmd(shell_data_ *sh_data)
 	else
 	{
 		if ((isnterop(sh_data) || _env_pull(sh_data, "PATH=")
-			|| sh_data->argv[0][0] == '/') && executable(sh_data, sh_data->argv[0]))
+			|| sh_data->poss[0][0] == '/') && executable(sh_data, sh_data->poss[0]))
 			start_execut(sh_data);
 		else if (*(sh_data->arg) != '\n')
 		{
@@ -137,7 +137,7 @@ void start_execut(shell_data_ *sh_data)
 	}
 	if (_pid_chi == 0)
 	{
-		if (execve(sh_data->path, sh_data->argv, get_environ(sh_data)) == -1)
+		if (execve(sh_data->path, sh_data->poss, get_environ(sh_data)) == -1)
 		{
 			free_sh_data(sh_data, 1);
 			if (errno == EACCES)

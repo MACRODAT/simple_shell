@@ -99,13 +99,13 @@ int _built_alias(shell_data_ *sh_data)
 		}
 		return (0);
 	}
-	for (i = 1; sh_data->argv[i]; i++)
+	for (i = 1; sh_data->poss[i]; i++)
 	{
-		p = _strchr(sh_data->argv[i], '=');
+		p = _strchr(sh_data->poss[i], '=');
 		if (p)
-			set_alias(sh_data, sh_data->argv[i]);
+			set_alias(sh_data, sh_data->poss[i]);
 		else
-			print_alias(_stat_with_lst(sh_data->alias, sh_data->argv[i], '='));
+			print_alias(_stat_with_lst(sh_data->alias, sh_data->poss[i], '='));
 	}
 
 	return (0);

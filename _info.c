@@ -7,7 +7,7 @@
 void clear_sh_data(shell_data_ *sh_data)
 {
 	sh_data->arg = NULL;
-	sh_data->argv = NULL;
+	sh_data->poss = NULL;
 	sh_data->path = NULL;
 	sh_data->argc = 0;
 }
@@ -24,18 +24,18 @@ void set_sh_data(shell_data_ *sh_data, char **av)
 	sh_data->fname = av[0];
 	if (sh_data->arg)
 	{
-		sh_data->argv = strtow(sh_data->arg, " \t");
-		if (!sh_data->argv)
+		sh_data->poss = strtow(sh_data->arg, " \t");
+		if (!sh_data->poss)
 		{
 
-			sh_data->argv = malloc(sizeof(char *) * 2);
-			if (sh_data->argv)
+			sh_data->poss = malloc(sizeof(char *) * 2);
+			if (sh_data->poss)
 			{
-				sh_data->argv[0] = _strdup(sh_data->arg);
-				sh_data->argv[1] = NULL;
+				sh_data->poss[0] = _strdup(sh_data->arg);
+				sh_data->poss[1] = NULL;
 			}
 		}
-		for (i = 0; sh_data->argv && sh_data->argv[i]; i++)
+		for (i = 0; sh_data->poss && sh_data->poss[i]; i++)
 			;
 		sh_data->argc = i;
 
@@ -51,8 +51,8 @@ void set_sh_data(shell_data_ *sh_data, char **av)
  */
 void free_sh_data(shell_data_ *sh_data, int all)
 {
-	my_free_(sh_data->argv);
-	sh_data->argv = NULL;
+	my_free_(sh_data->poss);
+	sh_data->poss = NULL;
 	sh_data->path = NULL;
 	if (all)
 	{

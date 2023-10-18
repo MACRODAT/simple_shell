@@ -14,17 +14,17 @@ int alias_rep(shell_data_ *_data)
 
 	for (i = 0; i < 10; i++)
 	{
-		node = _stat_with_lst(_data->alias, _data->argv[0], '=');
+		node = _stat_with_lst(_data->alias, _data->poss[0], '=');
 		if (!node)
 			return (0);
-		free(_data->argv[0]);
+		free(_data->poss[0]);
 		p = _strchr(node->str, '=');
 		if (!p)
 			return (0);
 		p = _strdup(p + 1);
 		if (!p)
 			return (0);
-		_data->argv[0] = p;
+		_data->poss[0] = p;
 	}
 	return (1);
 }
@@ -76,31 +76,31 @@ int _ll_sub(shell_data_ *_data)
 	int i = 0;
 	_lst *node;
 
-	for (i = 0; _data->argv[i]; i++)
+	for (i = 0; _data->poss[i]; i++)
 	{
-		if (_data->argv[i][0] != '$' || !_data->argv[i][1])
+		if (_data->poss[i][0] != '$' || !_data->poss[i][1])
 			continue;
 
-		if (!_strcmp(_data->argv[i], "$?"))
+		if (!_strcmp(_data->poss[i], "$?"))
 		{
-			_str_abn(&(_data->argv[i]),
+			_str_abn(&(_data->poss[i]),
 				_strdup(convert_number(_data->status, 10, 0)));
 			continue;
 		}
-		if (!_strcmp(_data->argv[i], "$$"))
+		if (!_strcmp(_data->poss[i], "$$"))
 		{
-			_str_abn(&(_data->argv[i]),
+			_str_abn(&(_data->poss[i]),
 				_strdup(convert_number(getpid(), 10, 0)));
 			continue;
 		}
-		node = _stat_with_lst(_data->env, &_data->argv[i][1], '=');
+		node = _stat_with_lst(_data->env, &_data->poss[i][1], '=');
 		if (node)
 		{
-			_str_abn(&(_data->argv[i]),
+			_str_abn(&(_data->poss[i]),
 				_strdup(_strchr(node->str, '=') + 1));
 			continue;
 		}
-		_str_abn(&_data->argv[i], _strdup(""));
+		_str_abn(&_data->poss[i], _strdup(""));
 
 	}
 	return (0);

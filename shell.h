@@ -50,7 +50,7 @@ typedef struct _lst
  *
  * @arg: The low_fd_nw command argument.
  * @path: The PATH variable.
- * @argv: An array of command arguments.
+ * @poss: An array of command arguments.
  * @argc: The number of command arguments.
  * @err_num: The error number.
  * @fname: The file name.
@@ -70,7 +70,7 @@ typedef struct _lst
 typedef struct pswo
 {
 	char *arg;
-	char **argv;
+	char **poss;
 	char *path;
 	int argc;
 	unsigned int _ln_cnt;
