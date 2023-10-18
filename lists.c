@@ -1,43 +1,10 @@
 #include "shell.h"
 
 /**
- * add_node - adds a node to the start of the list
- * @_ll_lst: address of pointer to _ll_lst node
- * @str: str field of node
- * @num: node index used by hst
+ * print_list_str - prindw
+ * @h: pointdwe
  *
- * Return: size of list
- */
-_lst *add_node(_lst **_ll_lst, const char *str, int num)
-{
-	_lst *new__ll_lst;
-
-	if (!_ll_lst)
-		return (NULL);
-	new__ll_lst = malloc(sizeof(_lst));
-	if (!new__ll_lst)
-		return (NULL);
-	_memset((void *)new__ll_lst, 0, sizeof(_lst));
-	new__ll_lst->num = num;
-	if (str)
-	{
-		new__ll_lst->str = _strdup(str);
-		if (!new__ll_lst->str)
-		{
-			free(new__ll_lst);
-			return (NULL);
-		}
-	}
-	new__ll_lst->nx = *_ll_lst;
-	*_ll_lst = new__ll_lst;
-	return (new__ll_lst);
-}
-
-/**
- * print_list_str - prints only the str element of a _lst linked list
- * @h: pointer to first node
- *
- * Return: size of list
+ * Return: siwed
  */
 size_t print_list_str(const _lst *h)
 {
@@ -54,11 +21,11 @@ size_t print_list_str(const _lst *h)
 }
 
 /**
- * delete_node_at_index - deletes node at given index
- * @_ll_lst: address of pointer to first node
- * @index: index of node to delete
+ * delete_node_at_index - deldwe
+ * @_ll_lst: addresdwe
+ * @index: inddwe
  *
- * Return: 1 on success, 0 on failure
+ * Return: dwe
  */
 int delete_node_at_index(_lst **_ll_lst, unsigned int index)
 {
@@ -94,8 +61,8 @@ int delete_node_at_index(_lst **_ll_lst, unsigned int index)
 }
 
 /**
- * free_list - frees all nodes of a list
- * @_ll_lst_ptr: address of pointer to _ll_lst node
+ * free_list - fredwe
+ * @_ll_lst_ptr: adew
  *
  * Return: void
  */
@@ -118,12 +85,12 @@ void free_list(_lst **_ll_lst_ptr)
 }
 
 /**
- * _ll_end_app - adds a node to the end of the list
- * @_ll_lst: address of pointer to _ll_lst node
- * @str: str field of node
- * @num: node index used by hst
+ * _ll_end_app - addew
+ * @_ll_lst: adfwe
+ * @str: stfew
+ * @num: nofwe
  *
- * Return: size of list
+ * Return: sfwe
  */
 _lst *_ll_end_app(_lst **_ll_lst, const char *str, int num)
 {
