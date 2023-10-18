@@ -48,13 +48,13 @@ int _ll_sub(shell_data_ *_data)
 		if (!_strcmp(_data->poss[i], "$?"))
 		{
 			_str_abn(&(_data->poss[i]),
-				_strdup(convert_number(_data->status, 10, 0)));
+				_strdup(_numb_base_10(_data->status, 10, 0)));
 			continue;
 		}
 		if (!_strcmp(_data->poss[i], "$$"))
 		{
 			_str_abn(&(_data->poss[i]),
-				_strdup(convert_number(getpid(), 10, 0)));
+				_strdup(_numb_base_10(getpid(), 10, 0)));
 			continue;
 		}
 		node = _stat_with_lst(_data->env, &_data->poss[i][1], '=');

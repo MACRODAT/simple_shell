@@ -135,7 +135,7 @@ void _puts(char *);
 int _putchar(char);
 char *_strdup(const char *);
 char *_strncpy(char *, char *, int);
-char *convert_number(long int, int, int);
+char *_numb_base_10(long int, int, int);
 char *_strncat(char *, char *, int);
 char *_strchr(char *, char);
 int _built_help(shell_data_ *);

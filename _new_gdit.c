@@ -40,14 +40,14 @@ int print_d(int input, int gfw)
 }
 
 /**
- * convert_number - converter function, a clone of itoa
+ * _numb_base_10 - converter function, a clone of itoa
  * @num: number
  * @base: base
  * @flags: argument flags
  *
  * Return: string
  */
-char *convert_number(long int num, int base, int flags)
+char *_numb_base_10(long int num, int base, int flags)
 {
 	static char *array;
 	static char arr_stor[50];

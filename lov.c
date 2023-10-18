@@ -36,6 +36,7 @@ int hstory(shell_data_ *sh_data)
 		return (0);
 
 	gfw = open(fdkli, O_RDONLY);
+
 	free(fdkli);
 	if (gfw == -1)
 		return (0);
