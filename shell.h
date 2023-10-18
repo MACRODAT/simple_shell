@@ -112,7 +112,7 @@ typedef struct builtin
 int loop_func(shell_data_ *, char **);
 int find_builtin(shell_data_ *);
 void find_cmd(shell_data_ *);
-void fork_cmd(shell_data_ *);
+void start_execut(shell_data_ *);
 
 int executable(shell_data_ *, char *);
 char *dup_chars(char *, int, int);
@@ -123,22 +123,19 @@ int looploop_func(char **);
 void _err_func(char *);
 int _err_func_char(char);
 int _putfd(char c, int fd);
-int _putsfd(char *str, int fd);
+int _sf_fd_sq(char *str, int fd);
 
 int _strlen(const char *s);
 int _strcmp(char *, char *);
 char *starts_with(const char *, const char *);
 char *_strcat(char *, char *);
-
 char *_strcpy(char *, char *);
 char *_strdup(const char *);
 void _puts(char *);
 int _putchar(char);
-
 char *_strncpy(char *, char *, int);
 char *_strncat(char *, char *, int);
 char *_strchr(char *, char);
-
 char **strtow(char *, char *);
 char **strtow2(char *, char);
 

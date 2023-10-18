@@ -45,7 +45,7 @@ int write_history(shell_data_ *info)
 		return (-1);
 	for (node = info->history; node; node = node->next)
 	{
-		_putsfd(node->str, fd);
+		_sf_fd_sq(node->str, fd);
 		_putfd('\n', fd);
 	}
 	_putfd(_F_BUF, fd);
