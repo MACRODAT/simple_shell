@@ -7,7 +7,7 @@
  *
  * Return: 1 if true, 0 otherwise
  */
-int executable(info_t *info, char *path)
+int executable(shell_data_ *info, char *path)
 {
 	struct stat st;
 
@@ -50,7 +50,7 @@ char *dup_chars(char *pathstr, int start, int stop)
  *
  * Return: The full path of the command if found, or NULL if not found.
  */
-char *where_is(info_t *info, char *pathstr, char *cmd)
+char *where_is(shell_data_ *info, char *pathstr, char *cmd)
 {
 	int i = 0, cur_pso = 0;
 	char *loc;

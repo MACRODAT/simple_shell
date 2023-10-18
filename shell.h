@@ -43,7 +43,7 @@ typedef struct _lst
 } _lst;
 
 /**
- * struct passinfo - Structure to hold shell-related information.
+ * struct pswo - Structure to hold shell-related information.
  *
  * This structure is used to store various information
  * and data related to a shell.
@@ -67,7 +67,7 @@ typedef struct _lst
  * @readfd: The read file descriptor.
  * @status: The exit status of the last executed command.
  */
-typedef struct passinfo
+typedef struct pswo
 {
 	char *arg;
 	char **argv;
@@ -88,7 +88,7 @@ typedef struct passinfo
 	int cmd_buf_type; /* CMD_type ||, &&, ; */
 	int readfd;
 	int histcount;
-} info_t;
+} shell_data_;
 
 #define INFO_INIT \
 {NULL, NULL, NULL, \
@@ -105,18 +105,18 @@ NULL, NULL, \
 typedef struct builtin
 {
 	char *type;
-	int (*func)(info_t *);
+	int (*func)(shell_data_ *);
 } builtin_table;
 
 
-int loop_func(info_t *, char **);
-int find_builtin(info_t *);
-void find_cmd(info_t *);
-void fork_cmd(info_t *);
+int loop_func(shell_data_ *, char **);
+int find_builtin(shell_data_ *);
+void find_cmd(shell_data_ *);
+void fork_cmd(shell_data_ *);
 
-int executable(info_t *, char *);
+int executable(shell_data_ *, char *);
 char *dup_chars(char *, int, int);
-char *where_is(info_t *, char *, char *);
+char *where_is(shell_data_ *, char *, char *);
 
 int looploop_func(char **);
 
@@ -148,43 +148,43 @@ void *_realloc(void *, unsigned int, unsigned int);
 
 int fr_db(void **);
 
-int interactive(info_t *);
+int interactive(shell_data_ *);
 int is_delim(char, char *);
 int _isalpha(int);
 int _atoi(char *);
 
 int _erratoi(char *);
-void print_error(info_t *, char *);
+void print_error(shell_data_ *, char *);
 int print_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
 
-int _exit_shell(info_t *);
-int _mycd(info_t *);
-int _myhelp(info_t *);
-int _myhistory(info_t *);
-int _myalias(info_t *);
+int _exit_shell(shell_data_ *);
+int _mycd(shell_data_ *);
+int _myhelp(shell_data_ *);
+int _myhistory(shell_data_ *);
+int _myalias(shell_data_ *);
 
-ssize_t get_input(info_t *);
-int _getline(info_t *, char **, size_t *);
+ssize_t get_input(shell_data_ *);
+int _getline(shell_data_ *, char **, size_t *);
 void sigintHandler(int);
 
-void clear_info(info_t *);
-void set_info(info_t *, char **);
-void free_info(info_t *, int);
-char *_getenv(info_t *, const char *);
-int _myenv(info_t *);
-int _mysetenv(info_t *);
-int _myunsetenv(info_t *);
-int fill_env(info_t *);
-char **get_environ(info_t *);
-int _unsetenv(info_t *, char *);
-int _setenv(info_t *, char *, char *);
-char *get_history_file(info_t *info);
-int write_history(info_t *info);
-int hstory(info_t *info);
-int build_history_list(info_t *info, char *buf, int linecount);
-int renumber_history(info_t *info);
+void clear_info(shell_data_ *);
+void set_info(shell_data_ *, char **);
+void free_info(shell_data_ *, int);
+char *_getenv(shell_data_ *, const char *);
+int _myenv(shell_data_ *);
+int _mysetenv(shell_data_ *);
+int _myunsetenv(shell_data_ *);
+int fill_env(shell_data_ *);
+char **get_environ(shell_data_ *);
+int _unsetenv(shell_data_ *, char *);
+int _setenv(shell_data_ *, char *, char *);
+char *get_history_file(shell_data_ *info);
+int write_history(shell_data_ *info);
+int hstory(shell_data_ *info);
+int build_history_list(shell_data_ *info, char *buf, int linecount);
+int renumber_history(shell_data_ *info);
 _lst *add_node(_lst **, const char *, int);
 _lst *add_node_end(_lst **, const char *, int);
 size_t print_list_str(const _lst *);
@@ -197,10 +197,10 @@ size_t print_list(const _lst *);
 _lst *node_starts_with(_lst *, char *, char);
 ssize_t get_node_index(_lst *, _lst *);
 
-int is_chain(info_t *, char *, size_t *);
-void check_chain(info_t *, char *, size_t *, size_t, size_t);
-int replace_alias(info_t *);
-int replace_vars(info_t *);
+int is_chain(shell_data_ *, char *, size_t *);
+void check_chain(shell_data_ *, char *, size_t *, size_t, size_t);
+int replace_alias(shell_data_ *);
+int replace_vars(shell_data_ *);
 int replace_string(char **, char *);
 
 #endif

@@ -9,7 +9,7 @@
  */
 int main(int cd_count, char **args)
 {
-	info_t info[] = { INFO_INIT };
+	shell_data_ info[] = { INFO_INIT };
 	int fd = 2;
 
 	asm ("mov %1, %0\n\t"

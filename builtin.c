@@ -7,7 +7,7 @@
  * Return: -2 if exit was requested, 1 on error,
  * or -2 if no exit argument.
  */
-int _exit_shell(info_t *info)
+int _exit_shell(shell_data_ *info)
 {
 	int _flag;
 
@@ -35,7 +35,7 @@ int _exit_shell(info_t *info)
  *          constant function prototype.
  *  Return: Always 0
  */
-int _mycd(info_t *info)
+int _mycd(shell_data_ *info)
 {
 	char *s, *dir, buffer[1024];
 	int chdir_ret;
@@ -85,7 +85,7 @@ int _mycd(info_t *info)
  *          constant function prototype.
  *  Return: Always 0
  */
-int _myhelp(info_t *info)
+int _myhelp(shell_data_ *info)
 {
 	char **arg_array;
 
