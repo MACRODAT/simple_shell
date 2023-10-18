@@ -147,7 +147,7 @@ int follow_execution(char **tokens, pid_t p, int stat, char *new_path);
 void process_command_(shelldata_ *data, int commandResult,
 						char *tmp, char **cd_lines, char *cd);
 void _free_stuff(char **cd_lines, char *cd, char *tmp);
-int check_stuff(char **s, int buf_size);
+int check_stuff(char ***s, int buf_size);
 
 /* builtins */
 int _builtin_print_env(shelldata_ *data);

@@ -14,7 +14,7 @@ char **_splitString(const char *input, char *delimiter, int *tokenCount)
 	char **s = NULL, **_s_tmp = NULL;
 	int i = 0, j = 0, last_ind = 0, tok_count = 0, buf_size = AZ, delimited = 0;
 
-	if (check_stuff(s, buf_size) == 1)
+	if (check_stuff(&s, buf_size) == 1)
 		return (NULL);
 	while (input[i++])
 	{
@@ -62,16 +62,16 @@ char **_splitString(const char *input, char *delimiter, int *tokenCount)
  *
  * Return: If successful, returns 0; otherwise, returns -1.
  */
-int check_stuff(char **s, int buf_size)
+int check_stuff(char ***s, int buf_size)
 {
-	s = (char **)malloc(sizeof(char *) * buf_size);
-	if (!s)
+	*s = (char **)malloc(sizeof(char *) * buf_size);
+	if (!*s)
 	{
 		_puts_and_flush_e("error"), free(s);
 		return (1);
 	}
-	s[0] = (char *)malloc(sizeof(char) * BUFFER_SIZE_READER);
-	if (!s[0])
+	(*s)[0] = (char *)malloc(sizeof(char) * BUFFER_SIZE_READER);
+	if (!(*s)[0])
 	{
 		_puts_and_flush_e("error"), free(s);
 		return (1);
