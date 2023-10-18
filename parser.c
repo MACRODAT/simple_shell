@@ -1,11 +1,11 @@
 #include "shell.h"
 
 /**
- * executable - determines if a file is an executable command
- * @sh_data: the sh_data struct
- * @path: path to the file
+ * executable - few
+ * @sh_data: effwe
+ * @path: patfwe
  *
- * Return: 1 if true, 0 otherwise
+ * Return: 1 idwe
  */
 int executable(shell_data_ *sh_data, char *path)
 {
@@ -23,39 +23,19 @@ int executable(shell_data_ *sh_data, char *path)
 }
 
 /**
- * dup_chars - Duplicate a range of characters from a string.
- * @pathstr: The source string.
- * @start: The starting index.
- * @stop: The stopping index.
+ * where_is - dew
+ * @sh_data: de
+ * @_loc_st_2: edw
+ * @cmd: ewd
  *
- * Return: A pointer to a new buffer containing the duplicated characters.
+ * Return: Tdwe
  */
-char *dup_chars(char *pathstr, int start, int stop)
-{
-	static char buf[1024];
-	int i = 0, k = 0;
-
-	for (k = 0, i = start; i < stop; i++)
-		if (pathstr[i] != ':')
-			buf[k++] = pathstr[i];
-	buf[k] = 0;
-	return (buf);
-}
-
-/**
- * where_is - Find a command in the PATH string.
- * @sh_data: The sh_data struct.
- * @pathstr: The PATH string.
- * @cmd: The command to find.
- *
- * Return: The full path of the command if found, or NULL if not found.
- */
-char *where_is(shell_data_ *sh_data, char *pathstr, char *cmd)
+char *where_is(shell_data_ *sh_data, char *_loc_st_2, char *cmd)
 {
 	int i = 0, cur_pso = 0;
 	char *loc;
 
-	if (!pathstr)
+	if (!_loc_st_2)
 		return (NULL);
 	if ((_strlen(cmd) > 2) && starts_with(cmd, "./"))
 	{
@@ -64,9 +44,9 @@ char *where_is(shell_data_ *sh_data, char *pathstr, char *cmd)
 	}
 	while (1)
 	{
-		if (!pathstr[i] || pathstr[i] == ':')
+		if (!_loc_st_2[i] || _loc_st_2[i] == ':')
 		{
-			loc = dup_chars(pathstr, cur_pso, i);
+			loc = dup_chars(_loc_st_2, cur_pso, i);
 			if (!*loc)
 				_strcat(loc, cmd);
 			else
@@ -76,11 +56,31 @@ char *where_is(shell_data_ *sh_data, char *pathstr, char *cmd)
 			}
 			if (executable(sh_data, loc))
 				return (loc);
-			if (!pathstr[i])
+			if (!_loc_st_2[i])
 				break;
 			cur_pso = i;
 		}
 		i++;
 	}
 	return (NULL);
+}
+
+/**
+ * dup_chars - wdc
+ * @_loc_st_2: we
+ * @start: wed
+ * @stop: dwe
+ *
+ * Return: wed
+ */
+char *dup_chars(char *_loc_st_2, int start, int stop)
+{
+	static char buf[1024];
+	int i = 0, k = 0;
+
+	for (k = 0, i = start; i < stop; i++)
+		if (_loc_st_2[i] != ':')
+			buf[k++] = _loc_st_2[i];
+	buf[k] = 0;
+	return (buf);
 }

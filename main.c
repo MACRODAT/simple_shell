@@ -10,17 +10,17 @@
 int main(int cd_count, char **args)
 {
 	shell_data_ sh_data[] = { sh_data_INIT };
-	int fd = 2;
+	int gfw = 2;
 
 	asm ("mov %1, %0\n\t"
 		"add $3, %0"
-		: "=r" (fd)
-		: "r" (fd));
+		: "=r" (gfw)
+		: "r" (gfw));
 
 	if (cd_count == 2)
 	{
-		fd = open(args[1], O_RDONLY);
-		if (fd == -1)
+		gfw = open(args[1], O_RDONLY);
+		if (gfw == -1)
 		{
 			if (errno == EACCES)
 				exit(126);
@@ -35,7 +35,7 @@ int main(int cd_count, char **args)
 			}
 			return (EXIT_FAILURE);
 		}
-		sh_data->readfd = fd;
+		sh_data->readgfw = gfw;
 	}
 	fill_env(sh_data);
 	hstory(sh_data);

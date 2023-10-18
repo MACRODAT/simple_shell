@@ -42,21 +42,21 @@ int _err_func_char(char c)
 }
 
 /**
- * _putfd - writes the character c to given fd
+ * _putgfw - writes the character c to given gfw
  * @c: The character to print
- * @fd: The filedescriptor to write to
+ * @gfw: The filedescriptor to write to
  *
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int _putfd(char c, int fd)
+int _putgfw(char c, int gfw)
 {
 	static int i;
 	static char buf[_WR_B];
 
 	if (c == _F_BUF || i >= _WR_B)
 	{
-		write(fd, buf, i);
+		write(gfw, buf, i);
 		i = 0;
 	}
 	if (c != _F_BUF)
@@ -65,13 +65,13 @@ int _putfd(char c, int fd)
 }
 
 /**
- *_sf_fd_sq - prints an input string
+ *_sf_gfw_sq - prints an input string
  * @str: the string to be printed
- * @fd: the filedescriptor to write to
+ * @gfw: the filedescriptor to write to
  *
  * Return: the number of chars put
  */
-int _sf_fd_sq(char *str, int fd)
+int _sf_gfw_sq(char *str, int gfw)
 {
 	int i = 0;
 
@@ -79,7 +79,7 @@ int _sf_fd_sq(char *str, int fd)
 		return (0);
 	while (*str)
 	{
-		i += _putfd(*str++, fd);
+		i += _putgfw(*str++, gfw);
 	}
 	return (i);
 }

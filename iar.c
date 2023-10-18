@@ -121,14 +121,14 @@ int _str_abn(char **old, char *new)
 }
 
 /**
- * chain_fd - test if current char in bffuerfer is a chain delimeter
+ * chain_gfw - test if current char in bffuerfer is a chain delimeter
  * @_data: the parameter struct
  * @bffuer: the char bffuerfer
  * @p: address of current position in bffuer
  *
  * Return: 1 if chain delimeter, 0 otherwise
  */
-int chain_fd(shell_data_ *_data, char *bffuer, size_t *p)
+int chain_gfw(shell_data_ *_data, char *bffuer, size_t *p)
 {
 	size_t j = *p;
 

@@ -67,8 +67,8 @@ void free_sh_data(shell_data_ *sh_data, int all)
 		my_free_(sh_data->environ);
 			sh_data->environ = NULL;
 		fr_db((void **)sh_data->cmd_buf);
-		if (sh_data->readfd > 2)
-			close(sh_data->readfd);
+		if (sh_data->readgfw > 2)
+			close(sh_data->readgfw);
 		_putchar(_F_BUF);
 	}
 }

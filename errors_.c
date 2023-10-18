@@ -49,17 +49,17 @@ void print_error(shell_data_ *sh_data, char *estr)
 /**
  * print_d - function prints a decimal (integer) number (base 10)
  * @input: the input
- * @fd: the filedescriptor to write to
+ * @gfw: the filedescriptor to write to
  *
  * Return: number of characters printed
  */
-int print_d(int input, int fd)
+int print_d(int input, int gfw)
 {
 	int (*__putchar)(char) = _putchar;
 	int i, count = 0;
 	unsigned int _abs_, current;
 
-	if (fd == STDERR_FILENO)
+	if (gfw == STDERR_FILENO)
 		__putchar = _err_func_char;
 	if (input < 0)
 	{

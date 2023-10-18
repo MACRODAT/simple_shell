@@ -64,7 +64,7 @@ typedef struct _lst
  * @env: A linked list for environment variables.
  * @_ln_len: The command hst count.
  * @typ_cd_bf: The command type (CMD_type: ||, &&, ;).
- * @readfd: The read file descriptor.
+ * @readgfw: The read file descriptor.
  * @status: The exit status of the last executed command.
  */
 typedef struct pswo
@@ -86,7 +86,7 @@ typedef struct pswo
 
 	char **cmd_buf; /* pointer to cmd ; chain buffer, for memory mangement */
 	int typ_cd_bf; /* CMD_type ||, &&, ; */
-	int readfd;
+	int readgfw;
 	int _ln_len;
 } shell_data_;
 
@@ -122,8 +122,8 @@ int looploop_func(char **);
 
 void _err_func(char *);
 int _err_func_char(char);
-int _putfd(char c, int fd);
-int _sf_fd_sq(char *str, int fd);
+int _putgfw(char c, int gfw);
+int _sf_gfw_sq(char *str, int gfw);
 
 int _strlen(const char *s);
 int _strcmp(char *, char *);
@@ -179,7 +179,7 @@ int _setenv(shell_data_ *, char *, char *);
 char *_file_hst_loc(shell_data_ *sh_data);
 int write_hst(shell_data_ *sh_data);
 int hstory(shell_data_ *sh_data);
-int _start_hst_man(shell_data_ *sh_data, char *buf, int linecount);
+int _start_hst_man(shell_data_ *sh_data, char *buf, int _len_gfw);
 int _hst_org(shell_data_ *sh_data);
 _lst *add_node(_lst **, const char *, int);
 _lst *_ll_end_app(_lst **, const char *, int);
@@ -193,7 +193,7 @@ size_t print_list(const _lst *);
 _lst *_stat_with_lst(_lst *, char *, char);
 ssize_t get_node_index(_lst *, _lst *);
 
-int chain_fd(shell_data_ *, char *, size_t *);
+int chain_gfw(shell_data_ *, char *, size_t *);
 void _ll_works(shell_data_ *, char *, size_t *, size_t, size_t);
 int alias_rep(shell_data_ *);
 int _ll_sub(shell_data_ *);

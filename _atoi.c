@@ -8,7 +8,7 @@
  */
 int interactive(shell_data_ *sh_data)
 {
-	return (isatty(STDIN_FILENO) && sh_data->readfd <= 2);
+	return (isatty(STDIN_FILENO) && sh_data->readgfw <= 2);
 }
 
 /**

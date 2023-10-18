@@ -63,7 +63,7 @@ ssize_t get_input(shell_data_ *sh_data)
 		_ll_works(sh_data, buf, &j, i, len);
 		while (j < len)
 		{
-			if (chain_fd(sh_data, buf, &j))
+			if (chain_gfw(sh_data, buf, &j))
 				break;
 			j++;
 		}
@@ -97,7 +97,7 @@ ssize_t read_buf(shell_data_ *sh_data, char *buf, size_t *i)
 
 	if (*i)
 		return (0);
-	r = read(sh_data->readfd, buf, _READER_SZ);
+	r = read(sh_data->readgfw, buf, _READER_SZ);
 	if (r >= 0)
 		*i = r;
 	return (r);
