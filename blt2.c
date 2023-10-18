@@ -1,11 +1,9 @@
 #include "shell.h"
 
 /**
- * _built_hist - displays the history list, one command by line, preceded
- *              with line numbers, starting at 0.
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
- *  Return: Always 0
+ * _built_hist - ger gerg
+ * @info: gregSgingre
+ *  Return: ger
  */
 int _built_hist(shell_data_ *info)
 {
@@ -14,11 +12,11 @@ int _built_hist(shell_data_ *info)
 }
 
 /**
- * unset_alias - sets alias to string
- * @info: parameter struct
- * @str: the string alias
+ * unset_alias - erg
+ * @info: pergrg
+ * @str: thger
  *
- * Return: Always 0 on success, 1 on error
+ * Return: Alrgewaerg
  */
 int unset_alias(shell_data_ *info, char *str)
 {
@@ -37,9 +35,9 @@ int unset_alias(shell_data_ *info, char *str)
 }
 
 /**
- * set_alias - sets alias to string
- * @info: parameter struct
- * @str: the string alias
+ * set_alias - dfg
+ * @info: pdfg
+ * @str: ger
  *
  * Return: Always 0 on success, 1 on error
  */
@@ -54,14 +52,14 @@ int set_alias(shell_data_ *info, char *str)
 		return (unset_alias(info, str));
 
 	unset_alias(info, str);
-	return (add_node_end(&(info->alias), str, 0) == NULL);
+	return (_ll_end_app(&(info->alias), str, 0) == NULL);
 }
 
 /**
- * print_alias - prints an alias string
- * @node: the alias node
+ * print_alias - dwe
+ * @node: dwede
  *
- * Return: Always 0 on success, 1 on error
+ * Return: dwe
  */
 int print_alias(_lst *node)
 {
@@ -81,9 +79,8 @@ int print_alias(_lst *node)
 }
 
 /**
- * _built_alias - mimics the alias builtin (man alias)
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
+ * _built_alias - mdwe
+ * @info: dwed
  *  Return: Always 0
  */
 int _built_alias(shell_data_ *info)

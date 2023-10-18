@@ -51,7 +51,7 @@ void set_info(shell_data_ *info, char **av)
  */
 void free_info(shell_data_ *info, int all)
 {
-	ffree(info->argv);
+	my_free_(info->argv);
 	info->argv = NULL;
 	info->path = NULL;
 	if (all)
@@ -64,7 +64,7 @@ void free_info(shell_data_ *info, int all)
 			free_list(&(info->history));
 		if (info->alias)
 			free_list(&(info->alias));
-		ffree(info->environ);
+		my_free_(info->environ);
 			info->environ = NULL;
 		fr_db((void **)info->cmd_buf);
 		if (info->readfd > 2)

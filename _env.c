@@ -86,7 +86,7 @@ int _setenv(shell_data_ *info, char *var, char *value)
 		}
 		node = node->next;
 	}
-	add_node_end(&(info->env), buf, 0);
+	_ll_end_app(&(info->env), buf, 0);
 	free(buf);
 	info->env_changed = 1;
 	return (0);

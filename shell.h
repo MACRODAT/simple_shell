@@ -142,7 +142,7 @@ char **strtow(char *, char *);
 char **strtow2(char *, char);
 
 char *_memset(char *, char, unsigned int);
-void ffree(char **);
+void my_free_(char **);
 void *_realloc(void *, unsigned int, unsigned int);
 
 int fr_db(void **);
@@ -183,7 +183,7 @@ int hstory(shell_data_ *info);
 int build_history_list(shell_data_ *info, char *buf, int linecount);
 int renumber_history(shell_data_ *info);
 _lst *add_node(_lst **, const char *, int);
-_lst *add_node_end(_lst **, const char *, int);
+_lst *_ll_end_app(_lst **, const char *, int);
 size_t print_list_str(const _lst *);
 int delete_node_at_index(_lst **, unsigned int);
 void free_list(_lst **);

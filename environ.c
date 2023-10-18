@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * _myenv - prints the current environment
+ * _myenv - pdwedwe
  * @info: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  * Return: Always 0
@@ -86,7 +86,7 @@ int fill_env(shell_data_ *info)
 	size_t i;
 
 	for (i = 0; environ[i]; i++)
-		add_node_end(&node, environ[i], 0);
+		_ll_end_app(&node, environ[i], 0);
 	info->env = node;
 	return (0);
 }

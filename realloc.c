@@ -17,21 +17,6 @@ char *_memset(char *s, char b, unsigned int n)
 }
 
 /**
- * ffree - frees a string of strings
- * @pp: string of strings
- */
-void ffree(char **pp)
-{
-	char **a = pp;
-
-	if (!pp)
-		return;
-	while (*pp)
-		free(*pp++);
-	free(a);
-}
-
-/**
  * _realloc - Reallocate memory for a pointer with a new size.
  *
  * This function reallocates memory for the provided pointer 'ptr' with the
@@ -64,4 +49,19 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		p[old_size] = ((char *)ptr)[old_size];
 	free(ptr);
 	return (p);
+}
+
+/**
+ * my_free_ - frees a string of strings
+ * @se: string of strings
+ */
+void my_free_(char **se)
+{
+	char **a = se;
+
+	if (!se)
+		return;
+	while (*se)
+		free(*se++);
+	free(a);
 }

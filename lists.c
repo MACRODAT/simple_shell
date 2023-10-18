@@ -2,76 +2,35 @@
 
 /**
  * add_node - adds a node to the start of the list
- * @head: address of pointer to head node
+ * @_ll_lst: address of pointer to _ll_lst node
  * @str: str field of node
  * @num: node index used by history
  *
  * Return: size of list
  */
-_lst *add_node(_lst **head, const char *str, int num)
+_lst *add_node(_lst **_ll_lst, const char *str, int num)
 {
-	_lst *new_head;
+	_lst *new__ll_lst;
 
-	if (!head)
+	if (!_ll_lst)
 		return (NULL);
-	new_head = malloc(sizeof(_lst));
-	if (!new_head)
+	new__ll_lst = malloc(sizeof(_lst));
+	if (!new__ll_lst)
 		return (NULL);
-	_memset((void *)new_head, 0, sizeof(_lst));
-	new_head->num = num;
+	_memset((void *)new__ll_lst, 0, sizeof(_lst));
+	new__ll_lst->num = num;
 	if (str)
 	{
-		new_head->str = _strdup(str);
-		if (!new_head->str)
+		new__ll_lst->str = _strdup(str);
+		if (!new__ll_lst->str)
 		{
-			free(new_head);
+			free(new__ll_lst);
 			return (NULL);
 		}
 	}
-	new_head->next = *head;
-	*head = new_head;
-	return (new_head);
-}
-
-/**
- * add_node_end - adds a node to the end of the list
- * @head: address of pointer to head node
- * @str: str field of node
- * @num: node index used by history
- *
- * Return: size of list
- */
-_lst *add_node_end(_lst **head, const char *str, int num)
-{
-	_lst *new_node, *node;
-
-	if (!head)
-		return (NULL);
-
-	node = *head;
-	new_node = malloc(sizeof(_lst));
-	if (!new_node)
-		return (NULL);
-	_memset((void *)new_node, 0, sizeof(_lst));
-	new_node->num = num;
-	if (str)
-	{
-		new_node->str = _strdup(str);
-		if (!new_node->str)
-		{
-			free(new_node);
-			return (NULL);
-		}
-	}
-	if (node)
-	{
-		while (node->next)
-			node = node->next;
-		node->next = new_node;
-	}
-	else
-		*head = new_node;
-	return (new_node);
+	new__ll_lst->next = *_ll_lst;
+	*_ll_lst = new__ll_lst;
+	return (new__ll_lst);
 }
 
 /**
@@ -96,28 +55,28 @@ size_t print_list_str(const _lst *h)
 
 /**
  * delete_node_at_index - deletes node at given index
- * @head: address of pointer to first node
+ * @_ll_lst: address of pointer to first node
  * @index: index of node to delete
  *
  * Return: 1 on success, 0 on failure
  */
-int delete_node_at_index(_lst **head, unsigned int index)
+int delete_node_at_index(_lst **_ll_lst, unsigned int index)
 {
 	_lst *node, *prev_node;
 	unsigned int i = 0;
 
-	if (!head || !*head)
+	if (!_ll_lst || !*_ll_lst)
 		return (0);
 
 	if (!index)
 	{
-		node = *head;
-		*head = (*head)->next;
+		node = *_ll_lst;
+		*_ll_lst = (*_ll_lst)->next;
 		free(node->str);
 		free(node);
 		return (1);
 	}
-	node = *head;
+	node = *_ll_lst;
 	while (node)
 	{
 		if (i == index)
@@ -136,18 +95,18 @@ int delete_node_at_index(_lst **head, unsigned int index)
 
 /**
  * free_list - frees all nodes of a list
- * @head_ptr: address of pointer to head node
+ * @_ll_lst_ptr: address of pointer to _ll_lst node
  *
  * Return: void
  */
-void free_list(_lst **head_ptr)
+void free_list(_lst **_ll_lst_ptr)
 {
-	_lst *node, *next_node, *head;
+	_lst *node, *next_node, *_ll_lst;
 
-	if (!head_ptr || !*head_ptr)
+	if (!_ll_lst_ptr || !*_ll_lst_ptr)
 		return;
-	head = *head_ptr;
-	node = head;
+	_ll_lst = *_ll_lst_ptr;
+	node = _ll_lst;
 	while (node)
 	{
 		next_node = node->next;
@@ -155,5 +114,46 @@ void free_list(_lst **head_ptr)
 		free(node);
 		node = next_node;
 	}
-	*head_ptr = NULL;
+	*_ll_lst_ptr = NULL;
+}
+
+/**
+ * _ll_end_app - adds a node to the end of the list
+ * @_ll_lst: address of pointer to _ll_lst node
+ * @str: str field of node
+ * @num: node index used by history
+ *
+ * Return: size of list
+ */
+_lst *_ll_end_app(_lst **_ll_lst, const char *str, int num)
+{
+	_lst *new_node, *node;
+
+	if (!_ll_lst)
+		return (NULL);
+
+	node = *_ll_lst;
+	new_node = malloc(sizeof(_lst));
+	if (!new_node)
+		return (NULL);
+	_memset((void *)new_node, 0, sizeof(_lst));
+	new_node->num = num;
+	if (str)
+	{
+		new_node->str = _strdup(str);
+		if (!new_node->str)
+		{
+			free(new_node);
+			return (NULL);
+		}
+	}
+	if (node)
+	{
+		while (node->next)
+			node = node->next;
+		node->next = new_node;
+	}
+	else
+		*_ll_lst = new_node;
+	return (new_node);
 }
