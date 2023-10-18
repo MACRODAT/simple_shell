@@ -1,7 +1,5 @@
 #include "shell.h"
 
-
-
 /**
  * print_list - prnts elements
  * @h: ptr

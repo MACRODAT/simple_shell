@@ -19,6 +19,26 @@ void _err_func(char *str)
 }
 
 /**
+ *_sf_gfw_sq - wedcw
+ * @str: wcd
+ * @gfw: thwc
+ *
+ * Return: wcd
+ */
+int _sf_gfw_sq(char *str, int gfw)
+{
+	int i = 0;
+
+	if (!str)
+		return (0);
+	while (*str)
+	{
+		i += _putgfw(*str++, gfw);
+	}
+	return (i);
+}
+
+/**
  * _err_func_char - fwefwe
  * @c: fewfwe
  * Return: efw
@@ -38,22 +58,3 @@ int _err_func_char(char c)
 	return (1);
 }
 
-/**
- *_sf_gfw_sq - wedcw
- * @str: wcd
- * @gfw: thwc
- *
- * Return: wcd
- */
-int _sf_gfw_sq(char *str, int gfw)
-{
-	int i = 0;
-
-	if (!str)
-		return (0);
-	while (*str)
-	{
-		i += _putgfw(*str++, gfw);
-	}
-	return (i);
-}
