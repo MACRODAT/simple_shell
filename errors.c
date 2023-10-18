@@ -1,10 +1,9 @@
 #include "shell.h"
 
 /**
- *_err_func - prints an input string
- * @str: the string to be printed
- *
- * Return: Nothing
+ *_err_func - wfe
+ * @str: fergg
+ * Return: Noui
  */
 void _err_func(char *str)
 {
@@ -20,11 +19,9 @@ void _err_func(char *str)
 }
 
 /**
- * _err_func_char - writes the character c to stderr
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * _err_func_char - fwefwe
+ * @c: fewfwe
+ * Return: efw
  */
 int _err_func_char(char c)
 {
@@ -42,11 +39,11 @@ int _err_func_char(char c)
 }
 
 /**
- *_sf_gfw_sq - prints an input string
- * @str: the string to be printed
- * @gfw: the filedescriptor to write to
+ *_sf_gfw_sq - wedcw
+ * @str: wcd
+ * @gfw: thwc
  *
- * Return: the number of chars put
+ * Return: wcd
  */
 int _sf_gfw_sq(char *str, int gfw)
 {

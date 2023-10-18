@@ -140,7 +140,7 @@ char *_strncat(char *, char *, int);
 char *_strchr(char *, char);
 int _built_help(shell_data_ *);
 
-char *_memset(char *, char, unsigned int);
+char *_sh_nen(char *, char, unsigned int);
 void my_free_(char **);
 void *_realloc(void *, unsigned int, unsigned int);
 

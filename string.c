@@ -44,7 +44,7 @@ int _strcmp(char *sone, char *stwo)
 
 
 /**
- * starts_with - small in big
+ * starts_with - edwe
  * @big: search
  * @small: fnd
  *
@@ -64,9 +64,9 @@ char *starts_with(const char *big, const char *small)
 }
 
 /**
- * _strcat - concatenates two strings
- * @dsti: the dstiination arr_stor
- * @src: the source arr_stor
+ * _strcat - sssssssss
+ * @dsti: dwsx
+ * @src: tdwe
  *
  * Return: pointer to dstiination arr_stor
  */

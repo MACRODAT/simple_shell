@@ -17,7 +17,7 @@ _lst *add_node(_lst **_ll_lst, const char *str, int num)
 	new__ll_lst = malloc(sizeof(_lst));
 	if (!new__ll_lst)
 		return (NULL);
-	_memset((void *)new__ll_lst, 0, sizeof(_lst));
+	_sh_nen((void *)new__ll_lst, 0, sizeof(_lst));
 	new__ll_lst->num = num;
 	if (str)
 	{

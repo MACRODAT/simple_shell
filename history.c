@@ -73,10 +73,10 @@ int _hst_org(shell_data_ *sh_data)
 }
 
 /**
- * hstory - reads hst from file
- * @sh_data: the parameter struct
+ * hstory - wwwww
+ * @sh_data: wwww
  *
- * Return: _ln_len on success, 0 otherwise
+ * Return: www
  */
 int hstory(shell_data_ *sh_data)
 {
@@ -122,7 +122,7 @@ int hstory(shell_data_ *sh_data)
 }
 
 /**
- * _start_hst_man - adds entry to a hst linked list
+ * _start_hst_man - wwwwwwwwww
  * @sh_data: stuff
  * @_ll_pl: _ll_plfer
  * @_len_gfw: the hst _len_gfw, _ln_len

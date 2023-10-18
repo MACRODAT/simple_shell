@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- **_memset - fills memory with a constant byte
- *@s: the pointer to the memory area
- *@b: the byte to fill *s with
- *@n: the amount of bytes to be filled
- *Return: (s) a pointer to the memory area s
+ **_sh_nen - wed
+ *@s: thdweeewd
+ *@b: tewd
+ *@n: the amweddwe
+ *Return: dwed
  */
-char *_memset(char *s, char b, unsigned int n)
+char *_sh_nen(char *s, char b, unsigned int n)
 {
 	unsigned int i;
 
@@ -17,15 +17,10 @@ char *_memset(char *s, char b, unsigned int n)
 }
 
 /**
- * _realloc - Reallocate memory for a pointer with a new size.
- *
- * This function reallocates memory for the provided pointer 'ptr' with the
- * new size specified by 'new_size'. It transfers the existing data to the new
- * memory block and frees the old memory if needed.
- *
- * @ptr: The pointer to be reallocated.
- * @old_size: The size of the existing memory block.
- * @new_size: The desired new size of the memory block.
+ * _realloc - ewdwe
+ * @ptr: edwcd
+ * @old_size: csdlockds
+ * @new_size: The dcsc
  *
  * Return: A pointer to the reallocated memory block or NULL on failure.
  */
@@ -52,8 +47,8 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 }
 
 /**
- * my_free_ - frees a string of strings
- * @se: string of strings
+ * my_free_ - dwe
+ * @se: ssw
  */
 void my_free_(char **se)
 {

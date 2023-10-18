@@ -83,7 +83,7 @@ _lst *_ll_end_app(_lst **_ll_lst, const char *str, int num)
 	new_node = malloc(sizeof(_lst));
 	if (!new_node)
 		return (NULL);
-	_memset((void *)new_node, 0, sizeof(_lst));
+	_sh_nen((void *)new_node, 0, sizeof(_lst));
 	new_node->num = num;
 	if (str)
 	{
