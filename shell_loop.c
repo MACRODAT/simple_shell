@@ -17,7 +17,7 @@ int loop_func(info_t *info, char **av)
 		clear_info(info);
 		if (interactive(info))
 			_puts("$ ");
-		_err_func_char(BUF_FLUSH);
+		_err_func_char(_F_BUF);
 		r = get_input(info);
 		if (r != -1)
 		{

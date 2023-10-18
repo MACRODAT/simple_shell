@@ -29,14 +29,14 @@ void _err_func(char *str)
 int _err_func_char(char c)
 {
 	static int i;
-	static char buf[WRITE_BUF_SIZE];
+	static char buf[_WR_B];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (c == _F_BUF || i >= _WR_B)
 	{
 		write(2, buf, i);
 		i = 0;
 	}
-	if (c != BUF_FLUSH)
+	if (c != _F_BUF)
 		buf[i++] = c;
 	return (1);
 }
@@ -52,14 +52,14 @@ int _err_func_char(char c)
 int _putfd(char c, int fd)
 {
 	static int i;
-	static char buf[WRITE_BUF_SIZE];
+	static char buf[_WR_B];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (c == _F_BUF || i >= _WR_B)
 	{
 		write(fd, buf, i);
 		i = 0;
 	}
-	if (c != BUF_FLUSH)
+	if (c != _F_BUF)
 		buf[i++] = c;
 	return (1);
 }

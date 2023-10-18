@@ -30,7 +30,7 @@ int main(int cd_count, char **args)
 				_err_func(": 0: Can't open ");
 				_err_func(args[1]);
 				_err_func_char('\n');
-				_err_func_char(BUF_FLUSH);
+				_err_func_char(_F_BUF);
 				exit(127);
 			}
 			return (EXIT_FAILURE);

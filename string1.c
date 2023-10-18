@@ -28,25 +28,25 @@ char *_strcpy(char *dst, char *src)
 }
 
 /**
- * _strdup - duplicates a string
- * @str: the string to duplicate
+ * _strdup - str dupo
+ * @str: dyok
  *
- * Return: pointer to the duplicated string
+ * Return: ptr
  */
 char *_strdup(const char *str)
 {
-	int length = 0;
+	int _len_ = 0;
 	char *ret;
 
 	if (str == NULL)
 		return (NULL);
 	while (*str++)
-		length++;
-	ret = malloc(sizeof(char) * (length + 1));
+		_len_++;
+	ret = malloc(sizeof(char) * (_len_ + 1));
 	if (!ret)
 		return (NULL);
-	for (length++; length--;)
-		ret[length] = *--str;
+	for (_len_++; _len_--;)
+		ret[_len_] = *--str;
 	return (ret);
 }
 
@@ -56,17 +56,14 @@ char *_strdup(const char *str)
  *
  * Return: Nothing
  */
-void _puts(char *str)
+void _puts(char *_s)
 {
 	int i = 0;
 
-	if (!str)
+	if (!_s)
 		return;
-	while (str[i] != '\0')
-	{
-		_putchar(str[i]);
-		i++;
-	}
+	while (_s[i] != '\0')
+		_putchar(_s[i++]);
 }
 
 /**
@@ -79,14 +76,14 @@ void _puts(char *str)
 int _putchar(char c)
 {
 	static int i;
-	static char buf[WRITE_BUF_SIZE];
+	static char buf[_WR_B];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (c == _F_BUF || i >= _WR_B)
 	{
 		write(1, buf, i);
 		i = 0;
 	}
-	if (c != BUF_FLUSH)
+	if (c != _F_BUF)
 		buf[i++] = c;
 	return (1);
 }
