@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * main - entry point
- * @cd_count: arg count
- * @args: arg vector
+ * main - entghe
+ * @cd_count: adfg
+ * @args: dfg
  *
  * Return: 0 on success, 1 on error
  */
@@ -16,7 +16,6 @@ int main(int cd_count, char **args)
 		"add $3, %0"
 		: "=r" (gfw)
 		: "r" (gfw));
-
 	if (cd_count == 2)
 	{
 		gfw = open(args[1], O_RDONLY);
@@ -40,5 +39,6 @@ int main(int cd_count, char **args)
 	fill_env(sh_data);
 	hstory(sh_data);
 	loop_func(sh_data, args);
+
 	return (EXIT_SUCCESS);
 }

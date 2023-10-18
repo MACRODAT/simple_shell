@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * alias_rep - replaces an aliases in the tokenized string
- * @_data: the parameter struct
+ * alias_rep - repdew
+ * @_data: we
  *
- * Return: 1 if replaced, 0 otherwise
+ * Return: d dweded
  */
 int alias_rep(shell_data_ *_data)
 {
@@ -31,12 +31,12 @@ int alias_rep(shell_data_ *_data)
 
 
 /**
- * _ll_works - checks we should continue chaining based on last status
- * @_data: the parameter struct
- * @bffuer: the char bffuerfer
- * @p: address of low_fd_nw position in bffuer
- * @i: starting position in bffuer
- * @len: length of bffuer
+ * _ll_works - wefwef
+ * @_data: fwe
+ * @bffuer: wef
+ * @p: wef
+ * @i: fwe
+ * @len: lwefth of bffuer
  *
  * Return: Void
  */
@@ -66,10 +66,10 @@ void _ll_works(shell_data_ *_data,
 }
 
 /**
- * _ll_sub - replaces vars in the tokenized string
- * @_data: the parameter struct
+ * _ll_sub - wefwe
+ * @_data: fwe
  *
- * Return: 1 if replaced, 0 otherwise
+ * Return: fewe
  */
 int _ll_sub(shell_data_ *_data)
 {
@@ -107,11 +107,11 @@ int _ll_sub(shell_data_ *_data)
 }
 
 /**
- * _str_abn - replaces string
- * @old: address of old string
- * @new: new string
+ * _str_abn - replwewef
+ * @old: aefw
+ * @new: nefw
  *
- * Return: 1 if replaced, 0 otherwise
+ * Return: ewf
  */
 int _str_abn(char **old, char *new)
 {
@@ -121,12 +121,12 @@ int _str_abn(char **old, char *new)
 }
 
 /**
- * chain_gfw - test if low_fd_nw char in bffuerfer is a chain delimeter
- * @_data: the parameter struct
- * @bffuer: the char bffuerfer
- * @p: address of low_fd_nw position in bffuer
+ * chain_gfw - fwe
+ * @_data: fwe
+ * @bffuer: herqhrh
+ * @p: herqh
  *
- * Return: 1 if chain delimeter, 0 otherwise
+ * Return: wef
  */
 int chain_gfw(shell_data_ *_data, char *bffuer, size_t *p)
 {
