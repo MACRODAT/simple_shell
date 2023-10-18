@@ -10,7 +10,7 @@ char **get_environ(info_t *info)
 {
 	if (!info->environ || info->env_changed)
 	{
-		info->environ = list_to_strings(info->env);
+		info->environ = _lsto_strings(info->env);
 		info->env_changed = 0;
 	}
 
@@ -26,7 +26,7 @@ char **get_environ(info_t *info)
  */
 int _unsetenv(info_t *info, char *var)
 {
-	list_t *node = info->env;
+	_lst *node = info->env;
 	size_t i = 0;
 	char *p;
 
@@ -61,7 +61,7 @@ int _unsetenv(info_t *info, char *var)
 int _setenv(info_t *info, char *var, char *value)
 {
 	char *buf = NULL;
-	list_t *node;
+	_lst *node;
 	char *p;
 
 	if (!var || !value)

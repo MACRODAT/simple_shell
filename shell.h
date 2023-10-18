@@ -30,17 +30,17 @@ extern char **environ;
 
 
 /**
- * struct liststr - singly linked list
+ * struct _lst - singly linked list
  * @num: the number field
  * @str: a string
  * @next: points to the next node
  */
-typedef struct liststr
+typedef struct _lst
 {
 	int num;
 	char *str;
-	struct liststr *next;
-} list_t;
+	struct _lst *next;
+} _lst;
 
 /**
  *struct passinfo - contains pseudo-arguements to pass into a function,
@@ -74,9 +74,9 @@ typedef struct passinfo
 	int err_num;
 	int linecount_flag;
 	char *fname;
-	list_t *env;
-	list_t *history;
-	list_t *alias;
+	_lst *env;
+	_lst *history;
+	_lst *alias;
 	char **environ;
 	int env_changed;
 	int status;
@@ -179,17 +179,17 @@ int write_history(info_t *info);
 int hstory(info_t *info);
 int build_history_list(info_t *info, char *buf, int linecount);
 int renumber_history(info_t *info);
-list_t *add_node(list_t **, const char *, int);
-list_t *add_node_end(list_t **, const char *, int);
-size_t print_list_str(const list_t *);
-int delete_node_at_index(list_t **, unsigned int);
-void free_list(list_t **);
+_lst *add_node(_lst **, const char *, int);
+_lst *add_node_end(_lst **, const char *, int);
+size_t print_list_str(const _lst *);
+int delete_node_at_index(_lst **, unsigned int);
+void free_list(_lst **);
 
-size_t list_len(const list_t *);
-char **list_to_strings(list_t *);
-size_t print_list(const list_t *);
-list_t *node_starts_with(list_t *, char *, char);
-ssize_t get_node_index(list_t *, list_t *);
+size_t list_len(const _lst *);
+char **_lsto_strings(_lst *);
+size_t print_list(const _lst *);
+_lst *node_starts_with(_lst *, char *, char);
+ssize_t get_node_index(_lst *, _lst *);
 
 int is_chain(info_t *, char *, size_t *);
 void check_chain(info_t *, char *, size_t *, size_t, size_t);
