@@ -28,11 +28,10 @@ int _erratoi(char *s)
 }
 
 /**
- * print_error - prints an error message
- * @sh_data: the parameter & return sh_data struct
- * @wed_err: string containing specified error type
- * Return: 0 if no numbers in string, converted number otherwise
- *        -1 on error
+ * print_error - err
+ * @sh_data: param
+ * @wed_err: str
+ * Return: something
  */
 void print_error(shell_data_ *sh_data, char *wed_err)
 {
@@ -47,10 +46,10 @@ void print_error(shell_data_ *sh_data, char *wed_err)
 
 
 /**
- * _comm_rem - function replaces first instance of '#' with '\0'
- * @buf: address of the string to modify
+ * _comm_rem - fxt
+ * @buf: res
  *
- * Return: Always 0;
+ * Return: 0
  */
 void _comm_rem(char *buf)
 {
