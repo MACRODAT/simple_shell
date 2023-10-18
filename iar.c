@@ -40,7 +40,8 @@ int alias_rep(shell_data_ *_data)
  *
  * Return: Void
  */
-void _ll_works(shell_data_ *_data, char *bffuer, size_t *p, size_t i, size_t len)
+void _ll_works(shell_data_ *_data,
+	char *bffuer, size_t *p, size_t i, size_t len)
 {
 	size_t j = *p;
 

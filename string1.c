@@ -52,7 +52,7 @@ char *_strdup(const char *str)
 
 /**
  *_puts - prints an input string
- *@str: the string to be printed
+ *@_s: the string to be printed
  *
  * Return: Nothing
  */

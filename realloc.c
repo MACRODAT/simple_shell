@@ -32,12 +32,17 @@ void ffree(char **pp)
 }
 
 /**
- * _realloc - reallocates a block of memory
- * @ptr: pointer to previous malloc'ated block
- * @old_size: byte size of previous block
- * @new_size: byte size of new block
+ * _realloc - Reallocate memory for a pointer with a new size.
  *
- * Return: pointer to da ol'block nameen.
+ * This function reallocates memory for the provided pointer 'ptr' with the
+ * new size specified by 'new_size'. It transfers the existing data to the new
+ * memory block and frees the old memory if needed.
+ *
+ * @ptr: The pointer to be reallocated.
+ * @old_size: The size of the existing memory block.
+ * @new_size: The desired new size of the memory block.
+ *
+ * Return: A pointer to the reallocated memory block or NULL on failure.
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
