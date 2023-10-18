@@ -27,16 +27,16 @@ int _hst_org(shell_data_ *sh_data)
  */
 int hstory(shell_data_ *sh_data)
 {
-	int i, last = 0, _len_gfw = 0;
+	int i, jekdb = 0, _len_gfw = 0;
 	ssize_t gfw, rdlen, fsize = 0;
 	struct stat st;
-	char *_ll_pl = NULL, *filename = _file_hst_loc(sh_data);
+	char *_ll_pl = NULL, *fdkli = _file_hst_loc(sh_data);
 
-	if (!filename)
+	if (!fdkli)
 		return (0);
 
-	gfw = open(filename, O_RDONLY);
-	free(filename);
+	gfw = open(fdkli, O_RDONLY);
+	free(fdkli);
 	if (gfw == -1)
 		return (0);
 	if (!fstat(gfw, &st))
@@ -55,11 +55,11 @@ int hstory(shell_data_ *sh_data)
 		if (_ll_pl[i] == '\n')
 		{
 			_ll_pl[i] = 0;
-			_start_hst_man(sh_data, _ll_pl + last, _len_gfw++);
-			last = i + 1;
+			_start_hst_man(sh_data, _ll_pl + jekdb, _len_gfw++);
+			jekdb = i + 1;
 		}
-	if (last != i)
-		_start_hst_man(sh_data, _ll_pl + last, _len_gfw++);
+	if (jekdb != i)
+		_start_hst_man(sh_data, _ll_pl + jekdb, _len_gfw++);
 	free(_ll_pl);
 	sh_data->_ln_len = _len_gfw;
 	while (sh_data->_ln_len-- >= SZ_HST)
