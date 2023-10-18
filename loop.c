@@ -47,7 +47,7 @@ void start_execut(shell_data_ *sh_data)
 		perror("Error:");
 		return;
 	}
-	if (_pid_chi == 0)
+	if (!_pid_chi)
 	{
 		if (execve(sh_data->path, sh_data->poss, get_environ(sh_data)) == -1)
 		{
