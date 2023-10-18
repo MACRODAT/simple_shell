@@ -1,62 +1,97 @@
 #include "shell.h"
 
 /**
- * _builtin_print_env - fct
- * @data: data
- * Return: result
-*/
-int _builtin_print_env(shelldata_ *data)
+ * _myexit - exits the shell
+ * @info: Structure containing potential arguments. Used to maintain
+ *          constant function prototype.
+ *  Return: exits with a given exit status
+ *         (0) if info.argv[0] != "exit"
+ */
+int _myexit(info_t *info)
 {
-	_print_env(data);
-	return (0);
-}
+	int exitcheck;
 
-/**
- * _builtin_exit - fct
- * @data: data
- * Return: result
-*/
-int _builtin_exit(shelldata_ *data)
-{
-	int exit_status = 0;
-
-	if (data->tokensize > 1)
+	if (info->argv[1])  /* If there is an exit arguement */
 	{
-		exit_status = _atoi(data->command_tokens[1]);
+		exitcheck = _erratoi(info->argv[1]);
+		if (exitcheck == -1)
+		{
+			info->status = 2;
+			print_error(info, "Illegal number: ");
+			_eputs(info->argv[1]);
+			_eputchar('\n');
+			return (1);
+		}
+		info->err_num = _erratoi(info->argv[1]);
+		return (-2);
 	}
-	free_info(data, 1);
-	exit(exit_status);
-	return (0);
+	info->err_num = -1;
+	return (-2);
 }
 
 /**
- * _builtin_set - fct
- * @data: data
- * Return: result
-*/
-int _builtin_set(shelldata_ *data)
+ * _mycd - changes the current directory of the process
+ * @info: Structure containing potential arguments. Used to maintain
+ *          constant function prototype.
+ *  Return: Always 0
+ */
+int _mycd(info_t *info)
 {
-	if (data->tokensize > 2)
-		_set_env(data, data->command_tokens[1], data->command_tokens[2]);
+	char *s, *dir, buffer[1024];
+	int chdir_ret;
+
+	s = getcwd(buffer, 1024);
+	if (!s)
+		_puts("TODO: >>getcwd failure emsg here<<\n");
+	if (!info->argv[1])
+	{
+		dir = _getenv(info, "HOME=");
+		if (!dir)
+			chdir_ret = /* TODO: what should this be? */
+				chdir((dir = _getenv(info, "PWD=")) ? dir : "/");
+		else
+			chdir_ret = chdir(dir);
+	}
+	else if (_strcmp(info->argv[1], "-") == 0)
+	{
+		if (!_getenv(info, "OLDPWD="))
+		{
+			_puts(s);
+			_putchar('\n');
+			return (1);
+		}
+		_puts(_getenv(info, "OLDPWD=")), _putchar('\n');
+		chdir_ret = /* TODO: what should this be? */
+			chdir((dir = _getenv(info, "OLDPWD=")) ? dir : "/");
+	}
+	else
+		chdir_ret = chdir(info->argv[1]);
+	if (chdir_ret == -1)
+	{
+		print_error(info, "can't cd to ");
+		_eputs(info->argv[1]), _eputchar('\n');
+	}
 	else
 	{
-		_puts_and_flush_e("Unsufficient number of parameters\n");
+		_setenv(info, "OLDPWD", _getenv(info, "PWD="));
+		_setenv(info, "PWD", getcwd(buffer, 1024));
 	}
 	return (0);
 }
 
 /**
- * _builtin_unset - fct
- * @data: data
- * Return: result
-*/
-int _builtin_unset(shelldata_ *data)
+ * _myhelp - changes the current directory of the process
+ * @info: Structure containing potential arguments. Used to maintain
+ *          constant function prototype.
+ *  Return: Always 0
+ */
+int _myhelp(info_t *info)
 {
-	if (data->tokensize > 1)
-		_unset_env(data, data->command_tokens[1]);
-	else
-	{
-		_puts_and_flush_e("Unsufficient number of parameters\n");
-	}
+	char **arg_array;
+
+	arg_array = info->argv;
+	_puts("help call works. Function not yet implemented \n");
+	if (0)
+		_puts(*arg_array); /* temp att_unused workaround */
 	return (0);
 }

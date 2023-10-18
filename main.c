@@ -1,45 +1,40 @@
 #include "shell.h"
 
 /**
- * main - handles the shell
- * @na: num args
- * @a: args
+ * main - entry point
+ * @ac: arg count
+ * @av: arg vector
  *
- * Return: 0 or 1
-*/
-int main(int na, char **a)
+ * Return: 0 on success, 1 on error
+ */
+int main(int ac, char **av)
 {
-	shelldata_ data;
+	info_t info[] = { INFO_INIT };
+	int fd = 2;
 
-	if (na < 1)
-		return (-1);
-	signal(2, get_sigint);
-	initData(&data, na, a);
-	if (na == 2)
+
+	if (ac == 2)
 	{
-		/* check for script file */
-		if (_file_exists(data.a[1]))
+		fd = open(av[1], O_RDONLY);
+		if (fd == -1)
 		{
-			data.interactive = 0;
-			if (_exec_file(&data, a[1]) < 0)
+			if (errno == EACCES)
+				exit(126);
+			if (errno == ENOENT)
 			{
-				_puts_e("Could not read file ");
-				_puts_and_flush_e(a[1]);
-				_puts_and_flush_e("\n");
+				_eputs(av[0]);
+				_eputs(": 0: Can't open ");
+				_eputs(av[1]);
+				_eputchar('\n');
+				_eputchar(BUF_FLUSH);
+				exit(127);
 			}
-			return (1);
+			return (EXIT_FAILURE);
 		}
-		if (_process_lines(&data, data.a[1]) < 0)
-		{
-
-		}
-		else
-		{
-			return (1);
-		}
+		info->readfd = fd;
 	}
-	command(&data);
-	free_info(&data, 1);
-
-	return (1);
+	populate_env_list(info);
+	read_history(info);
+	hsh(info, av);
+	return (EXIT_SUCCESS);
 }
