@@ -70,7 +70,7 @@ int find_builtin(shell_data_ *info)
 	for (i = 0; builtintbl[i].type; i++)
 		if (_strcmp(info->argv[0], builtintbl[i].type) == 0)
 		{
-			info->line_count++;
+			info->_ln_cnt++;
 			built_in_ret = builtintbl[i].func(info);
 			break;
 		}
@@ -89,10 +89,10 @@ void find_cmd(shell_data_ *info)
 	int i, k;
 
 	info->path = info->argv[0];
-	if (info->linecount_flag == 1)
+	if (info->_fla_lns == 1)
 	{
-		info->line_count++;
-		info->linecount_flag = 0;
+		info->_fla_lns = 0;
+		info->_ln_cnt++;
 	}
 	for (i = 0, k = 0; info->arg[i]; i++)
 		if (!is_delim(info->arg[i], " \t\n"))
@@ -127,16 +127,15 @@ void find_cmd(shell_data_ *info)
  */
 void start_execut(shell_data_ *info)
 {
-	pid_t child_pid;
+	pid_t _pid_chi;
 
-	child_pid = fork();
-	if (child_pid == -1)
+	_pid_chi = fork();
+	if (_pid_chi == -1)
 	{
-		/* TODO: PUT ERROR FUNCTION */
 		perror("Error:");
 		return;
 	}
-	if (child_pid == 0)
+	if (_pid_chi == 0)
 	{
 		if (execve(info->path, info->argv, get_environ(info)) == -1)
 		{
@@ -145,7 +144,6 @@ void start_execut(shell_data_ *info)
 				exit(126);
 			exit(1);
 		}
-		/* TODO: PUT ERROR FUNCTION */
 	}
 	else
 	{

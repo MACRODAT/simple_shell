@@ -54,8 +54,8 @@ typedef struct _lst
  * @argc: The number of command arguments.
  * @err_num: The error number.
  * @fname: The file name.
- * @line_count: The current line number in the shell input.
- * @linecount_flag: A flag to indicate whether line counting is enabled.
+ * @_ln_cnt: The current line number in the shell input.
+ * @_fla_lns: A flag to indicate whether line counting is enabled.
  * @history: A linked list for command history.
  * @alias: A linked list for command aliases.
  * @env_changed: A flag to indicate changes in the environment.
@@ -73,9 +73,9 @@ typedef struct pswo
 	char **argv;
 	char *path;
 	int argc;
-	unsigned int line_count;
+	unsigned int _ln_cnt;
 	int err_num;
-	int linecount_flag;
+	int _fla_lns;
 	char *fname;
 	_lst *env;
 	_lst *history;
